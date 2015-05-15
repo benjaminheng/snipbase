@@ -7,7 +7,6 @@
 1. [Ruby](http://rubyinstaller.org/downloads/) 2.1.x or above
 2. [Ruby Development Kit](http://rubyinstaller.org/downloads/)
 3. [PostgreSQL](http://www.postgresql.org/)
-4. Rails (`gem install rails`)
 
 ### Database Setup
 
@@ -30,7 +29,7 @@ Install gem dependencies and initialize database.
 ```
 $ bundle install
 $ rake db:create
-$ rake db:migrate
+$ rake db:schema:load
 ```
 
 Start the server.
