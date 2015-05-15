@@ -4,8 +4,3 @@ one:
   title: MyString
   user_id: 
   private: false
-
-two:
-  title: MyString
-  user_id: 
-  private: false

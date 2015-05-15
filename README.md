@@ -13,8 +13,8 @@
 Create the database user (default: snipbase).
 
 ```
-$ psql postgres
-postgres=> create role snipbase with createdb login password '<your_database_password>';
+$ psql -U postgres
+postgres=# create role snipbase with createdb login password '<your_database_password>';
 ```
 
 ### App Setup

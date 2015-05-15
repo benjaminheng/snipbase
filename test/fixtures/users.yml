@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: MyString
-  password: MyString
-  email: MyString
-  name: MyString
-
-two:
-  username: MyString
-  password: MyString
-  email: MyString
-  name: MyString
+<% 10.times do |n| %>
+user_<%= n %>:
+  username: <%= "user#{n}" %>
+  password: <%= "password#{n}" %>
+  email: <%= "user#{n}@example.com" %>
+  name: <%= "MrUser#{n}" %>
+<% end %>

@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+<% 10.times do |n| %>
+group_<%= n %>:
+  name: <%= "group#{n}" %>
+<% end %>
