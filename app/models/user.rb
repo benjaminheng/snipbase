@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
                                      dependent: :destroy
     has_many :following, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships
+    validates :username, uniqueness: true
+    validates :password, presence: true
 
     def follow(other_user)
         active_relationships.create(followed_id: other_user.id)
