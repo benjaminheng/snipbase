@@ -1,5 +1,7 @@
 # Snipbase
 
+A social and collaborative code snippet manager with GitHub Gists integration.
+
 ## Setup
 
 ### Dependencies
