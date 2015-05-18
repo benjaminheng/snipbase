@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
     has_many :following, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships
 
-    validates :username, uniqueness: true
-    validates :password, presence: true, confirmation: true
-    validates :password_confirmation, presence: true
+    validates :username, presence: true, uniqueness: true, allow_nil: true
+    validates :password, presence: true, confirmation: true, allow_nil: true
+    validates :password_confirmation, presence: true, allow_nil: true
     validate :password_complexity
 
     def follow(other_user)
