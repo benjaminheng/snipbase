@@ -52,6 +52,7 @@ div#header {
                         text-decoration: none;
                         background-color: darken($brand-color, 7%)
                     }
+                    @include transition(background-color .2s ease);
                 }
             }
         }
@@ -61,22 +62,24 @@ div#header {
 
 div#content {
     margin: auto;
-    padding: 0px 20px;
-    max-width: $screen-sm-max;
+    max-width: $screen-md-min;
 
     #register {
         h1 {
             text-align: center;
+            margin-bottom: 20px;
         }
 
         .register-box {
-            float: left;
-            min-width: 300px;
+            margin: auto;
+            float: none;
+            max-width: $screen-md-min/3;
             background-color: #F1F1F1;
             border-color: 1px solid #D5D5D5;
+            margin-bottom: 30px;
 
             form.register-form {
-                margin: 30px 20px;
+                padding: 10px 0px;
                 .form-element {
                     label {
                         display: block;
@@ -90,8 +93,16 @@ div#content {
                 }
             }
 
+            @include breakpoint-small {
+                margin: none;
+                float: left;
+            }
+        }
+        .register-help {
+            text-align: center;
         }
         @extend %clearfix;
+
     } // end #register
 
 

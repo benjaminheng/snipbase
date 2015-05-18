@@ -1,4 +1,4 @@
-<div id="register">
+<div id="register" class="container-fluid">
     <h1>Create your Snipbase Account</h1>
 
     <% if @user.errors.any? %>
@@ -9,33 +9,38 @@
         </ul>
     <% end %>
 
-    <div class="register-box">
+    <div class="register-box col-sm-4 col-xs-12">
         <%= form_for(@user, url: register_path, html: {class: "register-form"})  do |f| %>
-        <div class="form-element"> 
-            <%= f.label :username %>
-            <%= f.text_field :username %> 
-        </div>
+            <div class="form-element"> 
+                <%= f.label :username %>
+                <%= f.text_field :username %> 
+            </div>
 
-        <div class="form-element"> 
-            <%= f.label :name %>
-            <%= f.text_field :name %> 
-        </div>
+            <div class="form-element"> 
+                <%= f.label :name %>
+                <%= f.text_field :name %> 
+            </div>
 
-        <div class="form-element"> 
-            <%= f.label :email %>
-            <%= f.email_field :email %> 
-        </div>
+            <div class="form-element"> 
+                <%= f.label :email %>
+                <%= f.email_field :email %> 
+            </div>
 
-        <div class="form-element"> 
-            <%= f.label :password %>
-            <%= f.password_field :password %> 
-        </div>
+            <div class="form-element"> 
+                <%= f.label :password %>
+                <%= f.password_field :password %> 
+            </div>
 
-        <div class="form-element"> 
-            <%= f.label :password_confirmation, "Confirm Password" %>
-            <%= f.password_field :password_confirmation %> 
-        </div>
+            <div class="form-element"> 
+                <%= f.label :password_confirmation, "Confirm Password" %>
+                <%= f.password_field :password_confirmation %> 
+            </div>
 
-        <%= f.submit "Register", class: "" %>
-    <% end %>
+            <%= f.submit "Register", class: "" %>
+        <% end %>
+    </div>
+
+    <div class="register-help col-sm-8 col-xs-12">
+        hello this is why you should sign up for an account.
+    </div>
 </div>

@@ -15,6 +15,7 @@ body {
     font-size: $font-size;
 }
 
+
 input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="text"], input[type="url"] {
     border-color: #c0c0c0 #d9d9d9 #d9d9d9;
     border-radius: 1px;
@@ -30,6 +31,20 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
         content: "";
         display: table;
         clear: both;
+    }
+}
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin breakpoint-small {
+    @media (min-width: $screen-sm-min) {
+        @content;
     }
 }
 
