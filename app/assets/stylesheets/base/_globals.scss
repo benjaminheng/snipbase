@@ -1,0 +1,35 @@
+$font-size: 14px;
+
+$text-color: #333333;
+$text-color-light: #FCFCFC;
+$bg-color: #fcfcfc;
+$bg-color-alt: #eef1f2;
+$brand-color: #4095DB;
+$brand-color-light: #7A95C9; 
+$highlight-color: #7D7D7D;
+$highlight-color-light: #B7B7B7;
+
+body {
+    color: $text-color;
+    background-color: $bg-color;
+    font-size: $font-size;
+}
+
+input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="text"], input[type="url"] {
+    border-color: #c0c0c0 #d9d9d9 #d9d9d9;
+    border-radius: 1px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #FFFFFF;
+    height: 30px;
+    padding: 0px 8px;
+}
+
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+

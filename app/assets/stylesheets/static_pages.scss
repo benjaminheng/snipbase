@@ -1,3 +1,98 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div#header {
+    background-color: $brand-color;
+    color: $text-color-light;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    .wrapper {
+        margin: auto;
+        padding: 0px 20px;
+        max-width: $screen-sm-max;
+    }
+
+    h1 {
+        float: left;
+        margin-bottom: 20px;
+        font-weight: 600;
+        a:hover { text-decoration: none; }
+    }
+
+    a {
+        color: $text-color-light;
+        &:hover { 
+            color: $text-color-light; 
+            text-decoration: dotted underline;
+        }
+    }
+
+    .nav-links {
+        float: right;
+        font-size: $font-size + 1px;
+
+
+        ul { padding: 0px; }
+        ul > li {
+            display: inline-block;
+            padding-right: 20px;
+            margin-top: 33px;
+
+            &:last-child {
+                border-left: 1px solid darken($text-color-light, 5%);;
+                padding-left: 20px;
+                padding-right: 0px;
+
+                span {
+                    padding: 0px 5px;
+                    color: darken($text-color-light, 15%);
+                }
+
+                .register {
+                    border: 1px solid darken($text-color-light, 15%);
+                    border-radius: 2px;
+                    padding: 5px;
+                    &:hover {
+                        text-decoration: none;
+                        background-color: darken($brand-color, 7%)
+                    }
+                }
+            }
+        }
+    }
+    @extend %clearfix;
+} 
+
+div#content {
+    margin: auto;
+    padding: 0px 20px;
+    max-width: $screen-sm-max;
+
+    #register {
+        h1 {
+            text-align: center;
+        }
+
+        .register-box {
+            float: left;
+            min-width: 300px;
+            background-color: #F1F1F1;
+            border-color: 1px solid #D5D5D5;
+
+            form.register-form {
+                margin: 30px 20px;
+                .form-element {
+                    label {
+                        display: block;
+                        font-size: $font-size - 1px;
+                    }
+                    input {
+                        display: block;
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+        }
+        @extend %clearfix;
+    } // end #register
+
+
+}

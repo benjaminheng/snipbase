@@ -1,28 +1,41 @@
-<h1> Register </h1>
+<div id="register">
+    <h1>Create your Snipbase Account</h1>
 
-<% if @user.errors.any? %>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-        <li> <%= msg %>   
+    <% if @user.errors.any? %>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li> <%= msg %>   
+        <% end %>
+        </ul>
     <% end %>
-    </ul>
-<% end %>
 
-<%= form_for(@user, url: register_path) do |f| %>
-    <div> <%= f.label :username %> </div>
-    <div> <%= f.text_field :username %> </div>
+    <div class="register-box">
+        <%= form_for(@user, url: register_path, html: {class: "register-form"})  do |f| %>
+        <div class="form-element"> 
+            <%= f.label :username %>
+            <%= f.text_field :username %> 
+        </div>
 
-    <div> <%= f.label :name %> </div>
-    <div> <%= f.text_field :name %> </div>
+        <div class="form-element"> 
+            <%= f.label :name %>
+            <%= f.text_field :name %> 
+        </div>
 
-    <div> <%= f.label :email %> </div>
-    <div> <%= f.email_field :email %> </div>
+        <div class="form-element"> 
+            <%= f.label :email %>
+            <%= f.email_field :email %> 
+        </div>
 
-    <div> <%= f.label :password %> </div>
-    <div> <%= f.password_field :password %> </div>
+        <div class="form-element"> 
+            <%= f.label :password %>
+            <%= f.password_field :password %> 
+        </div>
 
-    <div> <%= f.label :password_confirmation, "Confirm Password" %> </div>
-    <div> <%= f.password_field :password_confirmation %> </div>
+        <div class="form-element"> 
+            <%= f.label :password_confirmation, "Confirm Password" %>
+            <%= f.password_field :password_confirmation %> 
+        </div>
 
-    <%= f.submit "Register", class: "" %>
-<% end %>
+        <%= f.submit "Register", class: "" %>
+    <% end %>
+</div>
