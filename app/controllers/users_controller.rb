@@ -5,13 +5,8 @@ class UsersController < ApplicationController
     end
 
     def create
-        valid = true
-        if params[:user][:password] != params[:user][:password_confirmation]
-            valid = false
-        end
-
         @user = User.new(user_params)
-        if valid && @user.save
+        if @user.save
             flash[:info] = "Successfully registered!"
             redirect_to '/'
         else
@@ -21,6 +16,6 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:username, :name, :email, :password)
+        params.require(:user).permit(:username, :name, :email, :password, :password_confirmation)
     end
 end

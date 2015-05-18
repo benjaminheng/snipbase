@@ -9,8 +9,11 @@ class User < ActiveRecord::Base
                                      dependent: :destroy
     has_many :following, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships
+
     validates :username, uniqueness: true
-    validates :password, presence: true
+    validates :password, presence: true, confirmation: true
+    validates :password_confirmation, presence: true
+    validate :password_complexity
 
     def follow(other_user)
         active_relationships.create(followed_id: other_user.id)
@@ -26,5 +29,16 @@ class User < ActiveRecord::Base
 
     def followed_by?(other_user)
         return followers.include?(other_user)
+    end
+
+    private
+    def password_complexity
+        return unless errors[:password].blank? && errors[:password_confirmation].blank?
+        return if password.nil?
+
+        if (password =~ /[A-Z]/).nil?  # check for uppercase
+            errors.add :password, "must contain at least 1 uppercase character"
+            return
+        end
     end
 end
