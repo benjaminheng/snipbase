@@ -1,19 +1,14 @@
 <div id="register" class="container-fluid">
     <h1>Create your Snipbase Account</h1>
 
-    <% if @user.errors.any? %>
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li> <%= msg %>   
-        <% end %>
-        </ul>
-    <% end %>
-
     <div class="register-box col-sm-4 col-xs-12">
         <%= form_for(@user, url: register_path, html: {class: "register-form"})  do |f| %>
             <div class="form-element"> 
                 <%= f.label :username %>
                 <%= f.text_field :username %> 
+                <% if !@user.errors[:username].blank? %> 
+                    <span class="errormsg">Username <%= @user.errors[:username][0] %></span>
+                <% end %>
             </div>
 
             <div class="form-element"> 
@@ -29,14 +24,20 @@
             <div class="form-element"> 
                 <%= f.label :password %>
                 <%= f.password_field :password %> 
+                <% if !@user.errors[:password].blank? %> 
+                    <span class="errormsg">Password <%= @user.errors[:password][0] %></span>
+                <% end %>
             </div>
 
             <div class="form-element"> 
-                <%= f.label :password_confirmation, "Confirm Password" %>
+                <%= f.label :password_confirmation, "Confirm your password" %>
                 <%= f.password_field :password_confirmation %> 
+                <% if !@user.errors[:password_confirmation].blank? %> 
+                    <span class="errormsg">Password confirmation <%= @user.errors[:password_confirmation][0] %></span>
+                <% end %>
             </div>
 
-            <%= f.submit "Register", class: "" %>
+            <%= f.submit "Sign up" %>
         <% end %>
     </div>
 

@@ -1,0 +1,40 @@
+body {
+    color: $text-color;
+    background-color: $bg-color;
+    font-size: $font-size;
+    font-family: $font-family;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $heading-font-family;
+}
+
+
+input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="text"], input[type="url"] {
+    border-color: #c0c0c0 #d9d9d9 #d9d9d9;
+    border-radius: 1px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #FFFFFF;
+    height: 30px;
+    padding: 0px 8px;
+}
+
+input[type="button"], input[type="submit"] {
+    text-align: center;
+    font-weight: bold;
+    padding: 4px 12px;
+    margin: 2px 4px;
+    background-color: $brand-color;
+    color: $text-color-light;
+    border: 1px solid;
+    border-color: darken($brand-color, 5%) darken($brand-color, 20%) darken($brand-color, 20%) darken($brand-color, 5%);
+    min-width: 50px;
+    border-radius: 1px;
+    @include shadow-depth(1);
+    @include transition(all .2s ease);
+
+    &:hover {
+        background-color: darken($brand-color, 5%);
+    }
+}
