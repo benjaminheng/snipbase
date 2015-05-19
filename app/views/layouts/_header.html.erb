@@ -4,14 +4,26 @@
             <a href="/">Snipbase</a>
         </h1>
         <div class="nav-links">
-            <ul>
-                <li><a href="/public">Public Snippets</a>
-                <li><a href="/tour">Tour</a>
-                <li>
-                <a href="/login">Log in</a>
-                <span>or</span>
-                <%= link_to "Sign up", register_path, class: "register"%>
-                </li>
+            <% if logged_in? %>
+                <ul>
+                    <li><a href="/">Groups</a>
+                    <li><a href="/">+Snippet</a>
+                    <li>
+                        <a href="/user/<%= current_user.username %>"><%= current_user.username %></a>
+                        <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
+                    </li>
+                </ul>
+            <% else %>
+                <ul>
+                    <li><a href="/public">Public Snippets</a>
+                    <li><a href="/tour">Tour</a>
+                    <li>
+                        <%= link_to "Log in", login_path %>
+                        <span>or</span>
+                        <%= link_to "Sign up", register_path, class: "register"%>
+                    </li>
+                </ul>
+            <% end %>
         </div>
     </div>
 </div>

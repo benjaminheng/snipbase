@@ -54,6 +54,10 @@ div#header {
                     }
                     @include transition(background-color .2s ease);
                 }
+
+                .logout {
+                    margin-left: 10px;
+                }
             }
         }
     }
@@ -64,38 +68,38 @@ div#content {
     margin: auto;
     max-width: $screen-md-min;
 
-    #register {
+    #register, #login {
         h1 {
             text-align: center;
             margin-bottom: 20px;
             font-weight: 300;
         }
 
-        .register-box {
+        form.register-form, form.login-form {
+            max-width: $screen-md-min/3;
+            border: 1px solid #EAEAEA;
+            margin-bottom: 30px;
+            background-color: #F1F1F1;
+            padding: 15px;
+            .form-element {
+                margin-bottom: 10px;
+                label {
+                    display: block;
+                    font-size: $font-size - 1px;
+                }
+                input {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    #register {
+        form.register-form {
             margin: auto;
             float: none;
-            max-width: $screen-md-min/3;
-            background-color: #F1F1F1;
-            border-color: 1px solid #D5D5D5;
-            margin-bottom: 30px;
-
-            form.register-form {
-                padding: 10px 0px;
-                .form-element {
-                    margin-bottom: 10px;
-                    label {
-                        display: block;
-                        font-size: $font-size - 1px;
-                    }
-                    input {
-                        display: block;
-                        width: 100%;
-                    }
-                }
-
-                @extend %clearfix;
-            }
-
+            @extend %clearfix;
             @include breakpoint-small {
                 margin: none;
                 float: left;
@@ -107,6 +111,12 @@ div#content {
         @extend %clearfix;
 
     } // end #register
+
+    #login {
+        form.login-form {
+            margin: auto;
+        }
+    }
 }
 
 span.errormsg {
