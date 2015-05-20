@@ -1,68 +1,84 @@
-div#header {
-    background-color: $brand-color;
+#header {
+    background-color: #323232;
     color: $text-color-light;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    .wrapper {
-        margin: auto;
-        padding: 0px 20px;
-        max-width: $screen-sm-max;
-    }
 
-    h1 {
-        float: left;
-        margin-bottom: 20px;
-        font-weight: 600;
-        a:hover { text-decoration: none; }
-    }
-
-    a {
-        color: $text-color-light;
-        &:hover { 
-            color: $text-color-light; 
-            text-decoration: dotted underline;
+    .container-fluid {
+        .navbar-header {
         }
+        max-width: $screen-md-min;
     }
 
-    .nav-links {
-        float: right;
-        font-size: $font-size + 1px;
+    .navbar-toggle {
+        border: none;
+        margin-top: 14px;
+        .icon-bar {
+            background-color: $text-color-light;
+        }
+        &:hover, &:focus, &:active { background-color: transparent; }
+    }
 
+    .navbar-collapse {
+        border-color: #202020;
+    }
 
-        ul { padding: 0px; }
-        ul > li {
+    a.navbar-brand {
+        color: $text-color-light;
+        font-size: 25px;
+        height: 60px;
+        line-height: 20px;
+        padding: 20px;
+        &:hover { text-decoration: none; }
+    }
+
+    ul.navbar-nav li {
+        a {
+            color: darken($text-color-light, 15%);
+            &:hover { 
+                color: $text-color-light; 
+            }
+            @include breakpoint-small {
+                line-height: 20px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+
+        &.vertical-separator {
             display: inline-block;
-            padding-right: 20px;
-            margin-top: 33px;
+            margin: 0px 15px;
+            span {
+                color: darken($text-color-light, 40%);
+                display: inline-block;
+                line-height: 20px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
 
-            &:last-child {
-                border-left: 1px solid darken($text-color-light, 5%);;
-                padding-left: 20px;
-                padding-right: 0px;
-
-                span {
-                    padding: 0px 5px;
-                    color: darken($text-color-light, 15%);
+        &:last-child {
+            a {
+                display: inline-block;
+                padding-right: 10px;
+            }
+            span {
+                color: darken($text-color-light, 40%);
+            }
+            .signup {
+                color: $text-color-light; 
+                background-color: $brand-color;
+                border: 1px solid darken($brand-color, 5%);
+                border-radius: 1px;
+                padding: 5px 7px;
+                margin-left: 10px;
+                &:hover {
+                    text-decoration: none;
+                    background-color: darken($brand-color, 5%)
                 }
-
-                .register {
-                    border: 1px solid darken($text-color-light, 15%);
-                    border-radius: 2px;
-                    padding: 5px 7px;
-                    &:hover {
-                        text-decoration: none;
-                        background-color: darken($brand-color, 8%)
-                    }
-                    @include transition(background-color .2s ease);
-                }
-
-                .logout {
-                    margin-left: 10px;
-                }
+                @include transition(background-color .2s ease);
             }
         }
     }
-    @extend %clearfix;
-} 
+}
 
 div#content {
     margin: auto;

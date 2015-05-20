@@ -1,29 +1,35 @@
-<div id="header">
-    <div class="wrapper">
-        <h1> 
-            <a href="/">Snipbase</a>
-        </h1>
-        <div class="nav-links">
-            <% if logged_in? %>
-                <ul>
+<nav id="header" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Snipbase</a>
+        </div>
+        <div id="bs-example-navbar-collapse-1" class="navbar-collapse collapse" aria-expanded="false" style="">
+            <ul class="nav navbar-nav navbar-right">
+                <% if logged_in? %>
                     <li><a href="/">Groups</a>
                     <li><a href="/">+Snippet</a>
+                    <li class="vertical-separator hidden-xs"><span>|</span>
                     <li>
                         <a href="/user/<%= current_user.username %>"><%= current_user.username %></a>
                         <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
                     </li>
-                </ul>
-            <% else %>
-                <ul>
+                <% else %>
                     <li><a href="/public">Public Snippets</a>
                     <li><a href="/tour">Tour</a>
+                    <li class="vertical-separator hidden-xs"><span>|</span>
                     <li>
                         <%= link_to "Log in", login_path %>
                         <span>or</span>
-                        <%= link_to "Sign up", register_path, class: "register"%>
+                        <%= link_to "Sign up", register_path, class: "signup"%>
                     </li>
-                </ul>
-            <% end %>
+                <% end %>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
