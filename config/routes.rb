@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    get '/' => 'static_pages#index'
+    get '/' => 'static_pages#index', as: 'root'
     get '/register' => 'users#register'
     post '/register' => 'users#create'
 
