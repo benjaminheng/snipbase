@@ -141,6 +141,14 @@ div#content {
             margin: auto;
         }
     }
+
+    #add-snippet {
+        form.add-snippet-form {
+            .file {
+                border: 1px solid #666666;
+            }
+        }
+    }
 }
 
 span.errormsg {

@@ -1,30 +1,36 @@
-<div id="add" class="container-fluid">
+<div id="add-snippet" class="container-fluid">
 	<h1>New Snippet</h1>
 	
-	<%= form_for @snippet, url: add_path, html: {class:"NOT_YET_IMPLEMENTED col-sm-4 col-xs-12"} do |f| %>
-	<%= f.text_field :title, :value => 'Hi' %>
-	<%= f.check_box :private %>
+	<%= form_for @snippet, url: add_path, html: {class: "add-snippet-form col-sm-4 col-xs-12"} do |f| %>
+        <%= f.text_field :title, :value => 'Hi' %>
+        <%= f.check_box :private %>
 
-	<!--Hardcoded for trying purposes.-->
-	<div>File 1 Name</div>
-	<input type="textbox" name="snippet_files[][filename]" value="duck">
-	<div>Content</div>
-	<input type="textbox" name="snippet_files[][content]" value ="duckcontent">
-	<input type="hidden" name = "snippet_files[][language]" value="text">
+        <!--Hardcoded for trying purposes.-->
+        <div class="files">
+            <div class="file">
+                <input type="textbox" placeholder="File name" name="snippet_files[][filename]" value="duck">
+                <div>Content</div>
+                <textarea name="snippet_files[][content]">duckcontent</textarea>
+                <input type="hidden" name = "snippet_files[][language]" value="text">
+            </div>
 
-	<div>File 2 Name</div>
-	<input type="textbox" name="snippet_files[][filename]" value="duck2.txt">
-	<div>Content</div>
-	<input type="textbox" name="snippet_files[][content]" value ="duck2content">
-	<input type="hidden" name = "snippet_files[][language]" value="text">
+            <div class="file">
+                <input type="textbox" placeholder="File name" name="snippet_files[][filename]" value="duck2.txt">
+                <div>Content</div>
+                <textarea name="snippet_files[][content]">duck2content</textarea>
+                <input type="hidden" name = "snippet_files[][language]" value="text">
+            </div>
 
-	<div>File 3 Name</div>
-	<input type="textbox" name="snippet_files[][filename]" value="">
-	<div>Content</div>
-	<input type="textbox" name="snippet_files[][content]" value ="duck3content">
-	<input type="hidden" name = "snippet_files[][language]" value="text">
-	<br/>
-	<%= f.submit "Create" %>
-	<% end %>
+            <div class="file">
+                <input type="textbox" placeholder="File name" name="snippet_files[][filename]" value="">
+                <div>Content</div>
+                <textarea name="snippet_files[][content]">duck3content</textarea>
+                <input type="hidden" name = "snippet_files[][language]" value="text">
+            </div>
+
+        </div>
+        <%= button_tag "Add file", id: "add-snippet-file-btn", type: "button" %>
+        <%= f.submit "Create Snippet" %>
+    <% end %>
 
 </div>
