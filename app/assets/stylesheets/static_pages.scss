@@ -55,13 +55,21 @@
             }
         }
 
-        &:last-child {
+        &.no-block {
             a {
                 display: inline-block;
-                padding-right: 10px;
             }
-            span {
+            span.faded {
                 color: darken($text-color-light, 40%);
+            }
+            .user {
+                padding-right: 4px;
+            }
+            .settings {
+                padding-left: 4px;
+            }
+            .login {
+                padding-right: 10px;
             }
             .signup {
                 color: $text-color-light; 

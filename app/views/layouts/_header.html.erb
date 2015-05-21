@@ -15,17 +15,22 @@
                     <li><a href="/">Groups</a>
                     <li><a href="/">+Snippet</a>
                     <li class="vertical-separator hidden-xs"><span>|</span>
+                    <li class="no-block">
+                        <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a><a class="settings hidden-xs" href="/user/settings">[S]</a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="/user/settings">Settings</a>
+                    </li>
                     <li>
-                        <a href="/user/<%= current_user.username %>"><%= current_user.username %></a>
                         <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
                     </li>
                 <% else %>
                     <li><a href="/public">Public Snippets</a>
                     <li><a href="/tour">Tour</a>
                     <li class="vertical-separator hidden-xs"><span>|</span>
-                    <li>
-                        <%= link_to "Log in", login_path %>
-                        <span>or</span>
+                    <li class="no-block">
+                        <%= link_to "Log in", login_path, class: "login" %>
+                        <span class="faded">or</span>
                         <%= link_to "Sign up", register_path, class: "signup"%>
                     </li>
                 <% end %>
