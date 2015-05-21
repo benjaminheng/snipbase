@@ -7,7 +7,7 @@
             <% if logged_in? %>
                 <ul>
                     <li><a href="/">Groups</a>
-                    <li><a href="/">+Snippet</a>
+                    <li><a href="/add">+Snippet</a>
                     <li>
                         <a href="/user/<%= current_user.username %>"><%= current_user.username %></a>
                         <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
