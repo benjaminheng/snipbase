@@ -16,15 +16,14 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
     border-width: 1px;
     border-style: solid;
     background-color: #FFFFFF;
-    height: 30px;
-    padding: 0px 8px;
+    height: 32px;
+    padding: 0px 10px;
 }
 
 input[type="button"], input[type="submit"] {
     text-align: center;
     font-weight: bold;
-    padding: 4px 12px;
-    margin: 2px 4px;
+    padding: 5px 12px;
     background-color: $brand-color;
     color: $text-color-light;
     border: 1px solid;
@@ -32,7 +31,7 @@ input[type="button"], input[type="submit"] {
     min-width: 50px;
     border-radius: 1px;
     @include shadow-depth(1);
-    @include transition(all .2s ease);
+    @include transition(background-color .2s ease);
 
     &:hover {
         background-color: darken($brand-color, 5%);
