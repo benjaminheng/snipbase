@@ -14,7 +14,7 @@
                 <% if logged_in? %>
                     <li><a href="/">Groups</a>
                     <li><a href="/add">+Snippet</a>
-                        
+
                     <li class="vertical-separator hidden-xs"><span>|</span>
                     <li class="no-block">
                         <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a><a class="settings hidden-xs" href="/user/settings">[S]</a>
@@ -22,7 +22,7 @@
                     <li class="visible-xs">
                         <a href="/user/settings">Settings</a>
                     </li>
->>>>>>> 9fda3c53b7d04d1afb44dcc3499ac5ad99243bfc
+
                     <li>
                         <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
                     </li>
