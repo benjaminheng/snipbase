@@ -4,7 +4,7 @@
     <%= form_for(:session, url: login_path, html: {class: "login-form"}) do |f| %>
         <div class="form-element">
             <%= f.label :username %>
-            <%= f.text_field :username %>
+            <%= f.text_field :username, autofocus: true%>
         </div>
 
         <div class="form-element">

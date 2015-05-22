@@ -3,12 +3,3 @@
 <%= render 'shared/messages' %>
 
 <%= link_to "Register", register_path %>
-
-<div>
-<% if logged_in? %>
-    you're logged in.
-    <%= link_to "Log out", logout_path, method: :post %>
-<% else %>
-    you're not logged in.
-<% end %>
-</div>

@@ -1,6 +1,9 @@
 #header {
-    background-color: #323232;
+    background-color: $bg-color-dark;
     color: $text-color-light;
+
+    &.navbar { border-radius: 0px; }
+    &.navbar-default { border: none; }
 
     .container-fluid {
         .navbar-header {
@@ -11,6 +14,7 @@
     .navbar-toggle {
         border: none;
         margin-top: 14px;
+        box-shadow: none;
         .icon-bar {
             background-color: $text-color-light;
         }
@@ -55,18 +59,36 @@
             }
         }
 
+        &.dropdown {
+            &.open > a {
+                background-color: lighten($bg-color-dark, 8%);
+                color: $text-color-light;
+            }
+            ul.dropdown-menu {
+                background-color: lighten($bg-color-dark, 8%);
+                border:none;
+
+                li a {
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    &:hover { background-color: transparent; }
+                }
+            }
+            a.settings {
+                i.fa {
+                    font-size: 19px;
+                }
+                padding-top: 20px;
+                padding-bottom: 18px;
+            }
+        }
+
         &.no-block {
             a {
                 display: inline-block;
             }
             span.faded {
                 color: darken($text-color-light, 40%);
-            }
-            .user {
-                padding-right: 4px;
-            }
-            .settings {
-                padding-left: 4px;
             }
             .login {
                 padding-right: 10px;

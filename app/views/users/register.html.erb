@@ -4,7 +4,7 @@
         <%= form_for(@user, url: register_path, html: {class: "register-form col-sm-4"})  do |f| %>
             <div class="form-element"> 
                 <%= f.label :username %>
-                <%= f.text_field :username %> 
+                <%= f.text_field :username, autofocus: true%> 
                 <% if !@user.errors[:username].blank? %> 
                     <span class="errormsg">Username <%= @user.errors[:username][0] %></span>
                 <% end %>

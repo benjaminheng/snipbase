@@ -28,7 +28,6 @@ input[type="button"], input[type="submit"], button {
     color: $text-color-light;
     border: 1px solid;
     border-color: darken($brand-color, 5%) darken($brand-color, 20%) darken($brand-color, 20%) darken($brand-color, 5%);
-    min-width: 50px;
     border-radius: 1px;
     @include shadow-depth(1);
     @include transition(background-color .2s ease);

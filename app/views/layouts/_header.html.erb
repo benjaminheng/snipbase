@@ -16,14 +16,23 @@
                     <li><a href="/add">+Snippet</a>
 
                     <li class="vertical-separator hidden-xs"><span>|</span>
-                    <li class="no-block">
-                        <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a><a class="settings hidden-xs" href="/user/settings">[S]</a>
+                    <li>
+                    <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a>
+                    
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a class="settings" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-cog"></i><span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/user/settings">Settings</a></li>
+                            <li>
+                                <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
+                            </li>
+                        </ul>
                     </li>
                     <li class="visible-xs">
                         <a href="/user/settings">Settings</a>
                     </li>
-
-                    <li>
+                    <li class="visible-xs">
                         <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
                     </li>
                 <% else %>
