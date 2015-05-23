@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
 
     get '/' => 'static_pages#index', as: 'root'
-    get '/register' => 'users#register'
+    get '/register' => 'users#new'
     post '/register' => 'users#create'
 
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
     post '/logout' => 'sessions#destroy'
+
+    get '/user/settings' => 'users#edit'
+    post '/user/settings' => 'users#update_profile'
+    post '/user/settings/changepassword' => 'users#update_password'
+    post '/user/settings/deleteaccount' => 'users#destroy'
 
     get '/add' => 'snippets#new'
     post '/add' => 'snippets#create'

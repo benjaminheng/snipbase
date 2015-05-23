@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    def register
+    def new 
         @user = User.new
     end
 
@@ -11,8 +11,22 @@ class UsersController < ApplicationController
             log_in @user
             redirect_to root_path
         else
-            render 'register'
+            render 'new'
         end
+    end
+
+    def edit
+        # TODO: check if authenticated first
+        @user = User.find(current_user.id);
+    end
+
+    def update_profile
+    end
+
+    def update_password
+    end
+
+    def destroy
     end
 
     private

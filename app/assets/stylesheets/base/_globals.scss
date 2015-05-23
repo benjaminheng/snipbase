@@ -7,9 +7,7 @@ $text-color-light: #FCFCFC;
 $bg-color: #fcfcfc;
 $bg-color-dark: #323232;
 $brand-color: #3093E5;
-$brand-color-light: #7A95C9; 
-$highlight-color: #7D7D7D;
-$highlight-color-light: #B7B7B7;
+$warning-color: #df3e3e;
 
 @mixin transition($args...) {
     -webkit-transition: $args;
@@ -26,7 +24,9 @@ $highlight-color-light: #B7B7B7;
 }
 
 @mixin shadow-depth($depth) {
-    @if $depth == 1 {
+    @if $depth == 0.5 {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    } @else if $depth == 1 {
         box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     } @else if $depth == 2 {
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

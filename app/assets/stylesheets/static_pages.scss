@@ -2,8 +2,11 @@
     background-color: $bg-color-dark;
     color: $text-color-light;
 
-    &.navbar { border-radius: 0px; }
-    &.navbar-default { border: none; }
+    &.navbar-custom { 
+        border-radius: 0px; 
+        margin-bottom: 30px;
+        border: none; 
+    }
 
     .container-fluid {
         .navbar-header {
@@ -37,6 +40,7 @@
     ul.navbar-nav li {
         a {
             color: darken($text-color-light, 15%);
+            background-color: transparent;
             &:hover { 
                 color: $text-color-light; 
             }
@@ -109,40 +113,37 @@
         }
     }
 }
+form.form-default {
+    max-width: $screen-md-min/3;
+    border: 1px solid #EAEAEA;
+    margin-bottom: 30px;
+    .form-element {
+        margin-bottom: 10px;
+        label {
+            display: block;
+            font-size: $font-size - 1px;
+        }
+        input {
+            display: block;
+            width: 100%;
+        }
+    }
+}
 
 div#content {
     margin: auto;
     max-width: $screen-md-min;
 
-    #register, #login {
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        form.register-form, form.login-form {
-            max-width: $screen-md-min/3;
-            border: 1px solid #EAEAEA;
-            margin-bottom: 30px;
-            background-color: #F1F1F1;
-            padding: 15px;
-            .form-element {
-                margin-bottom: 10px;
-                label {
-                    display: block;
-                    font-size: $font-size - 1px;
-                }
-                input {
-                    display: block;
-                    width: 100%;
-                }
-            }
-        }
+    h1.page-title {
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     #register {
         form.register-form {
+            background-color: #F1F1F1;
+            padding: 15px;
             margin: auto;
             float: none;
             @extend %clearfix;
@@ -160,7 +161,16 @@ div#content {
 
     #login {
         form.login-form {
+            padding: 15px;
+            background-color: #F1F1F1;
             margin: auto;
+        }
+    }
+
+    #edit-user {
+        form.edit-form {
+            max-width: 400px;
+            border: none;
         }
     }
 
@@ -173,8 +183,32 @@ div#content {
     }
 }
 
+.panel-custom {
+    border: 1px solid #EAEAEA;
+    border-radius: 1px;
+    margin-bottom: 30px;
+    
+    .panel-heading {
+        border-radius: 0;
+        background-color: $bg-color-dark;
+        color: $text-color-light;
+
+        &.warning {
+            border-bottom: 2px solid $warning-color;
+        }
+    }
+
+    .panel-body {
+    }
+}
+
 span.errormsg {
     color: #dd4b39;
     display: block;
     margin-top: 0.3em;
+}
+
+span.button-message {
+    display: inline-block;
+    padding: 5px 5px;
 }

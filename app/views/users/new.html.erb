@@ -1,7 +1,7 @@
 <div id="register" class="container-fluid">
-    <h1>Create your Snipbase Account</h1>
+    <h1 class="page-title">Create your Snipbase Account</h1>
 
-        <%= form_for(@user, url: register_path, html: {class: "register-form col-sm-4"})  do |f| %>
+        <%= form_for(@user, url: register_path, html: {class: "register-form form-default col-sm-4"})  do |f| %>
             <div class="form-element"> 
                 <%= f.label :username %>
                 <%= f.text_field :username, autofocus: true%> 
