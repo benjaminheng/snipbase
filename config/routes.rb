@@ -9,9 +9,7 @@ Rails.application.routes.draw do
     post '/logout' => 'sessions#destroy'
 
     get '/user/settings' => 'users#edit'
-    post '/user/settings' => 'users#update_profile'
-    post '/user/settings/changepassword' => 'users#update_password'
-    post '/user/settings/deleteaccount' => 'users#destroy'
+    patch '/user/settings' => 'users#update'
 
     get '/add' => 'snippets#new'
     post '/add' => 'snippets#create'

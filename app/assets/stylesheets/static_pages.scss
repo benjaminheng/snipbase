@@ -202,6 +202,19 @@ div#content {
     }
 }
 
+.alert {
+    border-radius: 1px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px;
+}
+
+.alert-dismissable .close {
+    top: 0;
+    right: 0;
+    opacity: 0.6;
+}
+
 span.errormsg {
     color: #dd4b39;
     display: block;

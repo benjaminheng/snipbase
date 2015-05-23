@@ -1,9 +1,9 @@
-<div id="edit-user" class="container-fluid">
-
+<div id="edit-user" class="row">
+    <%= render "shared/messages" %>
     <div class="col-sm-4 hidden-xs">
         <div class="panel panel-custom">
             <div class="panel-body">
-                list of sections
+                TODO: select panel from list below
                 <ul>
                     <li>Manage profile
                     <li>Change password
@@ -18,11 +18,11 @@
             <div class="panel-heading">Manage profile</div>
             <div class="panel-body">
                 <%= form_for(@user, url: user_settings_path, html: {class: "edit-form form-default"})  do |f| %>
-                <div class="form-element"> 
+                    <div class="form-element"> 
                     <%= f.label :dp_path, value: "Profile picture (disabled)" %>
                     <%= f.file_field :dp_path, disabled: true %> 
                 </div>
-                
+
                 <div class="form-element"> 
                     <%= f.label :name %>
                     <%= f.text_field :name %> 
@@ -35,43 +35,43 @@
 
                 <div class="form-element"> 
                     <%= f.label :password, value: "Confirm existing password"%>
-                    <%= f.password_field :password %> 
-                    <% if !@user.errors[:password].blank? %> 
-                        <span class="errormsg">Password <%= @user.errors[:password][0] %></span>
-                    <% end %>
+                    <%= f.password_field :password_verification %> 
+                    <% if !@user.errors[:password_verification].blank? %> 
+                        <span class="errormsg"><%= @user.errors.full_messages_for(:password_verification)[0] %></span>
+                <% end %>
                 </div>
-                <%= f.submit "Update profile" %>
+                <%= f.submit "Update profile", class:"btn", name: "update_profile_btn" %>
             <% end %>
             </div>
         </div>
-        <div class="panel panel-custom">
+        <div id="ChangePassword" class="panel panel-custom">
             <div class="panel-heading">Change password</div>
             <div class="panel-body">
-                <%= form_for(@user, url: user_settings_changepassword_path, html: {class: "edit-form form-default"})  do |f| %>
-                <div class="form-element"> 
+                <%= form_for(@user, url: user_settings_path(anchor: "ChangePassword"), html: {class: "edit-form form-default"})  do |f| %>
+                    <div class="form-element"> 
                     <%= f.label :exist_password, value: "Existing password"%>
                     <%= f.password_field :existing_password %> 
                     <% if !@user.errors[:existing_password].blank? %> 
-                        <span class="errormsg">Password <%= @user.errors[:existing_password][0] %></span>
-                    <% end %>
+                        <span class="errormsg"><%= @user.errors.full_messages_for(:existing_password)[0] %></span>
+                <% end %>
                 </div>
 
                 <div class="form-element"> 
                     <%= f.label :password, value: "New password"%>
                     <%= f.password_field :password %> 
                     <% if !@user.errors[:password].blank? %> 
-                        <span class="errormsg">Password <%= @user.errors[:password][0] %></span>
-                    <% end %>
+                        <span class="errormsg"><%= @user.errors.full_messages_for(:password)[0] %></span>
+                <% end %>
                 </div>
 
                 <div class="form-element"> 
                     <%= f.label :password_confirmation, "Confirm new password" %>
                     <%= f.password_field :password_confirmation %> 
                     <% if !@user.errors[:password_confirmation].blank? %> 
-                        <span class="errormsg">Password confirmation <%= @user.errors[:password_confirmation][0] %></span>
-                    <% end %>
+                        <span class="errormsg"><%= @user.errors.full_messages_for(:password_confirmation)[0] %></span>
+                <% end %>
                 </div>
-                <%= f.submit "Change password", class: "btn-normal" %>
+                <%= f.submit "Change password", class: "btn", name: "update_password_btn" %>
             <% end %>
             </div>
         </div>
@@ -79,13 +79,14 @@
             <div class="panel-heading warning">Delete account</div>
             <div class="panel-body">
                 <p>
-                    By deleting your account, you will no longer be able to log in. Your snippets will be removed. You will be removed from any group you are a member of. You will be removed from your followers' lists.
+                By deleting your account, you will no longer be able to log in. Your snippets will be removed. You will be removed from any group you are a member of. You will be removed from your followers' lists.
                 </p>
                 <p>
-                    This action is <strong>permanent</strong> and cannot be undone.
+                This action is <strong>permanent</strong> and cannot be undone.
                 </p>
-                <input type="submit" class="warning" value="Delete my account">
+                <input type="submit" class="btn warning" value="Delete my account">
                 <span class="button-message">You will be prompted for confirmation.</span>
             </div>
         </div>
     </div>
+</div>

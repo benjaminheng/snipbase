@@ -6,7 +6,7 @@
                 <%= f.label :username %>
                 <%= f.text_field :username, autofocus: true%> 
                 <% if !@user.errors[:username].blank? %> 
-                    <span class="errormsg">Username <%= @user.errors[:username][0] %></span>
+                    <span class="errormsg"><%= @user.errors.full_messages_for(:username)[0] %></span>
                 <% end %>
             </div>
 
@@ -24,7 +24,7 @@
                 <%= f.label :password %>
                 <%= f.password_field :password %> 
                 <% if !@user.errors[:password].blank? %> 
-                    <span class="errormsg">Password <%= @user.errors[:password][0] %></span>
+                    <span class="errormsg"><%= @user.errors.full_messages_for(:password)[0] %></span>
                 <% end %>
             </div>
 
@@ -32,11 +32,11 @@
                 <%= f.label :password_confirmation, "Confirm your password" %>
                 <%= f.password_field :password_confirmation %> 
                 <% if !@user.errors[:password_confirmation].blank? %> 
-                    <span class="errormsg">Password confirmation <%= @user.errors[:password_confirmation][0] %></span>
+                    <span class="errormsg"><%= @user.errors.full_messages_for(:password_confirmation)[0] %></span>
                 <% end %>
             </div>
 
-            <%= f.submit "Sign up" %>
+            <%= f.submit "Sign up", class: "btn" %>
         <% end %>
 
     <div class="register-help col-sm-8">
