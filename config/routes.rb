@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     post '/login' => 'sessions#create'
     post '/logout' => 'sessions#destroy'
 
-    get '/user/settings' => 'users#edit'
-    patch '/user/settings' => 'users#update'
+    get '/settings' => 'users#edit'
+    patch '/settings' => 'users#update'
 
     get '/add' => 'snippets#new'
     post '/add' => 'snippets#create'

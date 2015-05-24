@@ -2,33 +2,26 @@
     <div id="messages">
         <%= render "shared/messages" %>
     </div>
-    <div class="col-sm-4 hidden-xs">
-        <div class="panel panel-custom">
-            <div class="panel-body">
-                TODO: select panel from list below
-                <ul>
-                    <li>Manage profile
-                    <li>Change password
-                    <li>Delete account
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-8">
-        <div id="manageprofile" class="panel panel-custom">
+    <div class="col-sm-6">
+        <div id="profile" class="panel panel-custom">
             <div class="panel-heading">Manage profile</div>
             <div class="panel-body">
                 <%= render 'update_profile' %>
             </div>
         </div>
-        <div id="changepassword" class="panel panel-custom">
+    </div>
+
+    <div class="col-sm-6">
+        <div id="password" class="panel panel-custom">
             <div class="panel-heading">Change password</div>
             <div class="panel-body">
                 <%= render 'update_password' %>
             </div>
         </div>
-        <div class="panel panel-custom">
+    </div>
+
+    <div class="col-sm-12">
+        <div id="delete" class="panel panel-custom">
             <div class="panel-heading warning">Delete account</div>
             <div class="panel-body">
                 <p>
