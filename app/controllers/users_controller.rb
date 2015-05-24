@@ -35,31 +35,39 @@ class UsersController < ApplicationController
         @user = User.find(current_user.id)
         # Check that password_verification exists and is correct
         if !correct_password?(@user, params[:user], :password_verification)
-            render 'edit' and return
+            respond_to_update and return
         end
 
         # Update user
         if @user.update_attributes(update_profile_params)
             flash.now[:success] = "Successfully updated profile!"
         end
-        render 'edit'
+        respond_to_update and return
     end
 
     private
     def update_password
         @user = User.find(current_user.id)
         if !correct_password?(@user, params[:user], :existing_password)
-            render 'edit' and return
+            respond_to_update and return
         elsif params[:user][:password].blank?
             @user.errors.add :password, "is empty."
-            render 'edit' and return
+            respond_to_update and return
         end
 
         if @user.update_attributes(update_password_params)
             print params
             flash.now[:success] = "Successfully changed password!"
         end
-        render 'edit'
+        respond_to_update
+    end
+
+    private
+    def respond_to_update
+        respond_to do |format|
+            format.html { render 'edit' }
+            format.js
+        end
     end
 
     private

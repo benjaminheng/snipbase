@@ -1,0 +1,25 @@
+<%= form_for(@user, url: user_settings_path, remote: true, html: {class: "edit-form form-default"})  do |f| %>
+    <div class="form-element"> 
+    <%= f.label :dp_path, value: "Profile picture (disabled)" %>
+    <%= f.file_field :dp_path, disabled: true %> 
+</div>
+
+<div class="form-element"> 
+    <%= f.label :name %>
+    <%= f.text_field :name %> 
+</div>
+
+<div class="form-element"> 
+    <%= f.label :email %>
+    <%= f.email_field :email %> 
+</div>
+
+<div class="form-element"> 
+    <%= f.label :password, value: "Confirm existing password"%>
+    <%= f.password_field :password_verification %> 
+    <% if !@user.errors[:password_verification].blank? %> 
+        <span class="errormsg"><%= @user.errors.full_messages_for(:password_verification)[0] %></span>
+<% end %>
+</div>
+<%= f.submit "Update profile", class:"btn", name: "update_profile_btn" %>
+<% end %>
