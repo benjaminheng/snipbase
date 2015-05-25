@@ -8,3 +8,8 @@ var ready = function() {
 
 // fix for turbo-links preventing .ready() from working correctly. replaces .ready()
 $(document).on('page:change', ready);
+
+$(document).on('click', '.close', function(){ 
+   	var parent = $(this).parent();
+   	parent.remove();
+});

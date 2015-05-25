@@ -1,19 +1,22 @@
 <div id="add-snippet" class="container-fluid">
 	<h1 class="page-title">New Snippet</h1>
 	
-	<%= form_for @snippet, url: add_path, html: {class: "add-snippet-form col-sm-4 col-xs-12"} do |f| %>
+	<%= form_for @snippet, url: add_path, html: {class: "add-snippet-form col-sm-12 col-xs-12"} do |f| %>
+        <%= label_tag :title, "Title" %>
         <%= f.text_field :title %>
-        <%= f.check_box :private %>
 
-        <!--Hardcoded for trying purposes.-->
         <div class="files">
+            <br/>
             <%= render 'shared/snippet_file' %>
         </div>
         <script id="snippet_file_template" type="text/html">
             <%= render 'shared/snippet_file' %>
         </script>
+        <%= label_tag :private, "Private"  %>
+        <%= f.check_box :private %>
+        <br/>
         <%= button_tag "Add file", id: "add-snippet-file-btn", type: "button", class: "btn" %>
-        <%= f.submit "Create Snippet", class: "btn" %>
+        <%= f.submit "Create Snippet", class: "btn pull-right" %>
     <% end %>
 
 </div>

@@ -1,5 +1,7 @@
 <div class="file">
-    <input type="textbox" placeholder="File name" name="snippet_files[][filename]">
-    <textarea placeholder="Content" name="snippet_files[][content]"></textarea>
-    <input type="hidden" name = "snippet_files[][language]" value="text">
+	<button class="close" type="button">×</button>
+
+	<%= text_field_tag "snippet_files[][filename]","",placeholder:"File name" %>
+    <%= text_area_tag "snippet_files[][content]","", placeholder:"Content", class:"col-xs-12", rows:"8" %>
+    <input class="col-xs-12 col-lg-12" type="hidden" name = "snippet_files[][language]" value="text">
 </div>
