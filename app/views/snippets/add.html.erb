@@ -4,7 +4,7 @@
 	<%= form_for @snippet, url: add_path, html: {class: "add-snippet-form col-sm-12 col-xs-12"} do |f| %>
         <%= label_tag :title, "Title" %>
         <%= f.text_field :title %>
-
+          
         <div class="files">
             <br/>
             <%= render 'shared/snippet_file' %>
