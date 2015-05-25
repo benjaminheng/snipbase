@@ -56,7 +56,6 @@ class UsersController < ApplicationController
         end
 
         if @user.update_attributes(update_password_params)
-            print params
             flash.now[:success] = "Successfully changed password!"
         end
         respond_to_update

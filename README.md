@@ -2,15 +2,21 @@
 
 A social and collaborative code snippet manager with GitHub Gists integration.
 
-## Setup
+# Setup
 
-### Dependencies
+## Dependencies
+
+**Core**
 
 1. [Ruby](http://rubyinstaller.org/downloads/) 2.1.x or above
 2. [Ruby Development Kit](http://rubyinstaller.org/downloads/) ([Install instructions](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit))
 3. [PostgreSQL](http://www.postgresql.org/)
 
-### Database Setup
+**Development**
+
+1. [Poltergeist](https://github.com/teampoltergeist/poltergeist) for testing pages with Javascript
+
+## Database Setup
 
 Create the database user (default: snipbase).
 
@@ -19,7 +25,7 @@ $ psql -U postgres
 postgres=# create role snipbase with createdb login password '<your_database_password>';
 ```
 
-### App Setup
+## App Setup
 
 Set your database password as an environment variable.
 
@@ -41,7 +47,7 @@ Start the server.
 $ rails server
 ```
 
-## FAQ
+# FAQ
 
 **Why do I get `ExecJS::ProgramError` while trying to load the webpage on Windows?**
 
