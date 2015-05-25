@@ -138,6 +138,7 @@ div#content {
         font-weight: 300;
         text-align: center;
         margin-bottom: 20px;
+        padding: 0px 15px;
     }
 
     #register {
@@ -146,16 +147,10 @@ div#content {
             padding: 15px;
             margin: auto;
             float: none;
-            @extend %clearfix;
-            @include breakpoint-small {
-                margin: none;
-                float: left;
-            }
         }
         .register-help {
             text-align: center;
         }
-        @extend %clearfix;
 
     } // end #register
 
@@ -178,6 +173,7 @@ div#content {
         form.add-snippet-form {
             .file {
                 border: 1px solid #666666;
+                @extend %clearfix;
             }
         }
     }

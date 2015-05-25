@@ -5,25 +5,24 @@ var ready = function() {
         $(document).scrollTop(files.find(".file").last().offset().top - 100);
     	toggleDeleteButton();
     });
+
+    $(".files").on("click", ".file > button.close", function() { 
+        var parent = $(this).parent();
+        parent.remove();
+        toggleDeleteButton();
+    });
 }
 
 var toggleDeleteButton = function(){
-	var totalFiles = $(".file").length;
-	var button = $(".file > .close")
+	var buttons = $(".file > .close")
 	
-	if (totalFiles <= 1) {
-		button.hide();
+	if ($(".file").length <= 1) {
+		buttons.hide();
 	} else {
-		button.show();
+		buttons.show();
 	}
-		
 }
 
 // fix for turbo-links preventing .ready() from working correctly. replaces .ready()
 $(document).on('page:change', ready);
 
-$(document).on('click', '.close', function(){ 
-   	var parent = $(this).parent();
-   	parent.remove();
-   	toggleDeleteButton();
-});
