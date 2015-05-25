@@ -13,17 +13,25 @@ class SnippetsController < ApplicationController
 		@snippet = Snippet.new(snippet_params)
 		@snippet.user = current_user
 
-		return fail_to_create unless @snippet.save
+		unless @snippet.save
+			flash.now[:danger] = @snippet.errors.full_messages[0]
+			return fail_to_create
+		end
 
 		snippet_file_params_arr.each do |i|
 			snippet_file = SnippetFile.new(snippet_file_params_permit(i))
 			snippet_file.snippet = @snippet
 			set_file_name snippet_file
-			return fail_to_create unless snippet_file.save
+			unless snippet_file.save
+				flash.now[:danger] = snippet_file.errors.full_messages[0]
+				return fail_to_create
+			end
 		end
 
+		p "HSWRSEFSofdf"
+
         flash[:info] = "Successfully Added!"
-        redirect_to root_path #PLACEHOLDER TO SEE IF CAN ADD.
+        render :js => "window.location = '#{root_path}'" #PLACEHOLDER TO SEE IF CAN ADD.
 	end
 
 
@@ -52,8 +60,16 @@ class SnippetsController < ApplicationController
 	private
 	def fail_to_create
         @snippet.destroy
-        render 'add'
+        respond_to_update and return
 	end
+
+    private
+    def respond_to_update
+        respond_to do |format|
+            format.html { render "add" }
+            format.js { render "add" }
+        end
+    end
 
 	private
     def snippet_params
