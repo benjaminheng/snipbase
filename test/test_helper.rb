@@ -15,11 +15,7 @@ class ActiveSupport::TestCase
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
-end
 
-
-# Applies to Capybara feature tests only
-class Capybara::Rails::TestCase
     # Simulate a login in as the specified user (for Capybara)
     def log_in_as(user)
         page.set_rack_session(user_id: user.id)
@@ -27,11 +23,11 @@ class Capybara::Rails::TestCase
     end
 
     def setup
-        setup_js if metadata[:js]
+        setup_js if defined?(metadata) && metadata[:js]
     end
 
     def teardown
-        teardown_js if metadata[:js]
+        teardown_js if defined?(metadata) && metadata[:js]
         Capybara.reset_sessions!
         Capybara.use_default_driver
     end
@@ -48,4 +44,3 @@ class Capybara::Rails::TestCase
         DatabaseCleaner.strategy = :transaction
     end
 end
-
