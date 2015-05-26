@@ -1,22 +1,16 @@
 class SnippetsController < ApplicationController
+    before_filter :ensure_authenticated, only: ["new", "add", "view", "edit"]
 
 	def new
-		if logged_in?
-			@snippet = Snippet.new
-			render 'add'
-		else
-			redirect_to login_path
-		end
+        @snippet = Snippet.new
+        render 'add'
 	end
 	
 	def view
 		@snippet = Snippet.find(params[:id])
-		
-
 	end
 
 	def edit
-		#TODO ONE DAY
 	end
 
 	def add
@@ -38,6 +32,7 @@ class SnippetsController < ApplicationController
 			end
 		end
 
+        # Do a javascript redirect to the "view snippet" page if add is successful
         render :js => "window.location = 'snippets/#{@snippet.id}'"
 	end
 
@@ -65,11 +60,11 @@ class SnippetsController < ApplicationController
 	private
 	def fail_to_create
         @snippet.destroy
-        respond_to_update and return
+        respond_to_create and return
 	end
 
     private
-    def respond_to_update
+    def respond_to_create
         respond_to do |format|
             format.html
             format.js 
