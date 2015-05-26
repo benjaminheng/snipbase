@@ -1,4 +1,4 @@
-<%= form_for @snippet, url: save_snippet_path(@snippet.id) , remote: true, html: {class: "edit-snippet-form col-sm-12 col-xs-12"} do |f| %>
+<%= form_for @snippet, url: update_snippet_path(@snippet.id) , remote: true, html: {class: "edit-snippet-form col-sm-12 col-xs-12"} do |f| %>
     <%= label_tag :title, "Title" %>
     <%= f.text_field :title %>
       

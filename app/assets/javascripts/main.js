@@ -1,6 +1,6 @@
 var ready = function() {
     $("#add-snippet-file-btn").click(function() {
-        var files = $("#new_snippet > .files");
+        var files = $(".files");
         files.append($("#snippet_file_template").html());
         $(document).scrollTop(files.find(".file").last().offset().top - 100);
     	toggleDeleteButton();

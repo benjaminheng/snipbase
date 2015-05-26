@@ -12,11 +12,41 @@ class SnippetsController < ApplicationController
 
 	def edit
 		@snippet = Snippet.find(params[:id])
-        render 'edit'
+		render 'update'
 	end
 
-	def save
+	def update
 		@snippet = Snippet.find(params[:id])
+		@snippet.update(snippet_params)
+		process_snippets
+	end
+
+	def create
+		@snippet = Snippet.new(snippet_params)
+		@snippet.user = current_user
+		process_snippets
+	end
+
+	private
+	def process_snippets
+		return refresh_message unless validate_and_save_snippets?
+
+        # Do a javascript redirect to the "view snippet" page if add/edit is successful
+        render :js => "window.location = '/snippets/#{@snippet.id}'"
+	end
+
+	private
+	def validate_and_save_snippets?
+		get_snippet_files
+		return false unless snippet_valid?
+		@snippet.snippet_files.destroy_all
+		save_snippets
+		true
+	end
+
+	private
+	def get_snippet_files
+		@snippet_files = []
 
 		snippet_file_params_arr.each do |i|
 			snippet_file = SnippetFile.new(snippet_file_params_permit(i))
@@ -24,10 +54,9 @@ class SnippetsController < ApplicationController
 			set_file_name snippet_file
 			@snippet_files << snippet_file
 		end
-
-		return respond_to_create unless snippet_valid?
 	end
 
+	private
 	def snippet_valid?
 		unless @snippet.valid?
 			flash.now[:danger] = @snippet.errors.full_messages[0]
@@ -42,27 +71,12 @@ class SnippetsController < ApplicationController
 		true
 	end
 
-	def create
-		@snippet = Snippet.new(snippet_params)
-		@snippet.user = current_user
-		@snippet_files = []
-
-		snippet_file_params_arr.each do |i|
-			snippet_file = SnippetFile.new(snippet_file_params_permit(i))
-			snippet_file.snippet = @snippet
-			set_file_name snippet_file
-			@snippet_files << snippet_file
-		end
-
-		return respond_to_create unless snippet_valid?
-
+	private
+	def save_snippets
 		@snippet.save
 		@snippet_files.each do |i|
 			i.save
 		end
-
-        # Do a javascript redirect to the "view snippet" page if add is successful
-        render :js => "window.location = 'snippets/#{@snippet.id}'"
 	end
 
 	private
@@ -87,10 +101,10 @@ class SnippetsController < ApplicationController
 	end
 
     private
-    def respond_to_create
+    def refresh_message
         respond_to do |format|
             format.html
-            format.js 
+            format.js { render 'shared/refresh_message' }
         end
     end
 
