@@ -9,7 +9,17 @@ class SnippetsController < ApplicationController
 		end
 	end
 	
-	def create
+	def view
+		@snippet = Snippet.find(params[:id])
+		
+
+	end
+
+	def edit
+		#TODO ONE DAY
+	end
+
+	def add
 		@snippet = Snippet.new(snippet_params)
 		@snippet.user = current_user
 
@@ -28,13 +38,8 @@ class SnippetsController < ApplicationController
 			end
 		end
 
-		p "HSWRSEFSofdf"
-
-        flash[:info] = "Successfully Added!"
-        render :js => "window.location = '#{root_path}'" #PLACEHOLDER TO SEE IF CAN ADD.
+        render :js => "window.location = 'snippets/#{@snippet.id}'"
 	end
-
-
 
 	private
 	def set_file_name snippet_file
@@ -66,8 +71,8 @@ class SnippetsController < ApplicationController
     private
     def respond_to_update
         respond_to do |format|
-            format.html { render "add" }
-            format.js { render "add" }
+            format.html
+            format.js 
         end
     end
 
