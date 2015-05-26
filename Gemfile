@@ -36,9 +36,16 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  gem 'capybara'
+  # Installs minitest, minitest-rails, minitest-capybara, capybara
+  gem 'minitest-rails-capybara'
+
+  # Use the PhantomJS headless javascript server for Capybara tests
   gem 'poltergeist'
+
+  # Allows us to set sessions for Capybara tests
   gem 'rack_session_access'
+
+  # Cleans the database for Capybara tests
   gem 'database_cleaner'
 end
 

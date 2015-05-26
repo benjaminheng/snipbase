@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
     def new
-        render 'login'
     end
 
     def create  # login
@@ -10,7 +9,7 @@ class SessionsController < ApplicationController
             redirect_to root_path
         else
             flash.now[:error] = 'Invalid username or password.'
-            render 'login'
+            render 'new'
         end
     end
 

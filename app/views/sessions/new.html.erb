@@ -1,0 +1,19 @@
+<div id="login" class="row">
+    <h1 class="page-title"> Login to your Snipbase Account</h1>
+
+    <div class="col-xs-12">
+        <%= form_for(:session, url: login_path, html: {class: "login-form form-default"}) do |f| %>
+            <div class="form-element">
+                <%= f.label :username %>
+                <%= f.text_field :username, autofocus: true%>
+            </div>
+
+            <div class="form-element">
+                <%= f.label :password %>
+                <%= f.password_field :password %>
+            </div>
+
+            <%= f.submit "Log in", class: "btn" %>
+        <% end %>
+    </div>
+</div>

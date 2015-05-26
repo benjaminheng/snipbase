@@ -1,59 +1,51 @@
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
-require 'capybara/rails'
-require 'capybara/poltergeist'
+ENV["RAILS_ENV"] = "test"
+require File.expand_path("../../config/environment", __FILE__)
+require "rails/test_help"
+require "minitest/rails"
+require "minitest/rails/capybara"
 require "rack_session_access/capybara"
+require 'capybara/poltergeist'
 require 'database_cleaner'
 
 Capybara.javascript_driver = :poltergeist
 
+# Applies to all test cases
 class ActiveSupport::TestCase
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+    ActiveRecord::Migration.check_pending!
     fixtures :all
 
-    # Simulate a login in as the specified user
-    def log_in_as(user)
-        if integration_test?
-            # Save time by not always simulating the whole login process
-            page.set_rack_session(user_id: user.id)
-            visit root_path
-        else
-            session[:user_id] = user.id     # used in models/functional tests
-        end
-    end
-
-    # Returns true if inside integration test
-    private
-    def integration_test?
-        defined?(post_via_redirect)
-    end
+    # Add more helper methods to be used by all tests here...
 end
 
-class ActionDispatch::IntegrationTest
-    # Make the Capybara DSL available in all integration tests
-    include Capybara::DSL
 
-    # IMPORTANT: Override to FALSE if testing javascript
-    # Use transactions by default (faster)
-    self.use_transactional_fixtures = true
-
-    # Always reset sessions after each test
-    def teardown
-        Capybara.reset_sessions!
+# Applies to Capybara feature tests only
+class Capybara::Rails::TestCase
+    # Simulate a login in as the specified user (for Capybara)
+    def log_in_as(user)
+        page.set_rack_session(user_id: user.id)
+        visit root_path
     end
 
-    # sets the database cleaner strategy, and changes to a javascript driver
-    def setup_for_js
+    def setup
+        setup_js if metadata[:js]
+    end
+
+    def teardown
+        teardown_js if metadata[:js]
+        Capybara.reset_sessions!
+        Capybara.use_default_driver
+    end
+
+    private
+    def setup_js
         DatabaseCleaner.strategy = :truncation
-        Capybara.current_driver = Capybara.javascript_driver
         DatabaseCleaner.start
     end
 
-    # Cleans the database, resets the capybara driver and database cleaner strategy
-    def teardown_for_js
+    private
+    def teardown_js
         DatabaseCleaner.clean
-        Capybara.current_driver = Capybara.default_driver
         DatabaseCleaner.strategy = :transaction
     end
 end
+
