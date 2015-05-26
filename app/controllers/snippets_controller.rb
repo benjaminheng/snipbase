@@ -1,35 +1,64 @@
 class SnippetsController < ApplicationController
-    before_filter :ensure_authenticated, only: ["new", "add", "view", "edit"]
+    before_filter :ensure_authenticated, only: ["new", "create", "show", "edit"]
 
 	def new
         @snippet = Snippet.new
-        render 'add'
+        render 'create'
 	end
 	
-	def view
+	def show
 		@snippet = Snippet.find(params[:id])
 	end
 
 	def edit
+		@snippet = Snippet.find(params[:id])
+        render 'edit'
 	end
 
-	def add
-		@snippet = Snippet.new(snippet_params)
-		@snippet.user = current_user
-
-		unless @snippet.save
-			flash.now[:danger] = @snippet.errors.full_messages[0]
-			return fail_to_create
-		end
+	def save
+		@snippet = Snippet.find(params[:id])
 
 		snippet_file_params_arr.each do |i|
 			snippet_file = SnippetFile.new(snippet_file_params_permit(i))
 			snippet_file.snippet = @snippet
 			set_file_name snippet_file
-			unless snippet_file.save
+			@snippet_files << snippet_file
+		end
+
+		return respond_to_create unless snippet_valid?
+	end
+
+	def snippet_valid?
+		unless @snippet.valid?
+			flash.now[:danger] = @snippet.errors.full_messages[0]
+			return false
+		end
+		@snippet_files.each do |snippet_file|
+			unless snippet_file.valid?
 				flash.now[:danger] = snippet_file.errors.full_messages[0]
-				return fail_to_create
+				return false
 			end
+		end
+		true
+	end
+
+	def create
+		@snippet = Snippet.new(snippet_params)
+		@snippet.user = current_user
+		@snippet_files = []
+
+		snippet_file_params_arr.each do |i|
+			snippet_file = SnippetFile.new(snippet_file_params_permit(i))
+			snippet_file.snippet = @snippet
+			set_file_name snippet_file
+			@snippet_files << snippet_file
+		end
+
+		return respond_to_create unless snippet_valid?
+
+		@snippet.save
+		@snippet_files.each do |i|
+			i.save
 		end
 
         # Do a javascript redirect to the "view snippet" page if add is successful
@@ -57,12 +86,6 @@ class SnippetsController < ApplicationController
 		".txt"
 	end
 
-	private
-	def fail_to_create
-        @snippet.destroy
-        respond_to_create and return
-	end
-
     private
     def respond_to_create
         respond_to do |format|
@@ -85,4 +108,5 @@ class SnippetsController < ApplicationController
 	def snippet_file_params_arr
 		params.require(:snippet_files)
 	end
+
 end

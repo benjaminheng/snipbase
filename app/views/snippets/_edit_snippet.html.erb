@@ -1,10 +1,12 @@
-<%= form_for @snippet, url: add_path, remote: true, html: {class: "add-snippet-form col-sm-12 col-xs-12"} do |f| %>
+<%= form_for @snippet, url: save_snippet_path(@snippet.id) , remote: true, html: {class: "edit-snippet-form col-sm-12 col-xs-12"} do |f| %>
     <%= label_tag :title, "Title" %>
     <%= f.text_field :title %>
       
     <div class="files">
         <br/>
-        <%= render 'shared/snippet_file' %>
+        <% @snippet.snippet_files.each do |file| %>
+            <%= render :partial => 'shared/snippet_file', :locals => {:file => file} %>
+        <% end %>
     </div>
     <script id="snippet_file_template" type="text/html">
         <%= render 'shared/snippet_file' %>
@@ -13,5 +15,5 @@
     <%= f.check_box :private %>
     <br/>
     <%= button_tag "Add file", id: "add-snippet-file-btn", type: "button", class: "btn" %>
-    <%= f.submit "Create Snippet", class: "btn pull-right" %>
+    <%= f.submit "Save Snippet", class: "btn pull-right" %>
 <% end %>

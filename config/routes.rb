@@ -12,10 +12,11 @@ Rails.application.routes.draw do
     patch '/settings' => 'users#update'
 
     get '/add' => 'snippets#new'
-    post '/add' => 'snippets#add'
+    post '/add' => 'snippets#create'
 
-    get '/snippets/:id' => 'snippets#view'
-    get '/snippets/:id/edit' => 'snippets#edit'
+    get '/snippets/:id' => 'snippets#show'
+    get '/snippets/:id/edit' => 'snippets#edit', as: 'edit_snippet'
+    patch '/snippets/:id/edit' => 'snippets#save', as: 'save_snippet'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
