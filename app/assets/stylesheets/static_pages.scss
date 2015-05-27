@@ -3,6 +3,7 @@ form.form-default {
     border: 1px solid #EAEAEA;
     margin-bottom: 30px;
     .form-element {
+        color: $text-color;
         margin-bottom: 10px;
         label {
             display: block;
@@ -135,6 +136,33 @@ form.form-default {
     .hero {
         background-color: $brand-color;
         color: $text-color-light;
+        text-align: center;
+
+        .hero-signup {
+            max-width: 400px;
+            margin: auto;
+            input.hero-signup-btn {
+                font-size: 20px;
+                padding-top: 9px;
+                padding-bottom: 9px;
+                width: 100%;
+            }
+        }
+
+        img.hero-img {
+            max-width: 100%;
+            padding: 20px 0px;
+            opacity: 0.8;
+            @include transition(opacity .5s ease);
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 38px;
+        }
         h2 {
             font-size: 23px;
             font-weight: 300;

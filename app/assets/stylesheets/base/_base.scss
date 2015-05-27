@@ -21,7 +21,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
     border-width: 1px;
     border-style: solid;
     background-color: #FFFFFF;
-    height: 32px;
+    min-height: 32px;
     padding: 0px 10px;
 }
 
@@ -35,10 +35,16 @@ input[type="button"].btn, input[type="submit"].btn, button.btn {
     background-color: $brand-color;
     border-color: darken($brand-color, 5%) darken($brand-color, 20%) darken($brand-color, 20%) darken($brand-color, 5%);
     @include shadow-depth(1);
-    @include transition(background-color .2s ease);
 
-    &:hover, &:focus {
-        background-color: darken($brand-color, 5%);
+    &:hover, &:focus { 
+        color: $text-color-light;
+        background-color: darken($brand-color, 5%); 
+        outline: 0 none !important;
+        @include transition(background-color .2s ease);
+    }
+    &:active { 
+        background-color: darken($brand-color, 7%); 
+        outline: 0 none !important;
     }
 
     &.warning {
@@ -47,15 +53,26 @@ input[type="button"].btn, input[type="submit"].btn, button.btn {
         color: $text-color-light;
         @include shadow-depth(1);
 
-        &:hover, &:focus {
-            background-color: darken($warning-color, 5%);
-        }
+        &:hover, &:focus { background-color: darken($warning-color, 5%); }
+        &:active { background-color: darken($warning-color, 7%); }
 
         &[disabled], &[disabled]:hover, &[disabled]:focus {
             border-color: lighten($warning-color, 15%) lighten($warning-color, 5%) lighten($warning-color, 5%) lighten($warning-color, 15%);
             background-color: lighten($warning-color, 15%);
         }
     }
+
+    &.green {
+        background-color: #3bb878;
+        border-color: darken(#3bb878, 5%) darken(#3bb878, 20%) darken(#3bb878, 20%) darken(#3bb878, 5%);
+        color: $text-color-light;
+        outline: 0 none;
+        @include shadow-depth(1);
+
+        &:hover, &:focus { background-color: darken(#3bb878, 5%); }
+        &:active { background-color: darken(#3bb878, 7%); }
+    }
+
 }
 
 div.extra-space {
