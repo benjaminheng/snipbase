@@ -1,9 +1,24 @@
-<div id="add-snippet" class="row">
+<div id="show-snippet" class="row">
 	<div id="messages">
         <%= render 'shared/messages' %>
     </div>
-    <h1 class="page-title">View Snippet</h1>
-    <div id="show_snippet">
+    <h1 class="page-title">
+    	<%= @snippet.title %>
+    </h1>
 
+   	<div class="col-xs-offset-8 col-xs-4"> 
+   		<div style="float:left">
+		<%= button_to "Edit", edit_snippet_path, class:"btn" %>
+		</div>
+		</space>
+   		<div style="float:left">
+		<%= button_to "Delete", delete_snippet_path, :method => :delete, class:"btn" %>
+		</div>
+	</div>
+
+    <div id="show_snippet">
+        <% @snippet.snippet_files.each do |snippet_file| %>
+            <%= render :partial => 'shared/snippet_file_display', :locals => {:snippet_file => snippet_file} %>
+        <% end %>
     </div>
 </div>

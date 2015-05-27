@@ -27,6 +27,17 @@ class SnippetsController < ApplicationController
 		process_snippets
 	end
 
+	def destroy
+		@snippet = Snippet.find(params[:id])
+		if @snippet.destroy
+			render :js => "window.location = 'add_path'"
+		else
+			flash.now[:danger] = @snippet.errors.full_messages[0]
+			refresh_message
+		end
+	end
+
+
 	private
 	def process_snippets
 		return refresh_message unless validate_and_save_snippets?

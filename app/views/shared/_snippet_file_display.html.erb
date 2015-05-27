@@ -1,0 +1,12 @@
+<% if defined?(snippet_file) %>
+	<div class="file">
+		<label for="filename">
+			<%= snippet_file.filename %>
+		</label>
+		
+		<div class="col-xs-12">
+	    	<%= snippet_file.content%>
+	    </div>
+	    <input class="col-xs-12 col-lg-12" type="hidden" name = "snippet_files[][language]" value="text">
+	</div>
+<% end %>

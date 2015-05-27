@@ -15,8 +15,13 @@ Rails.application.routes.draw do
     post '/add' => 'snippets#create'
 
     get '/snippets/:id' => 'snippets#show'
+    post '/snippets/:id' => 'snippets#edit'
+
     get '/snippets/:id/edit' => 'snippets#edit'
+    post '/snippets/:id/edit' => 'snippets#edit', as: 'edit_snippet'
     patch '/snippets/:id/edit' => 'snippets#update', as: 'update_snippet'
+
+    delete '/snippets/:id' => 'snippets#destroy', as: 'delete_snippet'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
