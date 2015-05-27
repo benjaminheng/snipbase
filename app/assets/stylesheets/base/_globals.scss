@@ -2,12 +2,14 @@ $font-size: 14px;
 $font-family: helvetica, arial, sans-serif;
 $heading-font-family: join('Open Sans', $font-family);
 
-$text-color: #333333;
-$text-color-light: #FCFCFC;
-$bg-color: #fcfcfc;
+$text-color: #2D2D2D;
+$text-color-light: #FBFBFB;
+$bg-color: #FBFBFB;
 $bg-color-dark: #323232;
 $brand-color: #3093E5;
 $warning-color: #df3e3e;
+
+$header-margin-bottom: 30px;
 
 @mixin transition($args...) {
     -webkit-transition: $args;
