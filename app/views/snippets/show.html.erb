@@ -16,9 +16,6 @@
 		</div>
 	</div>
 
-    <div id="show_snippet">
-        <% @snippet.snippet_files.each do |snippet_file| %>
-            <%= render :partial => 'shared/snippet_file_display', :locals => {:snippet_file => snippet_file} %>
-        <% end %>
-    </div>
+    <%= render 'shared/snippet', :locals => {:snippet => @snippet } %>
+
 </div>

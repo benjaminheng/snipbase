@@ -30,6 +30,7 @@ class SnippetsController < ApplicationController
 	def destroy
 		@snippet = Snippet.find(params[:id])
 		if @snippet.destroy
+            flash[:success] = "Deleted snippet."
 			render :js => "window.location = '#{add_path}'"
 		else
 			flash.now[:danger] = @snippet.errors.full_messages[0]
@@ -43,7 +44,7 @@ class SnippetsController < ApplicationController
 		return refresh_message unless validate_and_save_snippets?
 
         # Do a javascript redirect to the "view snippet" page if add/edit is successful
-        render :js => "window.location = '/snippets/#{@snippet.id}'"
+        render :js => "window.location = '/snippet/#{@snippet.id}'"
 	end
 
 	private

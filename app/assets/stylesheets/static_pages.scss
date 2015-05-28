@@ -276,15 +276,6 @@ form.form-default {
     }
 }
 
-#add-snippet {
-    form.add-snippet-form {
-        .file {
-            border: 1px solid #666666;
-            @extend %clearfix;
-        }
-    }
-}
-
 .content {
     margin-left: auto;
     margin-right: auto;

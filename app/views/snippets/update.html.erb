@@ -3,5 +3,25 @@
         <%= render 'shared/messages' %>
     </div>
     <h1 class="page-title">Edit Snippet</h1>
-    <%= render 'edit_snippet' %>
+    <%= form_for @snippet, url: update_snippet_path(@snippet.id) , remote: true, html: {class: "edit-snippet-form col-xs-12"} do |f| %>
+        <div class="editable-snippet">
+            <div class="snippet-metadata">
+                <%= label_tag :title, "Title" %>
+                <%= f.text_field :title %>
+            </div>
+          
+            <div class="files">
+                <% @snippet.snippet_files.each do |file| %>
+                    <%= render :partial => 'shared/snippet_file', :locals => {:file => file} %>
+                <% end %>
+            </div>
+            <script id="snippet_file_template" type="text/html">
+                <%= render 'shared/snippet_file' %>
+            </script>
+        </div>
+        <%= label_tag :private, "Private"  %>
+        <%= f.check_box :private %>
+        <%= button_tag "Add file", id: "add-snippet-file-btn", type: "button", class: "btn" %>
+        <%= f.submit "Save Snippet", class: "btn pull-right" %>
+    <% end %>
 </div>

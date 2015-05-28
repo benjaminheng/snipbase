@@ -1,7 +1,9 @@
 <div class="file">
 	<button class="close" type="button" style="display: none">×</button>
-	<%= text_field_tag "snippet_files[][filename]", defined?(file)?  file.filename : "" ,placeholder:"File name" %>
+	<%= text_field_tag "snippet_files[][filename]", defined?(file)? file.filename : "" , placeholder: "File name", class: "file-name" %>
 
-    <%= text_area_tag "snippet_files[][content]", defined?(file)? file.content : "" , placeholder:"Content", class:"col-xs-12", rows:"8" %>
-    <input class="col-xs-12 col-lg-12" type="hidden" name = "snippet_files[][language]" value="text">
+    <div class="snippet-editor" data-submit="true">
+        <%= text_area_tag "snippet_files[][content]", defined?(file)? file.content : "" , placeholder: "Content", class:"snippet-textarea", rows:"8" %>
+    </div>
+    <input class="" type="hidden" name = "snippet_files[][language]" value="text">
 </div>
