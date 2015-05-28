@@ -76,6 +76,6 @@ input[type="button"].btn, input[type="submit"].btn, button.btn {
 }
 
 div.extra-space {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: $extra-space-padding;
+    padding-bottom: $extra-space-padding;
 }

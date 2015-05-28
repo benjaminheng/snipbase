@@ -1,0 +1,38 @@
+<div id="profile" class="row">
+    <div class="content">
+        <div class="profile-avatar col-sm-2">
+            <%= link_to settings_path, alt: "Change avatar" do %>
+                <%= image_tag "profile-default-avatar.png", height: 128 %>
+        <% end %>
+        </div>
+        <div class="col-sm-10 profile-metadata">
+            <h1 class="profile-names">
+                <span class="username"><%= @user.username %></span>
+                <span class="name"><%= @user.name %></span>
+            </h1>
+            <div class="counters">
+                <a href="#" class="item">
+                    <span class="count">16</span>
+                    <span class="name">snippets</span>
+                </a>
+                <a href="#" class="item">
+                    <span class="count">2</span>
+                    <span class="name">groups</span>
+                </a>
+                <a href="#" class="item">
+                    <span class="count">32</span>
+                    <span class="name">followers</span>
+                </a>
+                <a href="#" class="item">
+                    <span class="count">128</span>
+                    <span class="name">following</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="snippets" class="row">
+    <div class="content">
+        <h3> list of snippets here </h3>
+    </div>
+</div>

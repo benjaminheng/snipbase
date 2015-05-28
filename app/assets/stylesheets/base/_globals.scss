@@ -9,7 +9,7 @@ $bg-color-dark: #323232;
 $brand-color: #3093E5;
 $warning-color: #df3e3e;
 
-$header-margin-bottom: 30px;
+$extra-space-padding: 30px;
 
 @mixin transition($args...) {
     -webkit-transition: $args;

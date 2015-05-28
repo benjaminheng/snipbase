@@ -16,6 +16,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.find(current_user.id);
+        render :layout => 'fullwidth'
+    end
+
     def edit
         @user = User.find(current_user.id);
     end
