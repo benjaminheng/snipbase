@@ -30,7 +30,7 @@ class SnippetsController < ApplicationController
 	def destroy
 		@snippet = Snippet.find(params[:id])
 		if @snippet.destroy
-			render :js => "window.location = 'add_path'"
+			render :js => "window.location = '#{add_path}'"
 		else
 			flash.now[:danger] = @snippet.errors.full_messages[0]
 			refresh_message

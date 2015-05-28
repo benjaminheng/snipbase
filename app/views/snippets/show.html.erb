@@ -12,7 +12,7 @@
 		</div>
 		</space>
    		<div style="float:left">
-		<%= button_to "Delete", delete_snippet_path, :method => :delete, class:"btn" %>
+		<%= button_to "Delete", delete_snippet_path, remote: true, :method => :delete, class:"btn" %>
 		</div>
 	</div>
 
