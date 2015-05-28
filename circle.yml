@@ -1,0 +1,4 @@
+machine:
+    timezone: Asia/Singapore
+    ruby:
+        version: 2.1.5
