@@ -12,7 +12,7 @@ var ready = function() {
     });
 
     // removes snippet files
-    $(".snippet .files").on("click", ".file > button.close", function() { 
+    $(".editable-snippet .files").on("click", ".file > button.close", function() { 
         var parent = $(this).parent();
         parent.remove();
         toggleDeleteButton();
@@ -22,6 +22,9 @@ var ready = function() {
     $(".snippet-editor").each(function(index, item) {
         initSnippetEditor(item);
     });
+
+    // initializes delete buttons for snippet files at page load if applicable.
+    toggleDeleteButton();
 }
 
 function initSnippetEditor(container) {
@@ -43,7 +46,7 @@ function initSnippetEditor(container) {
 }
 
 function toggleDeleteButton(){
-	var buttons = $(".snippet .file > .close")
+	var buttons = $(".editable-snippet .files .file > .close")
 	if ($(".file").length <= 1) {
 		buttons.hide();
 	} else {
