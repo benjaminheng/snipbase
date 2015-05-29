@@ -26,8 +26,9 @@ feature "UserSignup" do
     end
 
     scenario "username already taken" do
+        create(:user, username: "bobthebuilder")
         visit register_path
-        fill_in "Username", with: "user1"   # user already defined by a fixture
+        fill_in "Username", with: "bobthebuilder"   # username taken
         fill_in "Name", with: "Bob"
         fill_in "Email", with: "bob@cartoonnetwork.com"
         fill_in "Password", with: "Password"

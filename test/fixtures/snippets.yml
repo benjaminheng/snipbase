@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-<% 1.upto(1) do |n| %>
-    snippet_<%= n %>:
-        title: Snippet_<%= n %>
-        user: user_1
-        private: false
-<% end %>

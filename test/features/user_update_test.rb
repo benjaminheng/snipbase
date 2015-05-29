@@ -1,9 +1,8 @@
 require "test_helper"
 
 feature "UserUpdate" do
-    self.use_transactional_fixtures = false
     before do
-        @user = users(:user_1)
+        @user = create(:user)
     end
 
     scenario "unauthorized access to settings page" do

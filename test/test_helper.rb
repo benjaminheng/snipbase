@@ -7,12 +7,17 @@ require "rack_session_access/capybara"
 require 'capybara/poltergeist'
 require 'database_cleaner'
 
+Capybara.register_driver :poltergeist do |app|
+    # Suppress console.log() messages
+    Capybara::Poltergeist::Driver.new(app, :phantomjs_logger => File.open(File::NULL, "w"))
+end
 Capybara.javascript_driver = :poltergeist
 
 # Applies to all test cases
 class ActiveSupport::TestCase
+    include FactoryGirl::Syntax::Methods
     ActiveRecord::Migration.check_pending!
-    fixtures :all
+    self.use_transactional_fixtures = false
 
     # Add more helper methods to be used by all tests here...
 
@@ -24,23 +29,22 @@ class ActiveSupport::TestCase
 
     def setup
         setup_js if defined?(metadata) && metadata[:js]
+        DatabaseCleaner.start
     end
 
     def teardown
+        DatabaseCleaner.clean
         teardown_js if defined?(metadata) && metadata[:js]
         Capybara.reset_sessions!
-        Capybara.use_default_driver
     end
 
     private
     def setup_js
         DatabaseCleaner.strategy = :truncation
-        DatabaseCleaner.start
     end
 
     private
     def teardown_js
-        DatabaseCleaner.clean
         DatabaseCleaner.strategy = :transaction
     end
 end

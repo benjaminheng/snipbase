@@ -47,6 +47,9 @@ group :development, :test do
 
   # Cleans the database for Capybara tests
   gem 'database_cleaner'
+
+  # Replaces fixtures
+  gem 'factory_girl_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

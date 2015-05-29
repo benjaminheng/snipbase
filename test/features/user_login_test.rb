@@ -2,7 +2,7 @@ require "test_helper"
 
 feature "UserLogin" do
     before do
-        @user = users(:user_1)
+        @user = create(:user)
     end
 
     scenario "login with invalid credentials" do

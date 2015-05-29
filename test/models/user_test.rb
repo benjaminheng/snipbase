@@ -2,9 +2,9 @@ require 'test_helper'
 
 describe User do
     it "can add users to group" do
-        user1 = users(:user_1)
-        user2 = users(:user_2)
-        group1 = groups(:group_1)
+        user1 = create(:user)
+        user2 = create(:user, username: "testuser2")
+        group1 = create(:group)
 
         user1.groups.must_be_empty
         user1.groups.push(group1)
@@ -14,8 +14,8 @@ describe User do
         user2.groups.must_include(group1)
     end
     it "can follow and unfollow another user" do
-        user1 = users(:user_1)
-        user2 = users(:user_2)
+        user1 = create(:user)
+        user2 = create(:user, username: "testuser2")
 
         user1.following?(user2).must_equal false    # user1 not following user2
         user1.follow(user2)
