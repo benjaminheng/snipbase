@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get '/add' => 'snippets#new'
     post '/add' => 'snippets#create'
 
-    get '/snippet/:id' => 'snippets#show'
+    get '/snippet/:id' => 'snippets#show', as: 'show_snippet'
     post '/snippet/:id' => 'snippets#edit'
 
     get '/snippet/:id/edit' => 'snippets#edit'

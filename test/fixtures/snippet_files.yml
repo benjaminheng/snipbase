@@ -1,10 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  filename: MyString
-  language: MyString
-  snippet_id: 
-  score: 1
-  tags:
-      - MyString
-      - MyString
+<% 3.times do |n| %>
+    snippet_file_<%= n %>:
+        filename: file_<%= n %>.txt
+        language: txt
+        content: file_<%= n %>
+        snippet: snippet_1
+        score: 0
+        tags:
+            - tag_1
+            - tag_2
+<% end %>

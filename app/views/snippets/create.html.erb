@@ -6,7 +6,7 @@
     <%= form_for @snippet, url: add_path, remote: true, html: {class: "create-snippet-form col-sm-12 col-xs-12"} do |f| %>
         <div class="editable-snippet">
             <div class="snippet-metadata">
-                <%= label_tag :title, "Title" %>
+                <%= f.label :title, "Title" %>
                 <%= f.text_field :title %>
             </div>
               
@@ -17,7 +17,7 @@
                 <%= render 'shared/snippet_file' %>
             </script>
         </div>
-        <%= label_tag :private, "Private"  %>
+        <%= f.label :private, "Private"  %>
         <%= f.check_box :private %>
         <%= button_tag "Add file", id: "add-snippet-file-btn", type: "button", class: "btn" %>
         <%= f.submit "Create Snippet", class: "btn pull-right" %>
