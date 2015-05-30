@@ -1,0 +1,90 @@
+#register {
+    form.register-form {
+        background-color: #F1F1F1;
+        padding: 15px;
+        margin: auto;
+        float: none;
+    }
+    .register-help {
+        text-align: center;
+    }
+}
+
+#login {
+    form.login-form {
+        padding: 15px;
+        background-color: #F1F1F1;
+        margin: auto;
+    }
+}
+
+#edit-user {
+    form.edit-form {
+        max-width: 400px;
+        border: none;
+    }
+}
+
+#user-profile {
+    border-bottom: 1px solid #AAAAAA;
+    background-color: darken($bg-color, 2%);
+
+    .profile-avatar {
+        min-height: 158px;  // 128px + 15px + 15px (img, pad-btm, pad-top)
+        padding: 15px 0px;
+        text-align: center;
+    }
+
+    .profile-metadata {
+        min-height: 158px;  // 128px + 15px + 15px (img, pad-btm, pad-top)
+        text-align: center;
+        h1.profile-names{
+            margin: 0px;
+            .username {
+                font-size: 32px;
+                font-weight: 600;
+                display: block;
+            }
+            .name {
+                font-size: 24px;
+                font-weight: 300;
+                display: block;
+                &:empty:before {
+                    content: '\00a0'; // &nbsp;
+                }
+            }
+        }
+
+        .counters {
+            padding-top: 17px;
+            padding-bottom: 7px;
+            a.item {
+                display: inline-block;
+                text-align: center;
+                padding: 5px 10px;
+                .count {
+                    font-size: 42px;
+                    font-weight: 600;
+                    display: block;
+                    line-height: 1;
+                }
+                .name {
+                    color: #999999;
+                    font-size: 16px;
+                    font-weight: 300;
+                    display: block;
+                    line-height: 1;
+                }
+
+                &:hover, &:focus, &:active {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        @include breakpoint-small {
+            text-align: left;
+            border-left: 1px solid #AAAAAA;
+        }
+    }
+}
