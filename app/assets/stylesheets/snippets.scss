@@ -28,9 +28,44 @@
     }
 }
 
-.view-snippet {
+.view-snippet { // generic snippet display
+    @include shadow-depth(1);
+    margin: 10px 0px;
+    .snippet-metadata {
+        border-bottom: 1px solid #DADADA;
+        background-color: #F6F6F6;
+        .snippet-title {
+            display: inline-block;
+            font-size: 24px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin: 0;
+        }
+    }
+
     .file {
-        border: 1px solid #666666;  // placeholder
+        border: 1px solid #DADADA;  // placeholder
         margin: 15px 0px;
+        .file-metadata {
+            background-color: #F6F6F6;
+            padding: 0px 15px;
+            .file-name {
+                padding: 3px 0px;
+                margin: 0;
+            }
+        }
+    }
+
+    .ace_cursor {   // hide cursor
+        color: transparent !important;
+    }
+}
+
+#show-snippet { // show individual snippet
+    .show-snippet-buttons {
+        text-align: right;
+        form {
+            display: inline-block;
+        }
     }
 }

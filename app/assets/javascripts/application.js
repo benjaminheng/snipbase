@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require ace/ace.js 
+//= require ace/ext-modelist.js 
 //= require main

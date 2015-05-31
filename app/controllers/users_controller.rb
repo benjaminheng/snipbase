@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(current_user.id);
+        @snippets = Snippet.where(user: @user);
         render :layout => 'fullwidth'
     end
 

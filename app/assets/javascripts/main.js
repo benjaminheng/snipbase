@@ -1,4 +1,6 @@
 var ready = function() {
+    var modelist = ace.require('ace/ext/modelist');
+
     // adds new snippet file
     $("#add-snippet-file-btn").click(function() {
         var files = $(".files");

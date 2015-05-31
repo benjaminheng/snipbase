@@ -1,13 +1,15 @@
-<div class="view-snippet col-xs-12">
-    <div class="snippet-metadata">
-        <span class="snippet-title"><%= @snippet.title %></span>
+<div class="view-snippet row">
+    <div class="snippet-metadata col-xs-12">
+        <h1 class="snippet-title"><%= snippet.title %></h1>
     </div>
-    <div class="files">
-        <% @snippet.snippet_files.each do |snippet_file| %>
+    <div class="files col-xs-12 <%= 'minimized' if defined?(minimized) %>">
+        <% snippet.snippet_files.each do |snippet_file| %>
             <div class="file">
-                <label for="filename" class="file-name">
-                    <%= snippet_file.filename %>
-                </label>
+                <div class="file-metadata">
+                    <label for="filename" class="file-name">
+                        <%= snippet_file.filename %>
+                    </label>
+                </div>
                 <div class="snippet-editor" data-readonly="true">
                     <%= text_area_tag "teststse", snippet_file.content, placeholder: "Content", class:"snippet-textarea", rows:"8" %>
                 </div>

@@ -32,7 +32,9 @@
     </div>
 </div>
 <div id="user-snippets" class="row">
-    <div class="content">
-        <h3> list of snippets here </h3>
+    <div class="content extra-space container-fluid">
+        <% @snippets.each do |snippet| %>
+            <%= render 'shared/snippet', snippet: snippet, minimized: true %>
+        <% end %>
     </div>
 </div>
