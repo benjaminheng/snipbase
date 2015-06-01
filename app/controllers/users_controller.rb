@@ -17,8 +17,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(current_user.id);
-        @snippets = Snippet.where(user: @user).order(:created_at).reverse_order;
+        @user = User.find_by(username: params[:username]);
+        conditions = {user: @user}
+        if (current_user != @user)  # only show public snippets
+            conditions[:private] = false;
+        end
+        @snippets = Snippet.where(conditions).order(:created_at).reverse_order;
         render :layout => 'fullwidth'
     end
 
