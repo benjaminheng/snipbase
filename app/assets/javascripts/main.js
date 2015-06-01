@@ -69,5 +69,6 @@ function toggleDeleteButton(){
 }
 
 // fix for turbo-links preventing .ready() from working correctly. replaces .ready()
-$(document).on('page:change', ready);
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
