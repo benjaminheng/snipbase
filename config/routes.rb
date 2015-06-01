@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get '/settings' => 'users#edit'
     patch '/settings' => 'users#update'
 
-    get '/user/:username' => 'users#show'
+    get '/user/:username' => 'users#show', as: 'show_user'
 
     get '/add' => 'snippets#new'
     post '/add' => 'snippets#create'

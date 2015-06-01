@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(current_user.id);
-        @snippets = Snippet.where(user: @user);
+        @snippets = Snippet.where(user: @user).order(:created_at).reverse_order;
         render :layout => 'fullwidth'
     end
 

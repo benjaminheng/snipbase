@@ -133,9 +133,8 @@
 
         img.hero-img {
             max-width: 100%;
-            max-height: 250px;
             padding: 20px 0px;
-            opacity: 0.8;
+            opacity: 0.7;
             @include transition(opacity .5s ease);
 
             &:hover {

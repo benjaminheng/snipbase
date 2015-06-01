@@ -32,9 +32,12 @@
     </div>
 </div>
 <div id="user-snippets" class="row">
+    <div id="messages">
+        <%= render 'shared/messages' %>
+    </div>
     <div class="content extra-space container-fluid">
         <% @snippets.each do |snippet| %>
-            <%= render 'shared/snippet', snippet: snippet, minimized: true %>
+            <%= render 'shared/snippet', snippet: snippet, minimizable: true %>
         <% end %>
     </div>
 </div>

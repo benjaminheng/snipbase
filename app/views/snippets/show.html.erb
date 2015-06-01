@@ -6,11 +6,6 @@
         <%= @snippet.title %>
     </h1>
 
-    <div class="snippet show-snippet-buttons col-xs-12"> 
-        <%= button_to "Edit", edit_snippet_path, class:"btn" %>
-        <%= button_to "Delete", delete_snippet_path, remote: true, :method => :delete, class:"btn" %>
-    </div>
-
     <div class="col-xs-12">
         <%= render 'shared/snippet', snippet: @snippet %>
     </div>

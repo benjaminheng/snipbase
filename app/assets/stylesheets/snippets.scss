@@ -29,17 +29,80 @@
 }
 
 .view-snippet { // generic snippet display
-    @include shadow-depth(1);
+    position: relative;
+
+    border: 1px solid #DADADA;
     margin: 10px 0px;
-    .snippet-metadata {
-        border-bottom: 1px solid #DADADA;
-        background-color: #F6F6F6;
+    @include shadow-depth(0.5);
+
+    &:hover {
+        @include shadow-depth(0.6);
+    }
+
+    &.minimized .files {
+        display: none;
+    }
+    &.minimizable .snippet-header {
+        cursor: pointer;
+    }
+
+    &.selected-snippet {
+        @include shadow-depth(0.6);
+        .snippet-header {
+            /*background-color: darken(#F6F6F6, 3%);*/
+            border-bottom: 1px solid #E6E6E6;
+            .snippet-expand-btn {
+                background-image: image-url("collapse-arrow.png");
+            }
+        }
+    }
+
+
+    .snippet-header {
+        position: relative;
+
+        .snippet-metadata {
+            padding: 10px;
+        }
+
         .snippet-title {
-            display: inline-block;
-            font-size: 24px;
-            padding-top: 10px;
+            display: block;
+            font-size: 16px;
             padding-bottom: 10px;
             margin: 0;
+        }
+
+        .author {
+            font-weight: 600;
+        }
+        .timestamp, .tags {
+            color: lighten($text-color, 40%);
+        }
+
+        .snippet-controls-container .snippet-controls {
+            float: right;
+            padding: 2px 4px;
+            @extend %clearfix;
+
+            @include breakpoint-small {
+                float: none;
+                margin: 11px 0px;
+                .snippet-edit-link, .snippet-delete-link {
+                    padding: 2px 10px;
+                    display: inline-block;
+                }
+            }
+        }
+
+        .snippet-expand-btn {
+            background-image: image-url("expand-arrow.png");
+            background-position: center; 
+            background-repeat: no-repeat;
+            margin-right: 5px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
         }
     }
 
