@@ -19,6 +19,11 @@ class SnippetsController < ApplicationController
     	render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
     end
 
+    def download_raw
+    	snip_file = SnippetFile.find(params[:file_id])
+    	send_data(snip_file.content, filename: snip_file.filename, disposition: "inline" )
+    end
+
 	def new
         @snippet = Snippet.new
         render 'create'

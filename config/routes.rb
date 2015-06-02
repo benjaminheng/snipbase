@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     delete '/snippet/:id' => 'snippets#destroy', as: 'delete_snippet'
 
+    get '/snippet/:id/:file_id' => 'snippets#download_raw', as: 'raw_snippet_file'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

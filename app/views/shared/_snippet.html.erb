@@ -14,7 +14,7 @@
                     <%= link_to "Edit", edit_snippet_path(snippet), class: "snippet-edit-link" %>
                 <% end %>
                 <% if has_delete_permission %>
-                <%= link_to "Delete", delete_snippet_path(snippet) , remote: true, method: :delete, class: "snippet-delete-link" %>
+                <%= link_to "Delete", delete_snippet_path(snippet), remote: true, method: :delete, class: "snippet-delete-link" %>
                 <% end %>
             </div>
         </div>
@@ -31,6 +31,9 @@
                         <%= snippet_file.filename %>
                     </label>
                 </div>
+
+                <%= link_to "Raw", raw_snippet_file_path(snippet, snippet_file), class: "snippet-file-raw-link" %>
+
                 <div class="snippet-editor" data-readonly="true">
                     <%= text_area_tag "teststse", snippet_file.content, placeholder: "Content", class:"snippet-textarea", rows:"8" %>
                 </div>
