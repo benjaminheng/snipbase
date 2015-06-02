@@ -73,6 +73,22 @@ input[type="button"].btn, input[type="submit"].btn, button.btn {
         &:active { background-color: darken(#3bb878, 7%); }
     }
 
+    &.grey {
+        background-color: #E6E6E6;
+        border-color: darken(#E6E6E6, 5%) darken(#E6E6E6, 20%) darken(#E6E6E6, 20%) darken(#E6E6E6, 5%);
+        color: $text-color;
+        outline: 0 none;
+        @include shadow-depth(0.5);
+
+        &:hover, &:focus { background-color: darken(#E6E6E6, 3%); }
+        &:active { background-color: darken(#E6E6E6, 6%); }
+    }
+
+}
+
+input[type="button"].btn-small, input[type="submit"].btn-small, button.btn-small {
+    font-weight: 400;
+    padding: 2px 10px;
 }
 
 div.extra-space {

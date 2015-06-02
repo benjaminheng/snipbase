@@ -28,8 +28,12 @@ var ready = function() {
         var container = $(this).closest('.view-snippet');
         var files = container.find('.files');
         container.toggleClass('selected-snippet');
-        //files.slideToggle(300);
         files.toggle();
+    });
+
+    // Removes the snippet after a successful delete
+    $('.snippet-delete-link').on('ajax:success', function() {
+        $(this).closest('.view-snippet').remove();
     });
 
     // initializes all editors defined on the page at time of page load

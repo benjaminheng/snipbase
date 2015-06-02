@@ -49,7 +49,6 @@
     &.selected-snippet {
         @include shadow-depth(0.6);
         .snippet-header {
-            /*background-color: darken(#F6F6F6, 3%);*/
             border-bottom: 1px solid #E6E6E6;
             .snippet-expand-btn {
                 background-image: image-url("collapse-arrow.png");
@@ -107,14 +106,18 @@
     }
 
     .file {
-        border: 1px solid #DADADA;  // placeholder
+        border: 1px solid #DADADA;  
         margin: 15px 0px;
         .file-metadata {
             background-color: #F6F6F6;
-            padding: 0px 15px;
+            border-bottom: 1px solid #E6E6E6;
+            padding: 4px 0px;
             .file-name {
                 padding: 3px 0px;
                 margin: 0;
+            }
+            .file-raw-link {
+                float: right;
             }
         }
     }
