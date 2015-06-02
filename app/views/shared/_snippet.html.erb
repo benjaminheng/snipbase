@@ -3,9 +3,14 @@
         <div class="snippet-metadata <%= defined?(minimizable) ? 'col-xs-11 col-sm-10' : 'col-xs-12 col-sm-11' %>">
             <span class="author"><%= link_to snippet.user.username, show_user_path(username: snippet.user.username) %></span>
             <span class="separator">/</span>
-            <span class="timestamp"><%= distance_of_time_in_words_to_now(snippet.created_at) %> ago</span>
+            <%= link_to "permalink", show_snippet_path(snippet), class: "permalink" %>
             <span class="separator">/</span>
-            <span class="tags">tags: <a href="#">tag1</a>, <a href="#">tag2</a>, <a href="#">tag3</a></span>
+            <span class="timestamp">created <%= time_ago_in_words(snippet.created_at) %> ago</span>
+            <% if snippet.updated_at != snippet.created_at %>
+                <span class="separator">/</span>
+                <span class="timestamp">updated <%= time_ago_in_words(snippet.updated_at) %> ago</span>
+            <% end %>
+            <!--<span class="tags">tags: <a href="#">tag1</a>, <a href="#">tag2</a>, <a href="#">tag3</a></span>-->
             <span class="snippet-title"><%= snippet.title %></span>
         </div>
         <div class="snippet-controls-container col-sm-1 col-xs-12">

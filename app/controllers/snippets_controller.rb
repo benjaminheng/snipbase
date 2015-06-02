@@ -50,8 +50,12 @@ class SnippetsController < ApplicationController
 
 	def destroy
 		if @snippet.destroy
-            flash[:success] = "Deleted snippet."
-			return render :js => "window.location = '#{add_path}'" if request.env['HTTP_REFERER'].end_with?(show_snippet_path)
+            if request.env['HTTP_REFERER'].end_with?(show_snippet_path)
+                flash[:success] = "Deleted snippet."
+                return render :js => "window.location = '#{add_path}'" 
+            else
+                flash.now[:success] = "Deleted snippet."
+            end
 		else
 			flash.now[:danger] = @snippet.errors.full_messages[0]
 		end

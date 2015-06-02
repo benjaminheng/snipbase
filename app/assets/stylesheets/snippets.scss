@@ -74,6 +74,11 @@
         .author {
             font-weight: 600;
         }
+
+        .separator, .permalink, .timestamp, .tags {
+            font-size: 13px;
+        }
+
         .timestamp, .tags {
             color: lighten($text-color, 40%);
         }
