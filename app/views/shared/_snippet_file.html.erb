@@ -1,4 +1,7 @@
 <div class="file">
+	<% if defined?(show) %>
+		<button class="btn" type="button" style="display: none">Raw</button>
+	<% end %>
 	<button class="close" type="button" style="display: none">×</button>
 	<%= text_field_tag "snippet_files[][filename]", defined?(file)? file.filename : "" , placeholder: "File name", class: "file-name" %>
 

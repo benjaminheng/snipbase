@@ -10,8 +10,12 @@
         </div>
         <div class="snippet-controls-container col-sm-1 col-xs-12">
             <div class="snippet-controls row">
-                <%= link_to "Edit", edit_snippet_path(snippet), class: "snippet-edit-link" %>
+                <% if has_edit_permission %>
+                    <%= link_to "Edit", edit_snippet_path(snippet), class: "snippet-edit-link" %>
+                <% end %>
+                <% if has_delete_permission %>
                 <%= link_to "Delete", delete_snippet_path(snippet) , remote: true, method: :delete, class: "snippet-delete-link" %>
+                <% end %>
             </div>
         </div>
         <% if defined?(minimizable) %>

@@ -1,5 +1,23 @@
 class SnippetsController < ApplicationController
     before_filter :ensure_authenticated, only: ["new", "create", "show", "edit"]
+    before_filter :authenticate_edit_permission, only: ["edit", "update"]
+    before_filter :authenticate_delete_permission, only: ["destroy"]
+
+    #These 2 methods will changed after groups are implemented.
+    #currently only the Owner has permission to edit/delete
+    def authenticate_edit_permission
+		@snippet = Snippet.find(params[:id])
+
+    	#Redirecting to root_path?? Or raise 404??
+    	render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
+    end
+
+    def authenticate_delete_permission
+    	@snippet = Snippet.find(params[:id])
+
+		#Redirecting to root_path?? Or raise 404??
+    	render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
+    end
 
 	def new
         @snippet = Snippet.new
@@ -11,12 +29,10 @@ class SnippetsController < ApplicationController
 	end
 
 	def edit
-		@snippet = Snippet.find(params[:id])
 		render 'update'
 	end
 
 	def update
-		@snippet = Snippet.find(params[:id])
 		@snippet.update(snippet_params)
 		process_snippets
 	end
@@ -28,14 +44,13 @@ class SnippetsController < ApplicationController
 	end
 
 	def destroy
-		@snippet = Snippet.find(params[:id])
 		if @snippet.destroy
             flash[:success] = "Deleted snippet."
-			render :js => "window.location = '#{add_path}'"
+			return render :js => "window.location = '#{add_path}'" if request.original_fullpath == show_snippet_path
 		else
 			flash.now[:danger] = @snippet.errors.full_messages[0]
-			refresh_message
 		end
+		refresh_message
 	end
 
 
