@@ -15,10 +15,10 @@
                     <span class="count">16</span>
                     <span class="name">snippets</span>
                 </a>
-                <a href="#" class="item">
+                <%= link_to show_user_groups_path(@user.username), class: "item" do %>
                     <span class="count">2</span>
                     <span class="name">groups</span>
-                </a>
+                <% end %>
                 <a href="#" class="item">
                     <span class="count">32</span>
                     <span class="name">followers</span>
@@ -33,9 +33,7 @@
 </div>
 <div id="user-snippets" class="row">
     <div class="content extra-space container-fluid">
-        <div id="messages">
-            <%= render 'shared/messages' %>
-        </div>
+        <%= render 'shared/messages' %>
         <% @snippets.each do |snippet| %>
             <%= render 'shared/snippet', snippet: snippet, minimizable: true %>
         <% end %>

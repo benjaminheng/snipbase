@@ -1,0 +1,19 @@
+<div id="user-groups" class="row">
+    <%= render 'shared/messages' %>
+    <div class="col-xs-12">
+
+        <%= form_for(@group, url: show_user_groups_path(username: @user.username), method: :post) do |f| %>
+            <div class="form-element"> 
+                <%= f.label :name, "Group name"%>
+                <%= f.text_field :name, autofocus: true %> 
+                <% if !@group.errors[:name].blank? %> 
+                    <span class="errormsg"><%= @group.errors.full_messages_for(:name)[0] %></span>
+                <% end %>
+            </div>
+            <%= f.submit "Create group", class: "btn" %>
+        <% end %>
+        <% @user.groups.each do |group| %>
+            <%= group.name %>
+        <% end %>
+    </div>
+</div>

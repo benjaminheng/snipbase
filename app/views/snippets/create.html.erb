@@ -1,7 +1,5 @@
 <div id="add-snippet" class="row">
-	<div id="messages">
-        <%= render 'shared/messages' %>
-    </div>
+    <%= render 'shared/messages' %>
     <h1 class="page-title">New Snippet</h1>
     <%= form_for @snippet, url: add_path, remote: true, html: {class: "create-snippet-form col-sm-12 col-xs-12"} do |f| %>
         <div class="editable-snippet">

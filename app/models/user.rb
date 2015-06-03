@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
     has_secure_password
     has_many :snippets
-    has_and_belongs_to_many :groups
+
+    #groups
+    has_many :group_members
+    has_many :groups, through: :group_members
+
+    #followers
     has_many :active_relationships, class_name: "Relationship", 
                                     foreign_key: "follower_id",
                                     dependent: :destroy
