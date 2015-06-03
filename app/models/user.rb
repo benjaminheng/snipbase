@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     has_many :snippets
 
     #groups
-    has_many :group_members
+    has_many :group_members, dependent: :destroy
     has_many :groups, through: :group_members
     has_many :active_groups, -> { where.not group_members: { accepted: nil } },
              through: :group_members, class_name: "Group", source: :group

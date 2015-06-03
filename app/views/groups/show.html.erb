@@ -10,10 +10,22 @@
                     <span class="errormsg"><%= @group.errors.full_messages_for(:name)[0] %></span>
                 <% end %>
             </div>
+
+            <div class="form-element"> 
+                <%= label_tag :invitees, "Invite users" %>
+                <%= text_field_tag :invitees %> 
+                <span>comma separated</span>
+                <% if !@group.errors[:invitees].blank? %> 
+                    <span class="errormsg"><%= @group.errors.full_messages_for(:invitees)[0] %></span>
+                <% end %>
+            </div>
             <%= f.submit "Create group", class: "btn" %>
         <% end %>
+        list of groups you're in: 
+        <ul>
         <% @user.groups.each do |group| %>
-            <%= group.name %>
+            <li><%= group.name %>
         <% end %>
+        </ul>
     </div>
 </div>
