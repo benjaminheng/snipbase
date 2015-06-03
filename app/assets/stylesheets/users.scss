@@ -1,6 +1,6 @@
 #register {
     form.register-form {
-        background-color: #F1F1F1;
+        background-color: #F8F8F8;
         padding: 15px;
         margin: auto;
         float: none;
@@ -13,7 +13,7 @@
 #login {
     form.login-form {
         padding: 15px;
-        background-color: #F1F1F1;
+        background-color: #F8F8F8;
         margin: auto;
     }
 }
@@ -30,23 +30,37 @@
     background-color: darken($bg-color, 2%);
 
     .profile-avatar {
-        min-height: 158px;  // 128px + 15px + 15px (img, pad-btm, pad-top)
+        min-height: 126px;  // 96px + 15px + 15px (img, pad-btm, pad-top)
         padding: 15px 0px;
         text-align: center;
     }
 
     .profile-metadata {
-        min-height: 158px;  // 128px + 15px + 15px (img, pad-btm, pad-top)
         text-align: center;
+        position: relative;
+
+        @include breakpoint-small {
+            text-align: left;
+            border-left: 1px solid #AAAAAA;
+            min-height: 126px;  // 96px + 15px + 15px (img, pad-btm, pad-top)
+
+            .counters {
+                padding-top: 0px;
+                padding-bottom: 0px;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+
         h1.profile-names{
             margin: 0px;
             .username {
-                font-size: 32px;
+                font-size: 28px;
                 font-weight: 600;
                 display: block;
             }
             .name {
-                font-size: 24px;
+                font-size: 20px;
                 font-weight: 300;
                 display: block;
                 &:empty:before {
@@ -56,14 +70,14 @@
         }
 
         .counters {
-            padding-top: 17px;
+            padding-top: 20px;
             padding-bottom: 7px;
             a.item {
                 display: inline-block;
                 text-align: center;
                 padding: 5px 10px;
                 .count {
-                    font-size: 42px;
+                    font-size: 32px;
                     font-weight: 600;
                     display: block;
                     line-height: 1;
@@ -82,9 +96,5 @@
             }
         }
 
-        @include breakpoint-small {
-            text-align: left;
-            border-left: 1px solid #AAAAAA;
-        }
     }
 }

@@ -1,5 +1,5 @@
 class SnippetsController < ApplicationController
-    before_filter :ensure_authenticated, only: ["new", "create", "show", "edit"]
+    before_filter :ensure_authenticated, only: ["new", "create", "edit"]
     before_filter :authenticate_edit_permission, only: ["edit", "update"]
     before_filter :authenticate_delete_permission, only: ["destroy"]
 

@@ -25,70 +25,84 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
     padding: 0px 10px;
 }
 
+.btn {
+    white-space:nowrap;
+    background: #EAEAEA;
+    top:0px;
+    border-radius:2px;
+    position:relative;
+    cursor:pointer;
+    transition:0.1s all ease;
+    font-size : 15px;
+    font-weight: 300;
+    line-height: 1;
+    color: $text-color;
+    border: 1px solid #E5E5E5;
+    border-bottom: 1px solid #ccc;
+    min-height:32px;
 
-input[type="button"].btn, input[type="submit"].btn, button.btn {
-    font-weight: bold;
-    color: $text-color-light;
-    padding: 5px 12px;
-    border: 1px solid #CCCCCC;
-    border-radius: 1px;
-    background-color: $brand-color;
-    border-color: darken($brand-color, 5%) darken($brand-color, 20%) darken($brand-color, 20%) darken($brand-color, 5%);
-    @include shadow-depth(1);
-
-    &:hover, &:focus { 
-        color: $text-color-light;
-        background-color: darken($brand-color, 5%); 
-        outline: 0 none !important;
-        @include transition(background-color .2s ease);
-    }
-    &:active { 
-        background-color: darken($brand-color, 7%); 
-        outline: 0 none !important;
+    &:focus{
+        outline: 0 none;
     }
 
-    &.warning {
-        background-color: $warning-color;
-        border-color: darken($warning-color, 5%) darken($warning-color, 20%) darken($warning-color, 20%) darken($warning-color, 5%);
-        color: $text-color-light;
-        @include shadow-depth(1);
+    &:hover{ //primary hover
+        background:#EEEEEE;
+        top:-1px;
+        border-bottom: 2px solid #ccc;
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.12);
+    }
 
-        &:hover, &:focus { background-color: darken($warning-color, 5%); }
-        &:active { background-color: darken($warning-color, 7%); }
+    &:active{//primary active
+        top:0px;
+        border: 1px solid #ccc;
+        background-color:#EAEAEA;
+        box-shadow: inset 0px 0px 3px rgba(0,0,0,0.12);
+        outline: 0 none !important;
+    }
 
-        &[disabled], &[disabled]:hover, &[disabled]:focus {
-            border-color: lighten($warning-color, 15%) lighten($warning-color, 5%) lighten($warning-color, 5%) lighten($warning-color, 15%);
-            background-color: lighten($warning-color, 15%);
+    &.high {
+        &:hover {
+            top:-2px;
+            border-bottom-width: 3px;
+        }
+        &:active {
+            top: 0px;
+            border-bottom-width: 1px;
         }
     }
 
     &.green {
         background-color: #3bb878;
-        border-color: darken(#3bb878, 5%) darken(#3bb878, 20%) darken(#3bb878, 20%) darken(#3bb878, 5%);
+        border-color: lighten(#3bb878, 5%);
+        border-bottom-color: darken(#3bb878, 6%);
         color: $text-color-light;
         outline: 0 none;
-        @include shadow-depth(1);
 
-        &:hover, &:focus { background-color: darken(#3bb878, 5%); }
-        &:active { background-color: darken(#3bb878, 7%); }
+        &:hover, &:focus { background-color: lighten(#3bb878, 2%); }
     }
 
-    &.grey {
-        background-color: #E6E6E6;
-        border-color: darken(#E6E6E6, 5%) darken(#E6E6E6, 20%) darken(#E6E6E6, 20%) darken(#E6E6E6, 5%);
-        color: $text-color;
-        outline: 0 none;
-        @include shadow-depth(0.5);
+    &.warning {
+        background-color: $warning-color;
+        border-color: lighten($warning-color, 5%);
+        border-bottom-color: darken($warning-color, 15%);
+        color: $text-color-light;
 
-        &:hover, &:focus { background-color: darken(#E6E6E6, 3%); }
-        &:active { background-color: darken(#E6E6E6, 6%); }
+        &:hover, &:focus { background-color: lighten($warning-color, 2%); }
+
+        &[disabled], &[disabled]:hover, &[disabled]:focus {
+            border-color: lighten($warning-color, 15%);
+            border-bottom-color: darken($warning-color, 6%);
+            background-color: lighten($warning-color, 15%);
+        }
     }
 
-}
-
-input[type="button"].btn-small, input[type="submit"].btn-small, button.btn-small {
-    font-weight: 400;
-    padding: 2px 10px;
+    &.btn-small {
+        padding: 4px 8px;
+        min-height: 26px;
+        &:hover {
+            box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.10);
+        }
+    }
 }
 
 div.extra-space {
