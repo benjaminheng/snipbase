@@ -2,9 +2,8 @@ require "test_helper"
 
 describe GroupMember do
   before do
-      @group = create(:group)
       @user1 = create(:user)
-      @group.owner = @user1
+      @group = create(:group, owner: @user1)
       @user2 = create(:user, username: 'testuser2')
   end
 

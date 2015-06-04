@@ -23,7 +23,7 @@
         <% end %>
         list of groups you're in: 
         <ul>
-        <% @user.groups.each do |group| %>
+        <% @user.active_groups.each do |group| %>
             <li><%= link_to group.name, show_group_path(group) %>
         <% end %>
         </ul>

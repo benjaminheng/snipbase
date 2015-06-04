@@ -1,0 +1,17 @@
+<div id="notifications-container">
+    <% if notifications[:group_invites].empty? %>
+        <div class="notification-item">
+            <span class="no-notifications">No new notifications</span>
+        </div>
+    <% end %>
+    <% notifications[:group_invites].each do |group| %>
+        <div class="notification-item">
+            <%= link_to group.owner.username, show_user_path(group.owner.username)%> invites you to the group <span class="group-name"><%= group.name %></span>
+            <div class="notification-item-controls">
+                <%= link_to "accept", accept_group_invite_path(group), method: :post %>
+                |
+                <%= link_to "decline", decline_group_invite_path(group), method: :post %>
+            </div>
+        </div>
+    <% end %>
+</div>

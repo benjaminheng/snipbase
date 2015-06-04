@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-    before_filter :ensure_authenticated, only: ["show_all", "create", "show", "show_members"]
+    #before_filter :ensure_authenticated, only: ["show_all", "create", "show", "show_members", "accept_invite", "decline_invite"]
+    before_filter :ensure_authenticated
 
     # show all groups
     def show_all
@@ -43,6 +44,29 @@ class GroupsController < ApplicationController
         @group = Group.find(params[:id])
         # ensure user is authorized to view group members
         redirect_to root_path unless current_user.active_groups.include?(@group)
+    end
+
+    def accept_invite
+        group = Group.find(params[:id])
+        return unless current_user.pending_groups.include?(group)
+        current_user.accept_group_invite(group)
+        flash[:success] = "Joined group \"#{group.name}\""
+        respond_to_invite
+    end
+
+    def decline_invite
+        group = Group.find(params[:id])
+        return unless current_user.pending_groups.include?(group)
+        current_user.decline_group_invite(group)
+        flash[:info] = "Declined group invite for \"#{group.name}\""
+        respond_to_invite
+    end
+
+    def respond_to_invite
+        respond_to do |format|
+            format.html { redirect_to :back }
+            format.js { render 'shared/refresh_message' }
+        end
     end
 
     private

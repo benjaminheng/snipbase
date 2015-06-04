@@ -1,6 +1,21 @@
 var ready = function() {
     var modelist = ace.require('ace/ext/modelist');
 
+    // Toggles notifications popover
+    $("#notifications-toggle").popover({
+        html: true,
+        content: function() {
+            return $("#notifications-container").html();
+        }
+    });
+    // Dismisses notifications popover when user clicks outside it
+    $('html').on('click', function(e) {
+        if (typeof $(e.target).data('original-title') == 'undefined' &&
+            !$(e.target).parents().is('.popover.in')) {
+            $('[data-original-title]').popover('hide');
+        }
+    });
+
     // adds new snippet file
     $("#add-snippet-file-btn").click(function() {
         var files = $(".files");

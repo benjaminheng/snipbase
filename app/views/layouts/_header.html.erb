@@ -17,8 +17,10 @@
 
                     <li class="vertical-separator hidden-xs"><span>|</span>
                     <li>
-                    <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a>
-                    
+                        <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a>
+                    </li>
+                    <li>
+                        <a id="notifications-toggle" data-placement="bottom" title="Notifications" href="#">N</a>
                     </li>
                     <li class="dropdown hidden-xs">
                         <a class="settings" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-cog"></i><span class="caret"></span></a>
@@ -48,4 +50,5 @@
             </ul>
         </div>
     </div>
+    <%= render 'shared/notifications' %>
 </nav>

@@ -37,6 +37,11 @@ class User < ActiveRecord::Base
         gm.update(accepted: DateTime.now)
     end
 
+    def decline_group_invite(group)
+        gm = group_members.find_by(user: self, group: group)
+        gm.destroy()
+    end
+
     def follow(other_user)
         active_relationships.create(followed_id: other_user.id)
     end

@@ -38,7 +38,7 @@
     }
 
     ul.navbar-nav li {
-        a {
+        > a {
             color: darken($text-color-light, 15%);
             background-color: transparent;
             &:hover { 
@@ -110,6 +110,33 @@
                 }
                 @include transition(background-color .2s ease);
             }
+        }
+    }
+
+    #notifications-container {
+        display: none;
+    }
+
+    .notification-item {
+        border-bottom: 1px solid #DDD;
+        padding: 9px 14px;
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .group-name {
+            font-weight: 600;
+        }
+
+        .no-notifications {
+            color: lighten($text-color, 40%);
+        }
+    }
+    .popover {
+        color: $text-color;
+        min-width: 300px;
+        .popover-content {
+            padding: 0px;
         }
     }
 }
