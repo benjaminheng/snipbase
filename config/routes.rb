@@ -17,8 +17,10 @@ Rails.application.routes.draw do
     get '/user/:username' => 'users#show', as: 'show_user'
 
     # groups
-    get '/user/:username/groups' => 'groups#show', as: 'show_user_groups'
+    get '/user/:username/groups' => 'groups#show_all', as: 'show_user_groups'
     post '/user/:username/groups' => 'groups#create'
+    get '/group/:id' => 'groups#show', as: 'show_group'
+    get '/group/:id/members' => 'groups#show_members', as: 'show_group_members'
 
     # snippets
     get '/add' => 'snippets#new'

@@ -7,6 +7,9 @@ class Group < ActiveRecord::Base
              through: :group_members, class_name: "User", source: :user
     has_many :pending_users, -> { where group_members: { accepted: nil } },
              through: :group_members, class_name: "User", source: :user
+    validates :name, presence: true,
+                     format: {with: /\A[a-zA-Z0-9 _-]+\z/, message: "can only contain alphanumeric characters, dashes and underscores"},
+                     length: { maximum: 32, too_long: "cannot be more than %{count} characters long"}
 
     def invite_user(user)
         group_members.create(group: self, user: user)

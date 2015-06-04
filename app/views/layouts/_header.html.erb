@@ -12,7 +12,7 @@
         <div id="header-navbar" class="navbar-collapse collapse" aria-expanded="false" style="">
             <ul class="nav navbar-nav navbar-right">
                 <% if logged_in? %>
-                    <li><a href="/">Groups</a>
+                    <li><%= link_to "Groups", show_user_groups_path(current_user.username) %>
                     <li><a href="/add">+Snippet</a>
 
                     <li class="vertical-separator hidden-xs"><span>|</span>

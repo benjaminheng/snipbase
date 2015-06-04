@@ -4,5 +4,12 @@
         <div class="group-metadata">
             <span class="member-count"><%= link_to pluralize(@group.active_users.count, 'member'), show_group_members_path(@group) %></span>
         </div>
+        <div class="group-members">
+            <ul>
+                <% @group.active_users.each do |u| %>
+                    <li><%= u.username %>
+                <% end %>
+            </ul>
+        </div>
     </div>
 </div>

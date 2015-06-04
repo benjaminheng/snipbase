@@ -1,0 +1,31 @@
+<div id="user-groups" class="row">
+    <%= render 'shared/messages' %>
+    <div class="col-xs-12">
+
+        <%= form_for(@group, url: show_user_groups_path(username: @user.username), method: :post) do |f| %>
+            <div class="form-element"> 
+                <%= f.label :name, "Group name"%>
+                <%= f.text_field :name, autofocus: true %> 
+                <% if !@group.errors[:name].blank? %> 
+                    <span class="errormsg"><%= @group.errors.full_messages_for(:name)[0] %></span>
+                <% end %>
+            </div>
+
+            <div class="form-element"> 
+                <%= label_tag :invitees, "Invite users" %>
+                <%= text_field_tag :invitees %> 
+                <span>comma separated</span>
+                <% if !@group.errors[:invitees].blank? %> 
+                    <span class="errormsg"><%= @group.errors.full_messages_for(:invitees)[0] %></span>
+                <% end %>
+            </div>
+            <%= f.submit "Create group", class: "btn" %>
+        <% end %>
+        list of groups you're in: 
+        <ul>
+        <% @user.groups.each do |group| %>
+            <li><%= link_to group.name, show_group_path(group) %>
+        <% end %>
+        </ul>
+    </div>
+</div>
