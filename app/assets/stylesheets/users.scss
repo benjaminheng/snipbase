@@ -26,73 +26,95 @@
 }
 
 #user-profile {
-    border-bottom: 1px solid #AAAAAA;
-    background-color: darken($bg-color, 2%);
-
+    margin-top: -$extra-space-padding;
+    text-align: center;
+    @include shadow-depth(1);
     .profile-avatar {
-        min-height: 126px;  // 96px + 15px + 15px (img, pad-btm, pad-top)
-        padding: 15px 0px;
-        text-align: center;
+        background-color: $bg-color;
+        padding: 10px;
     }
 
-    .profile-metadata {
-        text-align: center;
-        position: relative;
+    .profile-metadata-container {
+        .profile-metadata {
+            background-color: $bg-color;
+            padding-top: 15px;
+            padding-bottom: 15px;
 
-        @include breakpoint-small {
-            text-align: left;
-            border-left: 1px solid #AAAAAA;
-            min-height: 126px;  // 96px + 15px + 15px (img, pad-btm, pad-top)
-
-            .counters {
-                padding-top: 0px;
-                padding-bottom: 0px;
-                position: absolute;
-                bottom: 0;
-            }
-        }
-
-        h1.profile-names{
-            margin: 0px;
-            .username {
-                font-size: 28px;
-                font-weight: 600;
-                display: block;
-            }
-            .name {
-                font-size: 20px;
-                font-weight: 300;
-                display: block;
-                &:empty:before {
-                    content: '\00a0'; // &nbsp;
-                }
-            }
-        }
-
-        .counters {
-            padding-top: 20px;
-            padding-bottom: 7px;
-            a.item {
-                display: inline-block;
-                text-align: center;
-                padding: 5px 10px;
-                .count {
-                    font-size: 32px;
+            .profile-names  {
+                font-family: $heading-font-family;
+                .username {
+                    display:block;
+                    font-size: 24px;
                     font-weight: 600;
-                    display: block;
                     line-height: 1;
                 }
                 .name {
-                    color: #999999;
-                    font-size: 16px;
+                    display:block;
+                    font-size: 18px;
                     font-weight: 300;
-                    display: block;
-                    line-height: 1;
+                    line-height: 24px;
+                    &:empty:before {
+                        content: '\00a0'; // &nbsp;
+                    }
                 }
+            }
 
-                &:hover, &:focus, &:active {
-                    text-decoration: none;
+            .counters {
+                padding-top: 8px;
+                .item {
+                    display: inline-block;
+                    margin-right: 10px;
+                    .count {
+                        font-size: 16px;
+                    }
+                    .name {
+                        font-size: 14px;
+                    }
                 }
+            }
+        }
+
+        .profile-controls {
+            padding-bottom: 15px;
+            .btn {
+                padding-left: 20px;
+                padding-right: 20px;
+                margin-right: 10px;
+            }
+            .dropdown-menu {
+                height: auto;
+                max-height: 300px;
+                overflow-x: hidden;
+            }
+        }
+    }
+
+    @include breakpoint-small {
+        text-align: left;
+        @include shadow-depth(0);
+
+        .profile-avatar {
+            float: left;
+            width: 148px;
+            height: 148px;
+            @include shadow-depth(3);
+            position: relative;
+            z-index: 5;
+        }
+
+        .profile-metadata-container {
+            margin-left: 148px;
+
+            .profile-metadata {
+                @include shadow-depth(1);
+                position: relative;
+                z-index: 0;
+                height: 100px;
+            }
+
+            .profile-controls {
+                padding-top: 15px;
+                padding-bottom: 0px;
             }
         }
 

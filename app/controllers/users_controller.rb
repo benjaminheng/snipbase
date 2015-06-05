@@ -23,7 +23,6 @@ class UsersController < ApplicationController
             conditions[:private] = false;
         end
         @snippets = Snippet.where(conditions).order(:created_at).reverse_order;
-        render :layout => 'fullwidth'
     end
 
     def edit
