@@ -10,7 +10,7 @@ var ready = function() {
     });
     // Dismisses notifications popover when user clicks outside it
     $('html').on('click', function(e) {
-        if (typeof $(e.target).data('original-title') == 'undefined' &&
+        if (typeof $(e.target).data('original-title') === 'undefined' &&
             !$(e.target).parents().is('.popover.in')) {
             $('[data-original-title]').popover('hide');
         }
@@ -20,11 +20,11 @@ var ready = function() {
     $("#add-snippet-file-btn").click(function() {
         var files = $(".files");
         files.append($("#snippet_file_template").html());
-        newFile = files.find(".file").last();
+        var newFile = files.find(".file").last();
         $(document).scrollTop(newFile.offset().top - 100);
         toggleDeleteButton();
 
-        var container = newFile.find(".snippet-editor")
+        var container = newFile.find(".snippet-editor");
         initSnippetEditor(container);
     });
 
@@ -37,7 +37,7 @@ var ready = function() {
 
     // toggle display of snippet files
     $('.minimizable > .snippet-header').click(function(e) {
-        if (e.target.nodeName == 'A') {
+        if (e.target.nodeName === 'A') {
             return;
         }
         var container = $(this).closest('.view-snippet');
@@ -68,7 +68,7 @@ function initSnippetEditor(container) {
     }).insertBefore(textarea);
 
     var aceEditor = ace.edit(aceEditorDiv[0]);
-    aceEditor.setReadOnly(container.data("readonly") == true ? true : false);
+    aceEditor.setReadOnly(container.data("readonly") === true ? true : false);
     aceEditor.setValue(textarea.val());
     aceEditor.clearSelection();
     if (container.data("submit") == true) {
@@ -79,12 +79,12 @@ function initSnippetEditor(container) {
 }
 
 function toggleDeleteButton(){
-    var buttons = $(".editable-snippet .files .file > .close")
-        if ($(".file").length <= 1) {
-            buttons.hide();
-        } else {
-            buttons.show();
-        }
+    var buttons = $(".editable-snippet .files .file > .close");
+    if ($(".file").length <= 1) {
+        buttons.hide();
+    } else {
+        buttons.show();
+    }
 }
 
 // fix for turbo-links preventing .ready() from working correctly. replaces .ready()
