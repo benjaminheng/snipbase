@@ -2,9 +2,9 @@
 
 A social and collaborative code snippet manager with GitHub Gists integration.
 
-## Setup
+# Setup
 
-### Dependencies
+## Dependencies
 
 **Core**
 
@@ -16,7 +16,7 @@ A social and collaborative code snippet manager with GitHub Gists integration.
 
 1. [Poltergeist](https://github.com/teampoltergeist/poltergeist) for Javascript-enabled acceptance tests
 
-### Database Setup
+## Database Setup
 
 Create the database user (default: snipbase).
 
@@ -25,7 +25,7 @@ $ psql -U postgres
 postgres=# create role snipbase with createdb login password '<your_database_password>';
 ```
 
-### App Setup
+## App Setup
 
 Set your database password as an environment variable.
 
@@ -47,7 +47,7 @@ Start the server.
 $ rails server
 ```
 
-## FAQ
+# FAQ
 
 **Why do I get `ExecJS::ProgramError` while trying to load the webpage on Windows?**
 
