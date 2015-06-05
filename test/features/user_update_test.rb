@@ -54,10 +54,10 @@ feature "UserUpdate" do
         log_in_as @user
         visit settings_path
         fill_in "Existing password", with: "Password"
-        fill_in "New password", with: "beeflasagna"
-        fill_in "Confirm new password", with: "beeflasagna"
+        fill_in "New password", with: "short"
+        fill_in "Confirm new password", with: "short"
         click_button "Change password"
-        page.has_text?("Password must contain at least 1 uppercase character").must_equal true
+        page.has_text?("must contain at least 6 characters").must_equal true
     end
 
     scenario "successful password update", js: true do

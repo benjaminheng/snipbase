@@ -5,7 +5,7 @@
         <%= form_for(:session, url: login_path, html: {class: "login-form form-default"}) do |f| %>
             <div class="form-element">
                 <%= f.label :username %>
-                <%= f.text_field :username, autofocus: true%>
+                <%= f.text_field :username, autofocus: true, maxlength: 32 %>
             </div>
 
             <div class="form-element">

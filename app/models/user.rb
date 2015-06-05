@@ -20,7 +20,10 @@ class User < ActiveRecord::Base
     has_many :following, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships
 
-    validates :username, presence: true, uniqueness: true, allow_nil: true
+    validates :username, presence: true, uniqueness: true, allow_nil: true,
+              format: {with: /\A[a-zA-Z0-9_-]+\z/, message: "can only contain alphanumeric characters, dashes and underscores"},
+              length: { maximum: 32, too_long: "cannot have more than %{count} characters"}
+    validates :name, length: { maximum: 64, too_long: "cannot have more than %{count} characters"}
     validates :password, presence: true, confirmation: true, allow_nil: true
     validates :password_confirmation, presence: true, allow_nil: true
     validate :password_complexity
@@ -63,8 +66,12 @@ class User < ActiveRecord::Base
         return unless errors[:password].blank? && errors[:password_confirmation].blank?
         return if password.nil?
 
-        if (password =~ /[A-Z]/).nil?  # check for uppercase
-            errors.add :password, "must contain at least 1 uppercase character"
+        #if (password =~ /[A-Z]/).nil?  # check for uppercase
+            #errors.add :password, "must contain at least 1 uppercase character"
+            #return
+        #end
+        if (password.length < 6)
+            errors.add :password, "must contain at least 6 characters"
             return
         end
     end

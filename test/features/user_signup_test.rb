@@ -36,4 +36,15 @@ feature "UserSignup" do
         click_button "Sign up"
         page.has_text?("Username has already been taken").must_equal true, "Username taken error message not displayed."
     end
+
+    scenario "username with invalid characters" do
+        visit register_path
+        fill_in "Username", with: "bob@the_builder"   # @ is an invalid char
+        fill_in "Name", with: "Bob"
+        fill_in "Email", with: "bob@cartoonnetwork.com"
+        fill_in "Password", with: "Password"
+        fill_in "Confirm your password", with: "Password"
+        click_button "Sign up"
+        page.has_text?("can only contain alphanumeric characters, dashes and underscores").must_equal true, "Invalid username characters error message not displayed."
+    end
 end

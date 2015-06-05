@@ -5,7 +5,7 @@
         <%= form_for(@user, url: register_path, html: {class: "register-form form-default"})  do |f| %>
             <div class="form-element"> 
                 <%= f.label :username %>
-                <%= f.text_field :username, autofocus: true%> 
+                <%= f.text_field :username, autofocus: true, maxlength: 32%> 
                 <% if !@user.errors[:username].blank? %> 
                     <span class="errormsg"><%= @user.errors.full_messages_for(:username)[0] %></span>
                 <% end %>
@@ -13,7 +13,7 @@
 
             <div class="form-element"> 
                 <%= f.label :name %>
-                <%= f.text_field :name %> 
+                <%= f.text_field :name, maxlength: 64 %> 
             </div>
 
             <div class="form-element"> 
