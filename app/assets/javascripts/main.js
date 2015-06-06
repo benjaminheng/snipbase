@@ -75,13 +75,13 @@ var ready = function() {
                 type: 'POST',
                 data: {'query': query},
                 beforeSend: function() {
-                    $('.selectize-input').addClass("loading");
+                    $('.selectize-control').addClass("loading");
                 },
                 error: function() {
                     callback();
                 },
                 success: function(res) {
-                    $('.selectize-input').removeClass("loading");
+                    $('.selectize-control').removeClass("loading");
                     callback(res);
                 }
             });

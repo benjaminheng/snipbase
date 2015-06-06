@@ -279,3 +279,25 @@ span.button-message {
         padding: 4px 8px 1px !important;
     }
 }
+
+.selectize-control {
+    &.loading::before {
+        opacity: 0.4;
+    }
+    &::before {
+        background-image: image-url("spinner.gif");
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+        content: " ";
+        display: block;
+        height: 16px;
+        margin: -9px 0 0;
+        opacity: 0;
+        position: absolute;
+        right: 9px;
+        top: 50%;
+        transition: opacity 0.2s ease 0s;
+        width: 16px;
+        z-index: 2;
+    }
+}
