@@ -62,6 +62,12 @@ class GroupsController < ApplicationController
         respond_to_invite
     end
 
+    def remove_member
+    end
+
+    def leave_group
+    end
+
     def respond_to_invite
         respond_to do |format|
             format.html { redirect_to :back }

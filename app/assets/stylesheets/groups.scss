@@ -1,3 +1,49 @@
-// Place all the styles related to the Groups controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$avatar-dimensions: 75px;
+
+.group-list {
+    .list-item {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #E6E6E6;
+        .item-avatar {
+            border: 1px solid #DADADA;
+            height: $avatar-dimensions;
+            width: $avatar-dimensions;
+            float: left;
+            img {
+                height: $avatar-dimensions;
+            }
+        }
+        .item-metadata {
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: $avatar-dimensions;
+            max-height: $avatar-dimensions;
+
+            .item-name{
+                @include truncate;
+                a {
+                    color: $text-color;
+                    font-size: 16px;
+                }
+            }
+
+            .user-name {
+                @include truncate;
+                white-space: nowrap;
+                color: lighten($text-color, 40%);
+            }
+
+            .group-members {
+                line-height: 20px;
+            }
+
+            .remove-user-btn {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+#user-groups {
+}

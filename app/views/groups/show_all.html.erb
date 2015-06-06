@@ -1,6 +1,6 @@
 <div id="user-groups" class="row">
     <%= render 'shared/messages' %>
-    <div class="col-xs-12">
+    <div class="container-fluid">
 
         <%= form_for(@group, url: show_user_groups_path(username: @user.username), method: :post) do |f| %>
             <div class="form-element"> 
@@ -21,11 +21,18 @@
             </div>
             <%= f.submit "Create group", class: "btn" %>
         <% end %>
-        list of groups you're in: 
-        <ul>
-        <% @user.active_groups.each do |group| %>
-            <li><%= link_to group.name, show_group_path(group) %>
-        <% end %>
-        </ul>
     </div>
+    <div class="group-list extra-space container-fluid">
+        <% @user.active_groups.each do |group| %>
+            <div class="list-item col-xs-12 col-sm-6 col-md-4">
+                <div class="item-avatar">
+                </div>
+                <div class="item-metadata">
+                    <span class="item-name"><%= link_to group.name, show_group_path(group), title: group.name %></span>
+                    <%= link_to pluralize(group.active_users.count, 'member'), show_group_members_path(group), class: "group-members" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
 </div>

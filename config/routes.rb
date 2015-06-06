@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get '/group/:id/members' => 'groups#show_members', as: 'show_group_members'
     post '/group/:id/accept_invite' => 'groups#accept_invite', as: 'accept_group_invite'
     post '/group/:id/decline_invite' => 'groups#decline_invite', as: 'decline_group_invite'
+    post '/group/:id/remove_member' => 'groups#remove_member', as: 'remove_group_member'
+    post '/group/:id/leave' => 'groups#leave_group', as: 'leave_group'
 
     # snippets
     get '/add' => 'snippets#new'
