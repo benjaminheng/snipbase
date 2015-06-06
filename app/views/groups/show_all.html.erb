@@ -1,37 +1,46 @@
 <div id="user-groups" class="row">
     <%= render 'shared/messages' %>
-    <div class="container-fluid">
+    <div class="create-group container-fluid">
+        <div id="profile" class="panel panel-custom">
+            <div class="panel-heading">Create group</div>
+            <div class="panel-body row">
+                <%= form_for(@group, url: show_user_groups_path(username: @user.username), method: :post) do |f| %>
+                    <div class="form-element col-sm-5"> 
+                        <%= f.label :name, "Group name"%>
+                        <%= f.text_field :name, autofocus: true, maxlength: 32 %> 
+                        <% if !@group.errors[:name].blank? %> 
+                            <span class="errormsg"><%= @group.errors.full_messages_for(:name)[0] %></span>
+                        <% end %>
+                    </div>
 
-        <%= form_for(@group, url: show_user_groups_path(username: @user.username), method: :post) do |f| %>
-            <div class="form-element"> 
-                <%= f.label :name, "Group name"%>
-                <%= f.text_field :name, autofocus: true %> 
-                <% if !@group.errors[:name].blank? %> 
-                    <span class="errormsg"><%= @group.errors.full_messages_for(:name)[0] %></span>
+                    <div class="form-element col-sm-7"> 
+                        <%= label_tag :invitees, "Invite users (optional)" %>
+                        <%= text_field_tag :invitees %> 
+                        <% if !@group.errors[:invitees].blank? %> 
+                            <span class="errormsg"><%= @group.errors.full_messages_for(:invitees)[0] %></span>
+                        <% end %>
+                    </div>
+                    <div class="col-xs-12">
+                        <%= f.submit "Create group", class: "btn" %>
+                    </div>
                 <% end %>
             </div>
-
-            <div class="form-element"> 
-                <%= label_tag :invitees, "Invite users" %>
-                <%= text_field_tag :invitees %> 
-                <% if !@group.errors[:invitees].blank? %> 
-                    <span class="errormsg"><%= @group.errors.full_messages_for(:invitees)[0] %></span>
-                <% end %>
-            </div>
-            <%= f.submit "Create group", class: "btn" %>
-        <% end %>
+        </div>
     </div>
-    <div class="group-list extra-space container-fluid">
-        <% @user.active_groups.each do |group| %>
-            <div class="list-item col-xs-12 col-sm-6 col-md-4">
-                <div class="item-avatar">
+    <div class="group-list container-fluid">
+        <h3 class="section-title">Your groups</h3>
+        <div class="row">
+            <% @user.active_groups.each do |group| %>
+                <div class="list-item col-xs-12 col-sm-6 col-md-4">
+                    <div class="item-avatar">
+                    </div>
+                    <div class="item-metadata">
+                        <span class="item-name"><%= link_to group.name, show_group_path(group), title: group.name %></span>
+                        <%= link_to pluralize(group.active_users.count, 'member'), show_group_members_path(group), class: "group-members" %>
+                    </div>
                 </div>
-                <div class="item-metadata">
-                    <span class="item-name"><%= link_to group.name, show_group_path(group), title: group.name %></span>
-                    <%= link_to pluralize(group.active_users.count, 'member'), show_group_members_path(group), class: "group-members" %>
-                </div>
-            </div>
-        <% end %>
+            <% end %>
+        </div>
     </div>
 </div>
 </div>

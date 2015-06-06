@@ -49,7 +49,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
         outline: 0 none;
     }
 
-    &:hover{ //primary hover
+    &:hover, &:focus { //primary hover
         background:#EEEEEE;
         top:-1px;
         border-bottom: 2px solid #ccc;
@@ -65,7 +65,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
     }
 
     &.high {
-        &:hover {
+        &:hover, &:focus {
             top:-2px;
             border-bottom-width: 3px;
         }
@@ -103,7 +103,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
     &.btn-small {
         padding: 4px 8px;
         min-height: 26px;
-        &:hover {
+        &:hover, &:focus{
             box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.10);
         }
     }

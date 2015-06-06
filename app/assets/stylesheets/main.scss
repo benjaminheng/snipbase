@@ -227,6 +227,7 @@ form.form-default {
     border: 1px solid #EAEAEA;
     border-radius: 1px;
     margin-bottom: 30px;
+    @include shadow-depth(0.5);
     
     .panel-heading {
         border-radius: 0;
@@ -270,7 +271,11 @@ span.button-message {
     border-width: 1px;
     border-style: solid;
     background-color: #FFFFFF;
+    padding: 6px 10px;
     &.focus {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09) inset;
+    }
+    &.has-items {
+        padding: 4px 8px 1px !important;
     }
 }

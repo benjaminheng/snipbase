@@ -46,4 +46,20 @@ $avatar-dimensions: 75px;
 }
 
 #user-groups {
+    .section-title {
+        font-weight: 300;
+    }
+    .create-group {
+        .form-element {
+            margin-bottom: 10px;
+            label {
+                display: block;
+                font-size: $font-size - 1px;
+            }
+            input {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
 }
