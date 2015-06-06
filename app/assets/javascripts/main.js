@@ -56,6 +56,38 @@ var ready = function() {
         initSnippetEditor(item);
     });
 
+    $("#invitees").selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        maxOptions: 50,
+        valueField: 'username',
+        labelField: 'username',
+        searchField: ['username', 'name'],
+        render: {
+            option: function(item, escape) {
+                return "<div>" + escape(item.username) + "</div>";
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length) return callback(); 
+            $.ajax({
+                url: '/api/users',
+                type: 'POST',
+                data: {'query': query},
+                beforeSend: function() {
+                    $('.selectize-input').addClass("loading");
+                },
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    $('.selectize-input').removeClass("loading");
+                    callback(res);
+                }
+            });
+        }
+    });
+
     // initializes delete buttons for snippet files at page load if applicable.
     toggleDeleteButton();
 }

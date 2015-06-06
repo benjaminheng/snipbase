@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
     get '/' => 'static_pages#index', as: 'root'
 
+    post '/api/users/' => 'users#user_search'
+
     # sessions
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'

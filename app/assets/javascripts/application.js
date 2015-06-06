@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require ace/ace.js 
 //= require ace/ext-modelist.js 
+//= require selectize.js
 //= require main
