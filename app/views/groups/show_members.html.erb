@@ -6,19 +6,21 @@
         </div>
     </div>
     <div class="group-list extra-space container-fluid">
-        <% @group.active_users.each do |user| %>
-            <div class="list-item col-xs-12 col-sm-6 col-md-4">
-                <div class="item-avatar">
+        <h3 class="section-title">Group members</h3>
+        <div class="row">
+            <% @group.active_users.each do |user| %>
+                <div class="list-item col-xs-12 col-sm-6 col-md-4">
+                    <div class="item-avatar">
+                    </div>
+                    <div class="item-metadata">
+                        <span class="item-name"><%= link_to user.username, show_user_path(username: user.username), title: user.username %></span>
+                        <span class="user-name"><%= user.name %></span>
+                        <% if current_user == @group.owner && current_user != user %>
+                            <a href="#" class="remove-user-btn btn btn-small">Remove</a>
+                        <% end %>
+                    </div>
                 </div>
-                <div class="item-metadata">
-                    <span class="item-name"><%= link_to user.username, show_user_path(username: user.username), title: user.username %></span>
-                    <span class="user-name"><%= user.name %></span>
-                    <% if current_user == @group.owner && current_user != user %>
-                        <a href="#" class="remove-user-btn btn btn-small">Remove</a>
-                    <% end %>
-                </div>
-            </div>
-        <% end %>
-    </div>
+            <% end %>
+        </div>
     </div>
 </div>
