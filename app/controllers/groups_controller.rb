@@ -51,7 +51,7 @@ class GroupsController < ApplicationController
         return unless current_user.pending_groups.include?(group)
         current_user.accept_group_invite(group)
         flash[:success] = "Joined group \"#{group.name}\""
-        respond_to_invite
+        redirect_back_or_refresh_messages
     end
 
     def decline_invite
@@ -59,16 +59,21 @@ class GroupsController < ApplicationController
         return unless current_user.pending_groups.include?(group)
         current_user.decline_group_invite(group)
         flash[:info] = "Declined group invite for \"#{group.name}\""
-        respond_to_invite
+        redirect_back_or_refresh_messages
     end
 
     def remove_member
     end
 
     def leave_group
+        group = Group.find(params[:id])
+        return unless current_user.active_groups.include?(group)
+        current_user.leave_group(group)
+        flash[:info] = "Left the group \"#{group.name}\""
+        redirect_back_or_refresh_messages
     end
 
-    def respond_to_invite
+    def redirect_back_or_refresh_messages
         respond_to do |format|
             format.html { redirect_to :back }
             format.js { render 'shared/refresh_message' }

@@ -37,6 +37,11 @@
                     <div class="item-metadata">
                         <span class="item-name"><%= link_to group.name, show_group_path(group), title: group.name %></span>
                         <%= link_to pluralize(group.active_users.count, 'member'), show_group_members_path(group), class: "group-members" %>
+                        <div>
+                            <% if current_user != group.owner %>
+                                <%= link_to "Leave Group", leave_group_path(group), method: :post, class: "leave-group-btn btn btn-small" %>
+                            <% end %>
+                        </div>
                     </div>
                 </div>
             <% end %>

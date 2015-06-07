@@ -45,6 +45,12 @@ class User < ActiveRecord::Base
         gm.destroy()
     end
 
+    def leave_group(group)
+        if group.active_users.include?(self)
+            group.remove_user(self)
+        end
+    end
+
     def follow(other_user)
         active_relationships.create(followed_id: other_user.id)
     end

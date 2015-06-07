@@ -65,7 +65,9 @@ var ready = function() {
         searchField: ['username', 'name'],
         render: {
             option: function(item, escape) {
-                return "<div>" + escape(item.username) + "</div>";
+                return "<div><span class='username'>" + escape(item.username) +
+                       "</span><span class='name'> (" + escape(item.name) + 
+                       ")</span></div>";
             }
         },
         load: function(query, callback) {

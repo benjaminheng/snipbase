@@ -20,4 +20,9 @@ class Group < ActiveRecord::Base
     def add_user(user)
         group_members.create(group: self, user: user, accepted: DateTime.now)
     end
+
+    # Called when user leaves group or is removed
+    def remove_user(user)
+        group_members.find_by(group: self, user: user).destroy
+    end
 end

@@ -25,13 +25,17 @@
     }
 }
 
+$profile-avatar-padding: 10px;
+$profile-avatar-img: 128px;
+$profile-avatar-dimensions: $profile-avatar-img + $profile-avatar-padding*2;
+
 #user-profile {
     margin-top: -$extra-space-padding;
     text-align: center;
     @include shadow-depth(1);
     .profile-avatar {
         background-color: $bg-color;
-        padding: 10px;
+        padding: $profile-avatar-padding;
     }
 
     .profile-metadata-container {
@@ -95,15 +99,18 @@
 
         .profile-avatar {
             float: left;
-            width: 148px;
-            height: 148px;
+            width: $profile-avatar-dimensions;
+            height: $profile-avatar-dimensions;
             @include shadow-depth(3);
             position: relative;
             z-index: 5;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background-color: $bg-color;
         }
 
         .profile-metadata-container {
-            margin-left: 148px;
+            margin-left: $profile-avatar-dimensions;
 
             .profile-metadata {
                 @include shadow-depth(1);

@@ -1,4 +1,4 @@
-$avatar-dimensions: 75px;
+$group-avatar-dimensions: 75px;
 
 .group-list {
     .list-item {
@@ -7,18 +7,18 @@ $avatar-dimensions: 75px;
         border-bottom: 1px solid #E6E6E6;
         .item-avatar {
             border: 1px solid #DADADA;
-            height: $avatar-dimensions;
-            width: $avatar-dimensions;
+            height: $group-avatar-dimensions;
+            width: $group-avatar-dimensions;
             float: left;
             img {
-                height: $avatar-dimensions;
+                height: $group-avatar-dimensions;
             }
         }
         .item-metadata {
             padding-left: 15px;
             padding-right: 15px;
-            margin-left: $avatar-dimensions;
-            max-height: $avatar-dimensions;
+            margin-left: $group-avatar-dimensions;
+            max-height: $group-avatar-dimensions;
 
             .item-name{
                 @include truncate;
@@ -39,6 +39,10 @@ $avatar-dimensions: 75px;
 
             .remove-user-btn {
                 margin-top: 10px;
+            }
+
+            .leave-group-btn {
+                margin-top: 9px;
             }
         }
     }
