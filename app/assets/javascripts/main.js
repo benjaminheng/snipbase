@@ -95,11 +95,16 @@ var ready = function() {
 }
 
 function initSnippetEditor(container) {
+    if(isMobile.any()) {
+       return;
+    }
+
     container = $(container);
     var textarea = container.find("textarea.snippet-textarea");
     var aceEditorDiv = $('<div>', {
         "class": "snippet-ace-editor"
     }).insertBefore(textarea);
+    textarea.hide();
 
     var aceEditor = ace.edit(aceEditorDiv[0]);
     aceEditor.setReadOnly(container.data("readonly") === true ? true : false);
@@ -111,6 +116,28 @@ function initSnippetEditor(container) {
         });
     }
 }
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
 
 function toggleDeleteButton(){
     var buttons = $(".editable-snippet .files .file > .close");

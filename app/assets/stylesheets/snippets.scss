@@ -12,7 +12,10 @@
 }
 
 .snippet-textarea {
-    display: none;
+    resize: none;
+    display: inline-block;
+    width: 100%;
+
 }
 
 .editable-snippet {
