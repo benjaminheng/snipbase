@@ -72,7 +72,8 @@ class GroupsController < ApplicationController
         flash[:info] = "Left the group \"#{group.name}\""
         redirect_back_or_refresh_messages
     end
-
+    #
+    # If javascript enabled, refresh messages, else redirect user to same page
     def redirect_back_or_refresh_messages
         respond_to do |format|
             format.html { redirect_to :back }

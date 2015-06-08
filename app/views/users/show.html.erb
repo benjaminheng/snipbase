@@ -1,49 +1,5 @@
 <div id="user-profile" class="row">
-    <div class="container-fluid">
-        <div class="profile-avatar">
-            <%= link_to settings_path, alt: "Change avatar" do %>
-                <%= image_tag "profile-default-avatar.png", height: 128 %>
-        <% end %>
-        </div>
-        <div class="profile-metadata-container">
-            <div class="profile-metadata col-sm-12">
-                <div class="profile-names">
-                    <span class="username"><%= @user.username %></span>
-                    <span class="name"><%= @user.name %></span>
-                </div>
-                <div class="counters">
-                    <a href="#" class="item">
-                        <span class="count">16</span>
-                        <span class="name">snippets</span>
-                    </a>
-                    <a href="#" class="item">
-                        <span class="count">32</span>
-                        <span class="name">followers</span>
-                    </a>
-                    <a href="#" class="item">
-                        <span class="count">128</span>
-                        <span class="name">following</span>
-                    </a>
-                </div>
-            </div>
-            <% if logged_in? %>
-            <div class="profile-controls col-sm-12">
-                <a href="#" class="btn follow-btn">Follow</a>
-                <div class="btn-group">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        Invite <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Amazing Group</a></li>
-                        <li><a href="#">Group of cats</a></li>
-                        <li><a href="#">pigspigspigs</a></li>
-                        <li><a href="#">Free Snippets</a></li>
-                    </ul>
-                </div>
-            </div>
-            <% end %>
-        </div>
-    </div>
+    <%= render 'user_profile' %>
 </div>
 <div id="user-snippets" class="row">
     <div class="content extra-space container-fluid">

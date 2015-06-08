@@ -18,11 +18,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(username: params[:username]);
-        conditions = {user: @user}
-        if (current_user != @user)  # only show public snippets
-            conditions[:private] = false;
-        end
-        @snippets = Snippet.where(conditions).order(:created_at).reverse_order;
+        @snippets = get_snippets_for_user(@user)
     end
 
     def edit
@@ -42,6 +38,33 @@ class UsersController < ApplicationController
     def user_search
         users = User.select("username, name").where("username LIKE ?", "%#{params[:query]}%")
         render json: users.to_json
+    end
+
+    def toggle_follow
+        @user = User.find_by(username: params[:username]);
+        @snippets = get_snippets_for_user(@user)
+        if current_user.following.include?(@user)
+            current_user.unfollow(@user)
+        else
+            current_user.follow(@user)
+        end
+        respond_to_follow_unfollow
+    end
+
+    private
+    def get_snippets_for_user(user)
+        if (current_user != user)  # only show public snippets
+            return user.public_snippets
+        end
+        return user.snippets
+    end
+
+    private
+    def respond_to_follow_unfollow
+        respond_to do |format|
+            format.html { redirect_to :back }
+            format.js { render 'refresh_user_profile' }
+        end
     end
 
     private

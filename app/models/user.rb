@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
     has_secure_password
-    has_many :snippets
+    has_many :snippets, -> { order(created_at: :desc) }
 
     #groups
     has_many :group_members, dependent: :destroy
@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
 
     def followed_by?(other_user)
         return followers.include?(other_user)
+    end
+
+    def public_snippets 
+        conditions = {user: self, private: false}
+        return Snippet.where(conditions).order(:created_at).reverse_order;
     end
 
     private
