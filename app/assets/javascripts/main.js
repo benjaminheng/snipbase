@@ -1,4 +1,5 @@
 var ready = function() {
+    ace.config.set("basePath", "/assets/ace");
     var modelist = ace.require('ace/ext/modelist');
 
     // Toggles notifications popover
@@ -30,9 +31,9 @@ var ready = function() {
     });
 
     // removes snippet files
-    $(".editable-snippet .files").on("click", ".file > button.close", function() { 
-        var parent = $(this).parent();
-        parent.remove();
+    $(".editable-snippet .files").on("click", ".file-header button.close", function() { 
+        var file = $(this).closest('.file');
+        file.remove();
         toggleDeleteButton();
     });
 
@@ -160,7 +161,7 @@ var isMobile = {
 };
 
 function toggleDeleteButton(){
-    var buttons = $(".editable-snippet .files .file > .close");
+    var buttons = $(".editable-snippet .files .file-header button.close");
     if ($(".file").length <= 1) {
         buttons.hide();
     } else {

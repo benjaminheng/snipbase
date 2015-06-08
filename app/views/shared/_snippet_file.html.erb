@@ -1,22 +1,22 @@
 <div class="file">
-	<button class="close" type="button" style="display: none">×</button>
-	<div class="col-xs-2">
-		<%= text_field_tag "snippet_files[][filename]", defined?(file)? file.filename : "" , placeholder: "File name", class: "file-name" %>
-	</div>
-	<div class="dropdown col-xs-2">
-	    <input class="snippet-language" type="hidden" name = "snippet_files[][language]" value="text"/>
-	    <button class="btn dropdown-toggle" id="snippet-list" data-toggle="dropdown">
-		    <i>
-		    	Language:
-		    </i>
-			<span class="snippet-language-caption">
-				Text
-			</span>
-		</button>
+    <div class="file-header">
+        <button class="close" type="button" style="display: none">×</button>
+        <div class="col-xs-4">
+            <%= text_field_tag "snippet_files[][filename]", defined?(file)? file.filename : "" , placeholder: "File name", class: "file-name" %>
+        </div>
+        <div class="dropdown col-xs-2">
+            <input class="snippet-language" type="hidden" name = "snippet_files[][language]" value="text"/>
+            <button class="btn btn-small snippet-list dropdown-toggle" data-toggle="dropdown">
+                <i>Language: </i>
+                <span class="snippet-language-caption">
+                    Text
+                </span>
+            </button>
 
-		<%= render 'shared/languages_list' %>
+            <%= render 'shared/languages_list' %>
 
-	</div>
+        </div>
+    </div>
     <div class="snippet-editor col-xs-12" data-submit="true">
         <%= text_area_tag "snippet_files[][content]", defined?(file)? file.content : "" , placeholder: "Content", class:"snippet-textarea", rows:"15" %>
     </div>

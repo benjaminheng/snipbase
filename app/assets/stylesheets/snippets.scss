@@ -40,11 +40,18 @@
     .file {
         border: 1px solid #666666;  //placeholder
         margin: 15px 0px;
+        .file-header {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            .file-name {
+                width: 100%;
+            }
 
-        .file-name {
-            display: block;
+            .snippet-list {
+                margin-top: 3px;
+            }
+            @extend %clearfix;
         }
-
         @extend %clearfix;
     }
 }
