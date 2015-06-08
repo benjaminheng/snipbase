@@ -11,6 +11,19 @@
     }
 }
 
+
+.snippet-language-list {
+    li { 
+        cursor: pointer; 
+    }
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    display:none;
+    position:absolute;
+    z-index: 1000;
+}
+
 .snippet-textarea {
     resize: none;
     display: inline-block;
@@ -21,6 +34,7 @@
     left: 0;
     right: 0;
 }
+
 
 .editable-snippet {
     .file {

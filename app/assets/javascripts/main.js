@@ -8,6 +8,7 @@ var ready = function() {
             return $("#notifications-container").html();
         }
     });
+
     // Dismisses notifications popover when user clicks outside it
     $('html').on('click', function(e) {
         if (typeof $(e.target).data('original-title') === 'undefined' &&
@@ -98,6 +99,7 @@ function initSnippetEditor(container) {
     if(isMobile.any()) {
        return;
     }
+        var modeList = ace.require("ace/ext/modelist");
 
     container = $(container);
     var textarea = container.find("textarea.snippet-textarea");
@@ -115,6 +117,25 @@ function initSnippetEditor(container) {
             textarea.val(aceEditor.getValue());
         });
     }
+
+    $(".file-name").on('change', function() {
+        var currentSnippet = $(container).parent();
+        //TODO: Set the language to associated file extension. Suggestion?!
+    });
+
+    $(".snippet-language-option").on('click', function() {
+        var lang = $(this).data("value");
+        var caption = $(this).children().text();
+        var currentSnippet = $(container).parent();
+
+        aceEditor.getSession().setMode("ace/mode/"+lang);
+        currentSnippet.find(".snippet-language").val(lang);
+        currentSnippet.find(".snippet-language-caption").text(caption);
+    });
+
+    $('.snippet-delete-link').on('ajax:success', function() {
+        $(this).closest('.view-snippet').remove();
+    });
 }
 
 var isMobile = {
@@ -137,7 +158,6 @@ var isMobile = {
         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     }
 };
-
 
 function toggleDeleteButton(){
     var buttons = $(".editable-snippet .files .file > .close");
