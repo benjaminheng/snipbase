@@ -42,7 +42,7 @@
 
 
                 <div class="snippet-editor" data-readonly="true">
-                    <%= text_area_tag "teststse", snippet_file.content, placeholder: "Content", class:"snippet-textarea", rows:"8" %>
+                    <%= text_area_tag "teststse", snippet_file.content, placeholder: "Content", class:"snippet-textarea", readonly: true %>
                 </div>
                 <input type="hidden" name = "snippet_files[][language]" value="text">
             </div>
