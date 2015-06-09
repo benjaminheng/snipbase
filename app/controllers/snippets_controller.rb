@@ -74,7 +74,7 @@ class SnippetsController < ApplicationController
 	private
 	def process_snippets
 		return refresh_message unless validate_and_save_snippets?
-
+		p "POTATO"
         # Do a javascript redirect to the "view snippet" page if add/edit is successful
     	respond_to_create
     end
