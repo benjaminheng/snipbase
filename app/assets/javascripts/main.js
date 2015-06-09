@@ -100,7 +100,8 @@ function initSnippetEditor(container) {
     if(isMobile.any()) {
        return;
     }
-        var modeList = ace.require("ace/ext/modelist");
+    
+    var modeList = ace.require("ace/ext/modelist");
 
     container = $(container);
     var textarea = container.find("textarea.snippet-textarea");
@@ -121,7 +122,18 @@ function initSnippetEditor(container) {
 
     $(".file-name").on('change', function() {
         var currentSnippet = $(container).parent();
-        //TODO: Set the language to associated file extension. Suggestion?!
+        var fileName = $(".file-name").val();
+        
+        var mode = modeList.getModeForPath(fileName);
+        currentSnippet.find(".snippet-language").val(mode.name);
+        if (mode.name == "c_cpp") {
+            if (fileName.substr(-4) == ".cpp") {
+                currentSnippet.find(".snippet-language-caption").text("C++");    
+            }
+            currentSnippet.find(".snippet-language-caption").text("C");
+        } else {
+            currentSnippet.find(".snippet-language-caption").text(mode.caption);
+        }
     });
 
     $(".snippet-language-option").on('click', function() {

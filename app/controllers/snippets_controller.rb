@@ -106,7 +106,6 @@ class SnippetsController < ApplicationController
 		snippet_file_params_arr.each do |i|
 			snippet_file = SnippetFile.new(snippet_file_params_permit(i))
 			snippet_file.snippet = @snippet
-			set_file_name snippet_file
 			@snippet_files << snippet_file
 		end
 	end
@@ -117,11 +116,19 @@ class SnippetsController < ApplicationController
 			flash.now[:danger] = @snippet.errors.full_messages[0]
 			return false
 		end
+
+		snippet_file_names = []
 		@snippet_files.each do |snippet_file|
 			unless snippet_file.valid?
 				flash.now[:danger] = snippet_file.errors.full_messages[0]
 				return false
 			end
+			snippet_file_names << snippet_file.filename
+		end
+
+		if snippet_file_names.uniq.length != snippet_file_names.length
+		  	flash.now[:danger] = "File Names must be unique"
+		  	return false
 		end
 		true
 	end
@@ -132,27 +139,6 @@ class SnippetsController < ApplicationController
 		@snippet_files.each do |i|
 			i.save
 		end
-	end
-
-	private
-	def set_file_name snippet_file
-		language = snippet_file.language
-		language_extension = file_extension language
-		filename = snippet_file.filename
-		@file_counter ||= {}
-
-		if filename.blank?
-			@file_counter[language] ||= 0
-			@file_counter[language] += 1
-			snippet_file.filename = "SnipFile#{@file_counter[language]}#{language_extension}"
-		elsif !filename.end_with? language_extension
-			snippet_file.filename = filename+language_extension
-		end
-	end
-
-	private 
-	def file_extension language #Shud have such a method in markup
-		".txt"
 	end
 
     private
