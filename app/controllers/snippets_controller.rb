@@ -57,10 +57,10 @@ class SnippetsController < ApplicationController
                 flash[:success] = "Deleted snippet."
                 return respond_to_delete
             else
-                flash.now[:success] = "Deleted snippet."
+                flash[:success] = "Deleted snippet."
             end
 		else
-			flash.now[:danger] = @snippet.errors.full_messages[0]
+			flash[:danger] = @snippet.errors.full_messages[0]
 		end
 		refresh_message
 	end
