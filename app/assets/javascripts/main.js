@@ -102,6 +102,10 @@ function initSnippetEditor(container) {
     }
     
     var modeList = ace.require("ace/ext/modelist");
+    var currentSnippet = $(container).parent();
+    var mode = modeList.modesByName[ currentSnippet.find(".snippet-language").val()];
+
+    currentSnippet.find(".snippet-language-caption").text(mode.caption);
 
     container = $(container);
     var textarea = container.find("textarea.snippet-textarea");
@@ -114,23 +118,23 @@ function initSnippetEditor(container) {
     aceEditor.setReadOnly(container.data("readonly") === true ? true : false);
     aceEditor.setValue(textarea.val());
     aceEditor.clearSelection();
+    aceEditor.getSession().setMode("ace/mode/"+mode.name);
     if (container.data("submit") == true) {
         textarea.closest('form').submit(function() {
             textarea.val(aceEditor.getValue());
         });
     }
 
-    $(".file-name").on('change', function() {
-        var currentSnippet = $(container).parent();
-        var fileName = $(".file-name").val();
-        
+    $(".file-name").on('change', function() {   
+        var fileName = $(".file-name").val();   
         var mode = modeList.getModeForPath(fileName);
         currentSnippet.find(".snippet-language").val(mode.name);
         if (mode.name == "c_cpp") {
             if (fileName.substr(-4) == ".cpp") {
                 currentSnippet.find(".snippet-language-caption").text("C++");    
+            } else {
+                currentSnippet.find(".snippet-language-caption").text("C");
             }
-            currentSnippet.find(".snippet-language-caption").text("C");
         } else {
             currentSnippet.find(".snippet-language-caption").text(mode.caption);
         }
@@ -139,7 +143,6 @@ function initSnippetEditor(container) {
     $(".snippet-language-option").on('click', function() {
         var lang = $(this).data("value");
         var caption = $(this).children().text();
-        var currentSnippet = $(container).parent();
 
         aceEditor.getSession().setMode("ace/mode/"+lang);
         currentSnippet.find(".snippet-language").val(lang);

@@ -5,7 +5,7 @@
             <%= text_field_tag "snippet_files[][filename]", defined?(file)? file.filename : "" , placeholder: "File name", class: "file-name" %>
         </div>
         <div class="dropdown col-xs-2">
-            <input class="snippet-language" type="hidden" name = "snippet_files[][language]" value="text"/>
+            <input class="snippet-language" type="hidden" name = "snippet_files[][language]" value=<%= defined?(file)? file.language : "text" %> />
             <button class="btn btn-small snippet-list dropdown-toggle" data-toggle="dropdown">
                 <i>Language: </i>
                 <span class="snippet-language-caption">
@@ -20,6 +20,4 @@
     <div class="snippet-editor col-xs-12" data-submit="true">
         <%= text_area_tag "snippet_files[][content]", defined?(file)? file.content : "" , placeholder: "Content", class:"snippet-textarea", rows:"15" %>
     </div>
-
-
 </div>
