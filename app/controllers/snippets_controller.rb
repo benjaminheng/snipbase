@@ -63,7 +63,7 @@ class SnippetsController < ApplicationController
 
     def download_raw
     	snip_file = SnippetFile.find(params[:file_id])
-    	send_data(snip_file.content, filename: snip_file.filename, disposition: "inline" )
+    	send_data(snip_file.content, filename: snip_file.filename, type: "text", disposition: "inline" )
     end
 
 	private
@@ -93,6 +93,7 @@ class SnippetsController < ApplicationController
 	private
 	def validate_and_save_snippets?
 		get_snippet_files
+		return false unless set_snippet_file_names?
 		return false unless snippet_valid?
 		@snippet.snippet_files.destroy_all
 		save_snippets
@@ -111,25 +112,54 @@ class SnippetsController < ApplicationController
 	end
 
 	private
+	def set_snippet_file_names?
+		snippet_file_names = []
+		
+		#Populate the file name array
+		@snippet_files.each do |i|
+			snippet_file_names << i.filename unless i.filename.blank?
+		end
+
+		#If all file names are not unique, return false
+		if snippet_file_names.uniq.length != snippet_file_names.length
+		  	flash.now[:danger] = "File Names must be unique"
+		  	return false
+		end
+
+		#Generates a file name if the file name is empty
+		@snippet_files.each do |i|
+			if i.filename.blank?
+				new_file_name = generate_file_name
+				while snippet_file_names.include?(new_file_name)
+					new_file_name = generate_file_name
+				end
+				i.filename = new_file_name
+			end
+		end
+		true
+	end
+
+	private
+	def generate_file_name
+		@counter ||= 0
+		@counter = @counter + 1
+		return "SnipFile#{@counter}"
+	end
+
+	private
 	def snippet_valid?
 		unless @snippet.valid?
 			flash.now[:danger] = @snippet.errors.full_messages[0]
 			return false
 		end
 
-		snippet_file_names = []
 		@snippet_files.each do |snippet_file|
 			unless snippet_file.valid?
 				flash.now[:danger] = snippet_file.errors.full_messages[0]
 				return false
 			end
-			snippet_file_names << snippet_file.filename
 		end
 
-		if snippet_file_names.uniq.length != snippet_file_names.length
-		  	flash.now[:danger] = "File Names must be unique"
-		  	return false
-		end
 		true
 	end
 
