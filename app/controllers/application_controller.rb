@@ -24,4 +24,17 @@ class ApplicationController < ActionController::Base
         @notifications[:group_invites] = current_user.pending_groups
         return @notifications
     end
+
+    def redirect_back_or_refresh_messages(msg, type)
+        respond_to do |format|
+            format.html { 
+                flash[type] = msg
+                redirect_to :back 
+            }
+            format.js { 
+                flash.now[type] = msg
+                render 'shared/refresh_message' 
+            }
+        end
+    end
 end

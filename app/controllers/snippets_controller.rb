@@ -19,11 +19,6 @@ class SnippetsController < ApplicationController
     	render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
     end
 
-    def download_raw
-    	snip_file = SnippetFile.find(params[:file_id])
-    	send_data(snip_file.content, filename: snip_file.filename, disposition: "inline" )
-    end
-
 	def new
         @snippet = Snippet.new
         render 'create'
@@ -53,17 +48,23 @@ class SnippetsController < ApplicationController
 
 	def destroy
 		if @snippet.destroy
+			type = :success
+			msg = "Deleted snippet."
             if request.env['HTTP_REFERER'].end_with?(show_snippet_path)
-                flash[:success] = "Deleted snippet."
+            	flash[:success] = msg
                 return respond_to_delete
-            else
-                flash[:success] = "Deleted snippet."
             end
 		else
-			flash[:danger] = @snippet.errors.full_messages[0]
+			type = danger
+			msg = @snippet.errors.full_messages[0]
 		end
-		refresh_message
+		redirect_back_or_refresh_messages(msg, type)
 	end
+
+    def download_raw
+    	snip_file = SnippetFile.find(params[:file_id])
+    	send_data(snip_file.content, filename: snip_file.filename, disposition: "inline" )
+    end
 
 	private
     def respond_to_delete
@@ -72,7 +73,6 @@ class SnippetsController < ApplicationController
             format.js { render :js => "window.location = '#{show_user_path(current_user.username)}'" }
         end
     end
-
 
 	private
 	def process_snippets
@@ -158,7 +158,7 @@ class SnippetsController < ApplicationController
     private
     def refresh_message
         respond_to do |format|
-            format.html { redirect_to :back }
+            format.html { }
             format.js { render 'shared/refresh_message' }
         end
     end
