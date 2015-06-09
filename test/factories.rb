@@ -29,7 +29,7 @@ FactoryGirl.define do
     factory :snippet_file do
         snippet     
         filename    "testfile.txt"
-        language    "txt"
+        language    "text"
         content     { "#{filename} content" }
         score       0
         tags        ["text", "test"]
