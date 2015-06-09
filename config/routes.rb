@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     patch '/settings' => 'users#update'
 
     get '/user/:username' => 'users#show', as: 'show_user'
+    get '/user/:username/followers' => 'users#show_followers', as: 'show_user_followers'
+    get '/user/:username/following' => 'users#show_following', as: 'show_user_following'
     post '/user/:username/toggle_follow' => 'users#toggle_follow', as: 'toggle_follow_user'
 
     # groups

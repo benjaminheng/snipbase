@@ -40,6 +40,16 @@ class UsersController < ApplicationController
         render json: users.to_json
     end
 
+    def show_followers
+        @user = User.find_by(username: params[:username])
+        @snippets = get_snippets_for_user(@user)
+    end
+
+    def show_following
+        @user = User.find_by(username: params[:username])
+        @snippets = get_snippets_for_user(@user)
+    end
+
     def toggle_follow
         @user = User.find_by(username: params[:username]);
         @snippets = get_snippets_for_user(@user)

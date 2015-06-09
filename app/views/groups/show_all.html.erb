@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="group-list container-fluid">
+    <div class="group-list grid-list container-fluid">
         <h3 class="section-title">Your groups</h3>
         <div class="row">
             <% @user.active_groups.each do |group| %>
@@ -39,7 +39,7 @@
                         <%= link_to pluralize(group.active_users.count, 'member'), show_group_members_path(group), class: "group-members" %>
                         <div>
                             <% if current_user != group.owner %>
-                                <%= link_to "Leave Group", leave_group_path(group), method: :post, class: "leave-group-btn btn btn-small" %>
+                                <%= link_to "Leave Group", leave_group_path(group), method: :post, class: "btn btn-small" %>
                             <% end %>
                         </div>
                     </div>

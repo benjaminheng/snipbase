@@ -118,6 +118,11 @@ div.extra-space {
     padding-top: $extra-space-padding;
     padding-bottom: $extra-space-padding;
 }
+
 h3.section-title {
     font-weight: 300;
+}
+
+h4.section-muted-text {
+    color: lighten($text-color, 40%);
 }

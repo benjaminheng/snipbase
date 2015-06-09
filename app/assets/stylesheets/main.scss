@@ -319,3 +319,34 @@ span.button-message {
         background: rgba(232, 210, 42, 0.25);
     }
 }
+
+.grid-list {
+    .list-item {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #E6E6E6;
+        .item-avatar {
+            border: 1px solid #DADADA;
+            height: $grid-list-avatar-dimensions;
+            width: $grid-list-avatar-dimensions;
+            float: left;
+            img {
+                height: $grid-list-avatar-dimensions;
+            }
+        }
+        .item-metadata {
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: $grid-list-avatar-dimensions;
+            max-height: $grid-list-avatar-dimensions;
+
+            .item-name{
+                @include truncate;
+                a {
+                    color: $text-color;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

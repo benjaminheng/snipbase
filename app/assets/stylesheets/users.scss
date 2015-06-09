@@ -127,3 +127,13 @@ $profile-avatar-dimensions: $profile-avatar-img + $profile-avatar-padding*2;
 
     }
 }
+
+#show-followers, #show-following {
+    .grid-list {
+        .list-item .item-metadata {
+            .btn {
+                margin-top: 8px;
+            }
+        }
+    }
+}

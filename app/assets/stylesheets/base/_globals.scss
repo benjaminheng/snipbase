@@ -12,6 +12,8 @@ $warning-color: #de3535;
 
 $extra-space-padding: 30px;
 
+$grid-list-avatar-dimensions: 75px;
+
 @mixin transition($args...) {
     -webkit-transition: $args;
     -moz-transition: $args;

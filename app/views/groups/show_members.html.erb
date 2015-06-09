@@ -1,11 +1,11 @@
-<div id="user-group" class="row">
+<div id="group-members" class="row">
     <%= render 'shared/messages' %>
     <div class="container-fluid">
         <div class="group-metadata">
             <span class="member-count"><%= link_to pluralize(@group.active_users.count, 'member'), show_group_members_path(@group) %></span>
         </div>
     </div>
-    <div class="group-list extra-space container-fluid">
+    <div class="group-member-list grid-list extra-space container-fluid">
         <h3 class="section-title">Group members</h3>
         <div class="row">
             <% @group.active_users.each do |user| %>
@@ -15,8 +15,13 @@
                     <div class="item-metadata">
                         <span class="item-name"><%= link_to user.username, show_user_path(username: user.username), title: user.username %></span>
                         <span class="user-name"><%= user.name %></span>
+                        <% if current_user != user && !current_user.following?(user) %>
+                            <%= link_to "Follow", toggle_follow_user_path(username: user.username), class: "btn btn-small", method: :post %>
+                        <% elsif current_user != user && current_user.following?(user) %>
+                            <%= link_to "Unfollow", toggle_follow_user_path(username: user.username), class: "btn btn-small", method: :post %>
+                        <% end %>
                         <% if current_user == @group.owner && current_user != user %>
-                            <a href="#" class="remove-user-btn btn btn-small">Remove</a>
+                            <a href="#" class="btn btn-small">Remove</a>
                         <% end %>
                     </div>
                 </div>

@@ -1,0 +1,33 @@
+<div id="user-profile" class="row">
+    <%= render 'user_profile' %>
+</div>
+<div id="show-followers" class="row extra-space">
+    <div class="grid-list container-fluid">
+        <h3 class="section-title">Followers</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <% if @user.followers.empty? && current_user != @user %>
+                        <h4 class="section-muted-text">Oops, no one is following <%= @user.username %> yet! Be the first.</h4>
+                <% elsif @user.followers.empty? && current_user == @user %>
+                        <h4 class="section-muted-text">Oops, no one is following you yet!</h4>
+                <% end %>
+            </div>
+            <% @user.followers.each do |follower| %>
+                <div class="list-item col-xs-12 col-sm-6 col-md-4">
+                    <div class="item-avatar">
+                    </div>
+                    <div class="item-metadata">
+                        <span class="item-name"><%= link_to follower.username, show_user_path(username: follower.username), title: follower.username %></span>
+                        <div>
+                    <% if current_user != follower && !current_user.following?(follower) %>
+                        <%= link_to "Follow", toggle_follow_user_path(username: follower.username), class: "btn btn-small", method: :post %>
+                    <% elsif current_user != follower && current_user.following?(follower) %>
+                        <%= link_to "Unfollow", toggle_follow_user_path(username: follower.username), class: "btn btn-small", method: :post %>
+                    <% end %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

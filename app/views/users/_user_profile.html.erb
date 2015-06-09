@@ -2,7 +2,7 @@
     <div class="profile-avatar">
         <%= link_to settings_path, alt: "Change avatar" do %>
             <%= image_tag "profile-default-avatar.png", height: 128 %>
-    <% end %>
+        <% end %>
     </div>
     <div class="profile-metadata-container">
         <div class="profile-metadata col-sm-12">
@@ -11,27 +11,27 @@
                 <span class="name"><%= @user.name %></span>
             </div>
             <div class="counters">
-                <a href="#" class="item">
+                <%= link_to show_user_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @snippets.count %></span>
                     <span class="name">snippets</span>
-                </a>
-                <a href="#" class="item">
+                <% end %>
+                <%= link_to show_user_followers_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @user.followers.count %></span>
                     <span class="name">followers</span>
-                </a>
-                <a href="#" class="item">
+                <% end %>
+                <%= link_to show_user_following_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @user.following.count %></span>
                     <span class="name">following</span>
-                </a>
+                <% end %>
             </div>
         </div>
         <% if logged_in? %>
-            <div class="profile-controls col-sm-12">
+        <div class="profile-controls col-sm-12">
             <% if current_user != @user && !current_user.following?(@user) %>
                 <%= link_to "Follow", toggle_follow_user_path(username: @user.username), class: "btn", method: :post, remote: true %>
-        <% elsif current_user != @user && current_user.following?(@user) %>
-                <%= link_to "Unfollow", toggle_follow_user_path(username: @user.username), class: "btn", method: :post, remote: true %>
-        <% end %>
+            <% elsif current_user != @user && current_user.following?(@user) %>
+                    <%= link_to "Unfollow", toggle_follow_user_path(username: @user.username), class: "btn", method: :post, remote: true %>
+            <% end %>
             <div class="btn-group">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     Invite <span class="caret"></span>
@@ -44,6 +44,6 @@
                 </ul>
             </div>
         </div>
-    <% end %>
+        <% end %>
     </div>
 </div>
