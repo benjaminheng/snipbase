@@ -52,7 +52,7 @@ class SnippetsController < ApplicationController
 		if @snippet.destroy
             if request.env['HTTP_REFERER'].end_with?(show_snippet_path)
                 flash[:success] = "Deleted snippet."
-                return render :js => "window.location = '#{add_path}'" 
+                return respond_to_delete
             else
                 flash.now[:success] = "Deleted snippet."
             end
@@ -62,13 +62,29 @@ class SnippetsController < ApplicationController
 		refresh_message
 	end
 
+	private
+    def respond_to_delete
+        respond_to do |format|
+            format.html { redirect_to show_user_path(current_user.username) }
+            format.js { render :js => "window.location = '#{show_user_path(current_user.username)}'" }
+        end
+    end
+
 
 	private
 	def process_snippets
 		return refresh_message unless validate_and_save_snippets?
 
         # Do a javascript redirect to the "view snippet" page if add/edit is successful
-        render :js => "window.location = '/snippet/#{@snippet.id}'"
+    	respond_to_create
+    end
+
+	private 
+	def respond_to_create
+		respond_to do |format|
+			format.html { redirect_to show_snippet_path(@snippet) }
+			format.js { render :js => "window.location = '#{show_snippet_path(@snippet)}'" }
+		end
 	end
 
 	private
@@ -139,7 +155,7 @@ class SnippetsController < ApplicationController
     private
     def refresh_message
         respond_to do |format|
-            format.html
+            format.html { render :back }
             format.js { render 'shared/refresh_message' }
         end
     end
