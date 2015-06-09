@@ -19,7 +19,7 @@ feature "DeleteSnippet" do
         # Force capybara to wait for javascript redirect to finish
         page.has_text?("Content can't be blank")
 
-    	current_path.must_equal add_path, "User not redirected to add"
+    	current_path.must_equal show_user_path(@user.username), "User not redirected to add"
     	page.has_text?("Deleted snippet.").must_equal true
     end
 

@@ -17,7 +17,7 @@
             <div class="snippet-controls row">
                 <% if current_user == snippet.user %>
                     <%= link_to "Edit", edit_snippet_path(snippet), class: "snippet-edit-link" %>
-                    <%= link_to "Delete", delete_snippet_path(snippet), remote: true, method: :delete, class: "snippet-delete-link" %>
+                    <%= link_to "Delete", delete_snippet_path(snippet, :destroy => true), remote: true, method: :delete, class: "snippet-delete-link" %>
                 <% end %>
             </div>
         </div>
