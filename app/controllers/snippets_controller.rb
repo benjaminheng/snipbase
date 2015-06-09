@@ -158,7 +158,7 @@ class SnippetsController < ApplicationController
     private
     def refresh_message
         respond_to do |format|
-            format.html { render :back }
+            format.html { redirect_to :back }
             format.js { render 'shared/refresh_message' }
         end
     end
