@@ -102,9 +102,7 @@ function initSnippetEditor(container) {
     var currentSnippet = $(container).parent();
     var mode = modeList.modesByName[currentSnippet.find(".snippet-language").val()];
 
-    if (typeof mode != "undefined") {
-        currentSnippet.find(".snippet-language-caption").text(mode.caption);
-    }
+    currentSnippet.find(".snippet-language-caption").text(mode.caption);
 
     if(isMobile.any()) {
        return;
@@ -123,9 +121,7 @@ function initSnippetEditor(container) {
     aceEditor.clearSelection();
     aceEditor.setTheme('ace/theme/custom_github')
     
-    if (typeof mode != "undefined") {
-        aceEditor.getSession().setMode("ace/mode/"+mode.name);
-    }
+    aceEditor.getSession().setMode("ace/mode/"+mode.name);
 
     if (container.data("submit") == true) {
         textarea.closest('form').submit(function() {
@@ -142,15 +138,7 @@ function initSnippetEditor(container) {
             return;
         }
         currentSnippet.find(".snippet-language").val(mode.name);
-        if (mode.name == "c_cpp") {
-            if (fileName.substr(-4) == ".cpp") {
-                currentSnippet.find(".snippet-language-caption").text("C++");    
-            } else {
-                currentSnippet.find(".snippet-language-caption").text("C");
-            }
-        } else {
-            currentSnippet.find(".snippet-language-caption").text(mode.caption);
-        }
+        currentSnippet.find(".snippet-language-caption").text(mode.caption);
         aceEditor.getSession().setMode("ace/mode/"+mode.name);
     });
 
