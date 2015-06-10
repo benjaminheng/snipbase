@@ -7,21 +7,21 @@
     <div class="profile-metadata-container">
         <div class="profile-metadata col-sm-12">
             <div class="profile-names">
-                <span class="username"><%= @user.username %></span>
-                <span class="name"><%= @user.name %></span>
+                <div class="username"><%= @user.username %></div>
+                <div class="name"><%= @user.name %></div>
             </div>
             <div class="counters">
                 <%= link_to show_user_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @snippets.count %></span>
-                    <span class="name">snippets</span>
+                    <span class="name"><%= 'snippet'.pluralize(@snippets.count) %></span>
                 <% end %>
                 <%= link_to show_user_followers_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @user.followers.count %></span>
-                    <span class="name">followers</span>
+                    <span class="name"><%= 'follower'.pluralize(@user.followers.count) %></span>
                 <% end %>
                 <%= link_to show_user_following_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @user.following.count %></span>
-                    <span class="name">following</span>
+                    <span class="name"><%= 'following'.pluralize(@user.following.count) %></span>
                 <% end %>
             </div>
         </div>

@@ -29,7 +29,7 @@ $profile-avatar-padding: 10px;
 $profile-avatar-img: 128px;
 $profile-avatar-dimensions: $profile-avatar-img + $profile-avatar-padding*2;
 
-#user-profile {
+#user-profile, #user-group {
     margin-top: -$extra-space-padding;
     text-align: center;
     @include shadow-depth(1);
@@ -46,17 +46,17 @@ $profile-avatar-dimensions: $profile-avatar-img + $profile-avatar-padding*2;
 
             .profile-names  {
                 font-family: $heading-font-family;
-                .username {
-                    display:block;
+                .username, .group-name {
                     font-size: 24px;
                     font-weight: 600;
                     line-height: 1;
+                    @include truncate;
                 }
                 .name {
-                    display:block;
                     font-size: 18px;
                     font-weight: 300;
                     line-height: 24px;
+                    @include truncate;
                     &:empty:before {
                         content: '\00a0'; // &nbsp;
                     }

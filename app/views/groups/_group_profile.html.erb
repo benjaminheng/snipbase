@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="profile-avatar">
+        <%= link_to settings_path, alt: "Change avatar" do %>
+            <%= image_tag "", height: 128 %>
+    <% end %>
+    </div>
+    <div class="profile-metadata-container">
+        <div class="profile-metadata col-sm-12">
+            <div class="profile-names">
+                <div class="group-name"><%= @group.name %></div>
+            </div>
+            <div class="counters">
+                <%= link_to show_group_path(@group), class: "item" do %>
+                    <span class="count">32</span>
+                    <span class="name"><%= 'snippets'.pluralize(32) %></span>
+                <% end %>
+                <%= link_to show_group_members_path(@group), class: "item" do %>
+                    <span class="count"><%= @group.active_users.count %></span>
+                    <span class="name"><%= 'member'.pluralize(@group.active_users.count) %></span>
+                <% end %>
+            </div>
+        </div>
+        <% if logged_in? && current_user == @group.owner %>
+            <%= form_for(@group, url: invite_group_members_path(@group), method: :post) do |f| %>
+            <div class="profile-controls col-sm-9">
+            <%= text_field_tag :invitees %> 
+        </div>
+        <div class="profile-controls col-sm-3">
+            <%= f.submit "Invite users", class: "btn" %>
+        </div>
+    <% end %>
+    <% end %>
+    </div>
+</div>

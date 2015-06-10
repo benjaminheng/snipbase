@@ -1,12 +1,10 @@
+<div id="user-group" class="row">
+    <%= render 'group_profile' %>
+</div>
 <div id="group-members" class="row">
-    <%= render 'shared/messages' %>
-    <div class="container-fluid">
-        <div class="group-metadata">
-            <span class="member-count"><%= link_to pluralize(@group.active_users.count, 'member'), show_group_members_path(@group) %></span>
-        </div>
-    </div>
     <div class="group-member-list grid-list extra-space container-fluid">
-        <h3 class="section-title">Group members</h3>
+        <%= render 'shared/messages' %>
+        <h3 class="section-title">Members</h3>
         <div class="row">
             <% @group.active_users.each do |user| %>
                 <div class="list-item col-xs-12 col-sm-6 col-md-4">

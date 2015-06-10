@@ -2,7 +2,7 @@
     <%= render 'user_profile' %>
 </div>
 <div id="user-snippets" class="row">
-    <div class="content extra-space container-fluid">
+    <div class="extra-space container-fluid">
         <%= render 'shared/messages' %>
         <% @snippets.each do |snippet| %>
             <%= render 'shared/snippet', snippet: snippet, minimizable: true %>

@@ -1,8 +1,9 @@
 <div id="user-group" class="row">
-    <%= render 'shared/messages' %>
-    <div class="col-xs-12">
-        <div class="group-metadata">
-            <span class="member-count"><%= link_to pluralize(@group.active_users.count, 'member'), show_group_members_path(@group) %></span>
-        </div>
+    <%= render 'group_profile' %>
+</div>
+<div id="group-snippets" class="row">
+    <div class="extra-space container-fluid">
+        <%= render 'shared/messages' %>
+        <h3 class="section-title">Snippets</h3>
     </div>
 </div>

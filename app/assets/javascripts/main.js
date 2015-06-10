@@ -61,6 +61,7 @@ var ready = function() {
     $("#invitees").selectize({
         plugins: ['remove_button'],
         delimiter: ',',
+        placeholder: 'Invite users',
         maxOptions: 50,
         valueField: 'username',
         labelField: 'username',

@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
             params['invitees'].split(',').each do |username|
                 username.strip!
                 invitee = User.find_by(username: username)
-                if invitee
+                if invitee && !@group.users.include?(invitee)
                     @user.invite_to_group(@group, invitee)
                 end
             end
@@ -44,6 +44,23 @@ class GroupsController < ApplicationController
         @group = Group.find(params[:id])
         # ensure user is authorized to view group members
         redirect_to root_path unless current_user.active_groups.include?(@group)
+    end
+
+    def invite_members
+        @user = current_user
+        @group = Group.find(params[:id])
+        return unless current_user == @group.owner
+        return if params['invitees'].empty?
+        params['invitees'].split(',').each do |username|
+            username.strip!
+            invitee = User.find_by(username: username)
+            if invitee && !@group.users.include?(invitee)
+                @user.invite_to_group(@group, invitee)
+            end
+        end
+
+        flash[:success] = "Successfully invited users!"
+        respond_to_invite_members
     end
 
     def accept_invite
@@ -72,12 +89,20 @@ class GroupsController < ApplicationController
         flash[:info] = "Left the group \"#{group.name}\""
         redirect_back_or_refresh_messages
     end
-    #
+
     # If javascript enabled, refresh messages, else redirect user to same page
     def redirect_back_or_refresh_messages
         respond_to do |format|
             format.html { redirect_to :back }
             format.js { render 'shared/refresh_message' }
+        end
+    end
+
+    private
+    def respond_to_invite_members
+        respond_to do |format|
+            format.html { redirect_to :back }
+            format.js { render 'refresh_group_profile' }
         end
     end
 
