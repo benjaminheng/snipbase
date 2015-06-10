@@ -121,6 +121,7 @@ function initSnippetEditor(container) {
     aceEditor.setReadOnly(container.data("readonly") === true ? true : false);
     aceEditor.setValue(textarea.val());
     aceEditor.clearSelection();
+    aceEditor.setTheme('ace/theme/custom_github')
     
     if (typeof mode != "undefined") {
         aceEditor.getSession().setMode("ace/mode/"+mode.name);
