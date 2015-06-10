@@ -1,0 +1,305 @@
+# Maps the ace mode to its respective pygments lexer
+# Ace modes not supported by pygments listed below:
+#abap
+#abc
+#asciidoc
+#assembly_x86
+#c9search
+#curly
+#dot
+#ejs
+#elm
+#forth
+#ftl
+#gcode
+#gitignore
+#jack
+#jsoniq
+#jsx
+#less
+#logiql
+#luapage
+#lucene
+#markdown
+#mel
+#mips_assembler
+#mipsassembler
+#mushcode
+#praat
+#r
+#rdoc
+#scad
+#sjs
+#snippets
+#soy_template
+#space
+#sqlserver
+#stylus
+#svg
+#textile
+#toml
+
+actionscript:
+    lexer: actionscript
+
+ada:
+    lexer: ada
+
+apache_conf:
+    lexer: apacheconf
+
+applescript:
+    lexer: applescript
+
+autohotkey:
+    lexer: autohotkey
+
+batchfile:
+    lexer: batch
+
+c_cpp:
+    lexer: c
+
+cirru:
+    lexer: cirru
+
+clojure:
+    lexer: clojure
+
+cobol:
+    lexer: cobol
+
+coffee:
+    lexer: coffee
+
+coldfusion:
+    lexer: cfs
+
+csharp:
+    lexer: csharp
+
+css:
+    lexer: css
+
+d:
+    lexer: d
+
+dart:
+    lexer: dart
+
+diff:
+    lexer: diff
+
+django:
+    lexer: django
+
+dockerfile:
+    lexer: dockerfile
+
+eiffel:
+    lexer: eiffel
+
+elixer:
+    lexer: elixer
+
+erlang:
+    lexer: erlang
+
+gherkin:
+    lexer: gherkin
+
+glsl:
+    lexer: glsl
+
+golang:
+    lexer: go
+
+groovy:
+    lexer: groovy
+
+haml:
+    lexer: haml
+
+handlebars:
+    lexer: handlebars
+
+haskell:
+    lexer: haskell
+
+haxe:
+    lexer: haxe
+
+html:
+    lexer: html
+
+# html_ruby not supported by pygments, falling back to html
+html_ruby:
+    lexer: html
+
+ini:
+    lexer: ini
+
+io:
+    lexer: io
+
+jade:
+    lexer: jade
+
+java:
+    lexer: java
+
+javascript:
+    lexer: javascript
+
+json:
+    lexer: json
+
+jsp:
+    lexer: jsp
+
+julia:
+    lexer: julia
+
+latex:
+    lexer: latex
+
+lean:
+    lexer: lean
+
+liquid:
+    lexer: liquid
+
+lisp:
+    lexer: lisp
+
+live_script:
+    lexer: livescript
+
+livescript:
+    lexer: livescript
+
+lsl:
+    lexer: lsl
+
+lua:
+    lexer: lua
+
+makefile:
+    lexer: makefile
+
+mask:
+    lexer: mask
+
+matlab:
+    lexer: matlab
+
+mysql:
+    lexer: mysql
+
+nix:
+    lexer: nix
+
+objectivec:
+    lexer: objectivec
+
+ocaml:
+    lexer: ocaml
+
+pascal:
+    lexer: pascal
+
+perl:
+    lexer: perl
+
+pgsql:
+    lexer: postgresql
+
+php:
+    lexer: php
+
+plain_text:
+    lexer: text
+
+powershell:
+    lexer: powershell
+
+prolog:
+    lexer: prolog
+
+properties:
+    lexer: properties
+
+protobuf:
+    lexer: protobuf
+
+python:
+    lexer: python
+
+rhtml:
+    lexer: rhtml
+
+ruby:
+    lexer: ruby
+
+rust:
+    lexer: rust
+
+sass:
+    lexer: sass
+
+scala:
+    lexer: scala
+
+scheme:
+    lexer: scheme
+
+scss:
+    lexer: scss
+
+sh:
+    lexer: sh
+
+smarty:
+    lexer: smarty
+
+sql:
+    lexer: sql
+
+tcl:
+    lexer: tcl
+
+tex:
+    lexer: tex
+
+text:
+    lexer: text
+
+twig:
+    lexer: twig
+
+typescript:
+    lexer: ts
+
+vala:
+    lexer: vala
+
+vbscript:
+    lexer: vbnet
+
+velocity:
+    lexer: velocity
+
+verilog:
+    lexer: verilog
+
+vhdl:
+    lexer: vhdl
+
+xml:
+    lexer: xml
+
+xquery:
+    lexer: xquery
+
+yaml:
+    lexer: yaml

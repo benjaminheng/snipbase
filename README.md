@@ -8,9 +8,10 @@ A social and collaborative code snippet manager with GitHub Gists integration.
 
 **Core**
 
-1. [Ruby](http://rubyinstaller.org/downloads/) (Tested with 2.1.x and above)
+1. [Ruby](http://rubyinstaller.org/downloads/) (Tested with >2.1.x)
 2. [Ruby Development Kit](http://rubyinstaller.org/downloads/) ([Install instructions](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit))
 3. [PostgreSQL](http://www.postgresql.org/)
+4. [Python >2.5](https://www.python.org/downloads/) (Syntax highlighting via Pygments)
 
 **Development**
 

@@ -44,7 +44,7 @@ feature "EditSnippet" do
         # Force capybara to wait for javascript redirect to finish
         page.has_text?("Content can't be blank")
         current_path.must_equal show_snippet_path(@snippet), "User not redirected to show snippet page"
-        all('.snippet-editor').count.must_equal(initialCount-1);
+        all('.snippet-content').count.must_equal(initialCount-1);
     end
 
     scenario "unsuccessful edit title of snippet file", js: true do

@@ -110,6 +110,15 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
     }
 }
 
+pre {
+    background-color: transparent;
+    word-wrap: normal;
+    word-break: normal;
+    margin: 0px;
+    border-radius: 0px;
+    border: none;
+}
+
 a.btn { // fix alignment for buttons using anchor tag
     padding-top: 7px;
 }
