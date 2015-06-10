@@ -21,7 +21,7 @@
                 <% end %>
                 <%= link_to show_user_following_path(username: @user.username), class: "item" do %>
                     <span class="count"><%= @user.following.count %></span>
-                    <span class="name"><%= 'following'.pluralize(@user.following.count) %></span>
+                    <span class="name">following</span>
                 <% end %>
             </div>
         </div>
