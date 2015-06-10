@@ -150,6 +150,7 @@ function initSnippetEditor(container) {
         } else {
             currentSnippet.find(".snippet-language-caption").text(mode.caption);
         }
+        aceEditor.getSession().setMode("ace/mode/"+mode.name);
     });
 
     $(".snippet-language-option").on('click', function() {
