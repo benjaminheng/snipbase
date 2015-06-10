@@ -20,15 +20,10 @@
                 <% end %>
             </div>
         </div>
-        <% if logged_in? && current_user == @group.owner %>
-            <%= form_for(@group, url: invite_group_members_path(@group), method: :post) do |f| %>
-            <div class="profile-controls col-sm-9">
-            <%= text_field_tag :invitees %> 
-        </div>
-        <div class="profile-controls col-sm-3">
-            <%= f.submit "Invite users", class: "btn" %>
-        </div>
-    <% end %>
-    <% end %>
+        <% if current_user != @group.owner %>
+            <div class="profile-controls col-xs-12">
+                <%= link_to "Leave Group", leave_group_path(@group), method: :post, class: "btn" %>
+            </div>
+        <% end %>
     </div>
 </div>

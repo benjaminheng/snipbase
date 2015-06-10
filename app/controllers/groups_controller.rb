@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
     def show
         @group = Group.find(params[:id])
         # ensure user is authorized to view group
-        redirect_to root_path unless current_user.active_groups.include?(@group)
+        redirect_to show_user_groups_path(username: current_user.username) unless current_user.active_groups.include?(@group)
     end
 
     def show_members
@@ -87,7 +87,10 @@ class GroupsController < ApplicationController
         return unless current_user.active_groups.include?(group)
         current_user.leave_group(group)
         flash[:info] = "Left the group \"#{group.name}\""
-        redirect_back_or_refresh_messages
+        respond_to do |format|
+            format.html { redirect_to show_user_groups_path(username: current_user.username) }
+            format.js { render 'shared/refresh_message' }
+        end
     end
 
     # If javascript enabled, refresh messages, else redirect user to same page

@@ -4,8 +4,18 @@
 <div id="group-members" class="row">
     <div class="group-member-list grid-list extra-space container-fluid">
         <%= render 'shared/messages' %>
+        <% if logged_in? && current_user == @group.owner %>
+            <%= form_for(@group, url: invite_group_members_path(@group), method: :post, html: { class: "row invite-members-form" }) do |f| %>
+                <div class="col-sm-8">
+                    <%= text_field_tag :invitees %> 
+                </div>
+                <div class="col-sm-4 invite-btn-container">
+                    <%= f.submit "Invite users", class: "btn" %>
+                </div>
+            <% end %>
+        <% end %>
         <h3 class="section-title">Members</h3>
-        <div class="row">
+        <div class="row group-members-list">
             <% @group.active_users.each do |user| %>
                 <div class="list-item col-xs-12 col-sm-6 col-md-4">
                     <div class="item-avatar">

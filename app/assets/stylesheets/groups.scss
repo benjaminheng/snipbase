@@ -26,6 +26,14 @@
 }
 
 #group-members {
+    .invite-members-form {
+        .invite-btn-container {
+            text-align: center;
+            @include breakpoint-small {
+                text-align: left;
+            }
+        }
+    }
     .group-member-list {
         .list-item .item-metadata {
             .user-name {
