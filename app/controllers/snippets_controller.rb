@@ -5,7 +5,7 @@ class SnippetsController < ApplicationController
 
 #############WORK IN PROGRESS###############
     def search
-        @snippets = Snippet.where(nil)
+        @snippets = Snippet.permission(current_user)
         @snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
         @snippets = @snippets.filename(params[:search_filename]) if params[:search_filename].present?
         @snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
