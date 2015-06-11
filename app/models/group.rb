@@ -2,8 +2,8 @@ class Group < ActiveRecord::Base
     belongs_to :owner, class_name: "User"
     has_many :group_members, dependent: :destroy
     has_many :users, through: :group_members, dependent: :destroy
-    has_many :group_snippets
-    has_many :snippets, through: :group_snippets
+    has_many :group_snippets, dependent: :destroy
+    has_many :snippets, through: :group_snippets, dependent: :destroy
 
     has_many :active_users, -> { where.not group_members: { accepted: nil } },
              through: :group_members, class_name: "User", source: :user

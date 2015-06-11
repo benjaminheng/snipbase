@@ -1,7 +1,7 @@
 class Snippet < ActiveRecord::Base
     has_many :snippet_files, :dependent => :destroy
-    has_many :group_snippets
-    has_many :groups, through: :group_snippets
+    has_many :group_snippets, dependent: :destroy
+    has_many :groups, through: :group_snippets, dependent: :destroy
 
     belongs_to :user
     validates_presence_of :title
