@@ -1,41 +1,49 @@
 <div class="view-snippet container-fluid <%= 'minimizable minimized' if defined?(minimizable) &&  minimizable == true %>">
     <div class="snippet-header row">
-        <div class="snippet-metadata <%= defined?(minimizable) ? 'col-xs-11 col-sm-10' : 'col-xs-12 col-sm-11' %>">
-            <span class="author"><%= link_to snippet.user.username, show_user_path(username: snippet.user.username) %></span>
-            <span class="separator">/</span>
-            <%= link_to "permalink", show_snippet_path(snippet), class: "permalink" %>
-            <span class="separator">/</span>
-            <span class="timestamp">created <%= time_ago_in_words(snippet.created_at) %> ago</span>
-            <% if snippet.updated_at != snippet.created_at %>
-                <span class="separator">/</span>
-                <span class="timestamp">updated <%= time_ago_in_words(snippet.updated_at) %> ago</span>
+        <div class="snippet-title col-xs-12">
+            <h1><%= link_to snippet.title, show_snippet_path(snippet) %></h1>
+        </div>
+        <div class="snippet-metadata col-xs-12">
+            <span class="metadata-item">
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="author"><%= link_to snippet.user.username, show_user_path(username: snippet.user.username) %></span>
+            </span>
+            <span class="metadata-item">
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="timestamp"><%= time_ago_in_words(snippet.created_at) %> ago</span>
+            </span>
+            <span class="metadata-item">
+                <span class="glyphicon glyphicon-th"></span>
+                <span class="groups">0 groups</span>
+            </span>
+
+            <% if current_user == snippet.user && snippet.private %>
+            <span class="metadata-item">
+                <span class="glyphicon glyphicon-eye-close"></span>
+                <span class="private">private</span>
+            </span>
             <% end %>
-            <!--<span class="tags">tags: <a href="#">tag1</a>, <a href="#">tag2</a>, <a href="#">tag3</a></span>-->
-            <span class="snippet-title"><%= snippet.title %></span>
+
+            <span class="pull-right metadata-controls">
+                <span class="metadata-item" data-toggle="tooltip" data-placement="bottom" title="Edit">
+                    <%= link_to edit_snippet_path(snippet), class: "snippet-edit-link" do %> <span class="snippet-control glyphicon glyphicon-pencil"></span><% end %>
+                </span>
+                <span class="metadata-item" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                    <%= link_to delete_snippet_path(snippet, :destroy => true), remote: true, method: :delete, class: "snippet-delete-link" do %>
+                        <span class="snippet-control glyphicon glyphicon-remove"></span>
+                    <% end %>
+                </span>
+            </span>
         </div>
-        <div class="snippet-controls-container col-sm-1 col-xs-12">
-            <div class="snippet-controls row">
-                <% if current_user == snippet.user %>
-                    <%= link_to "Edit", edit_snippet_path(snippet), class: "snippet-edit-link" %>
-                    <%= link_to "Delete", delete_snippet_path(snippet, :destroy => true), remote: true, method: :delete, class: "snippet-delete-link" %>
-                <% end %>
-            </div>
-        </div>
-        <% if defined?(minimizable) %>
-            <div class="snippet-expand-btn col-xs-1">
-            </div>
-        <% end %>
     </div>
     <div class="files">
         <% snippet.snippet_files.each do |snippet_file| %>
             <div class="file">
                 <div class="file-metadata container-fluid">
-                    <div class="col-xs-12 col-sm-11">
+                    <div class="col-xs-12">
                         <label for="filename" class="file-name">
                             <%= snippet_file.filename %>
                         </label>
-                    </div>
-                    <div class="col-xs-12 col-sm-1">
                         <%= link_to "Raw", raw_snippet_file_path(snippet, snippet_file), class: "file-raw-link btn btn-small", method: :get %>
                     </div>
                 </div>

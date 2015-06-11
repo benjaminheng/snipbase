@@ -45,7 +45,6 @@ $grid-list-avatar-dimensions: 75px;
 }
 
 @mixin truncate {
-    display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

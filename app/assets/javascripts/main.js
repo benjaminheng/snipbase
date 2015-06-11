@@ -10,6 +10,11 @@ var ready = function() {
         }
     });
 
+    // Initializes all tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
     // Dismisses notifications popover when user clicks outside it
     $('html').on('click', function(e) {
         if (typeof $(e.target).data('original-title') === 'undefined' &&
@@ -42,10 +47,17 @@ var ready = function() {
         if (e.target.nodeName === 'A') {
             return;
         }
+        if (e.target.classList.contains('snippet-control')) {
+            return;
+        }
         var container = $(this).closest('.view-snippet');
         var files = container.find('.files');
-        container.toggleClass('selected-snippet');
-        files.toggle();
+        if (container.hasClass('minimized')) {
+            files.slideDown(300);
+        } else {
+            files.slideUp(300);
+        }
+        container.toggleClass('minimized');
     });
 
     // Removes the snippet after a successful delete

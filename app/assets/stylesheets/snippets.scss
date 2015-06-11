@@ -56,87 +56,84 @@
     }
 }
 
-.view-snippet { // generic snippet display
-    position: relative;
+.view-snippet {
+    border: 1px solid #DCDCDC;
+    margin-bottom: 5px;
+    @include shadow-depth(0.6);
 
-    border: 1px solid #DADADA;
-    margin: 10px 0px;
-    @include shadow-depth(0.5);
+    .snippet-header {
+        .snippet-title {
+            background-color: $bg-color-dark;
+            color: $text-color-light;
+            a { color: $text-color-light }
+            @include transition(all .3s ease);
+            h1 {
+                font-size: 20px;
+            }
+        }
+        .snippet-metadata {
+            background-color: #f6f6f6;
+            border-top: 1px solid #CDCDCD;
+            border-bottom: 1px solid #CDCDCD;
+            padding-top: 8px;
+            padding-bottom: 8px;
 
-    &:hover {
-        @include shadow-depth(0.6);
+            .metadata-item {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            .author {
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .timestamp, .groups, .private {
+                font-size: 12px;
+            }
+
+            .metadata-controls .metadata-item {
+                margin-right: 0px;
+                .snippet-edit-link, .snippet-delete-link {
+                    font-size: 15px;
+                    padding: 5px;
+                    color: lighten($text-color, 15%);
+
+                    &:hover {
+                        color: $text-color;
+                    }
+                }
+            }
+        }
     }
 
-    &.minimized .files {
-        display: none;
+    &.minimized {
+        @include shadow-depth(0.5);
+
+        .snippet-title {
+            background-color: $bg-color;
+            color: $text-color;
+            a { color: $text-color}
+        }
+
+        .snippet-header:hover {
+            @include shadow-depth(0.6);
+            @include transition(box-shadow .3s ease);
+        }
+
+        &:not(:last-child) {
+            border-bottom: none;
+        }
+
+        .files {
+            display: none;
+        }
     }
+
     &.minimizable .snippet-header {
         cursor: pointer;
     }
 
-    &.selected-snippet {
-        @include shadow-depth(0.6);
-        .snippet-header {
-            border-bottom: 1px solid #E6E6E6;
-            .snippet-expand-btn {
-                background-image: image-url("collapse-arrow.png");
-            }
-        }
-    }
-
-
-    .snippet-header {
-        position: relative;
-
-        .snippet-metadata {
-            padding: 10px;
-        }
-
-        .snippet-title {
-            display: block;
-            font-size: 16px;
-            padding-bottom: 10px;
-            margin: 0;
-        }
-
-        .author {
-            font-weight: 600;
-        }
-
-        .separator, .permalink, .timestamp, .tags {
-            font-size: 13px;
-        }
-
-        .timestamp, .tags {
-            color: lighten($text-color, 40%);
-        }
-
-        .snippet-controls-container .snippet-controls {
-            float: right;
-            padding: 2px 4px;
-            @extend %clearfix;
-
-            @include breakpoint-small {
-                float: none;
-                margin: 11px 0px;
-                .snippet-edit-link, .snippet-delete-link {
-                    padding: 2px 10px;
-                    display: inline-block;
-                }
-            }
-        }
-
-        .snippet-expand-btn {
-            background-image: image-url("expand-arrow.png");
-            background-position: center; 
-            background-repeat: no-repeat;
-            margin-right: 5px;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            height: 100%;
-        }
-    }
 
     .file {
         border: 1px solid #DADADA;  
@@ -148,23 +145,14 @@
             .file-name {
                 padding: 3px 0px;
                 margin: 0;
+                @include truncate;
             }
             .file-raw-link {
                 float: right;
             }
         }
     }
-
-    .ace_cursor {   // hide cursor
-        color: transparent !important;
-    }
 }
 
 #show-snippet { // show individual snippet
-    .show-snippet-buttons {
-        text-align: right;
-        form {
-            display: inline-block;
-        }
-    }
 }

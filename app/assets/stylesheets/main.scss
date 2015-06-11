@@ -342,6 +342,7 @@ span.button-message {
             max-height: $grid-list-avatar-dimensions;
 
             .item-name{
+                display: block;
                 @include truncate;
                 a {
                     color: $text-color;
@@ -350,4 +351,9 @@ span.button-message {
             }
         }
     }
+}
+
+.search-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
