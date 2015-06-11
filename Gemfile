@@ -32,6 +32,9 @@ gem 'pygments.rb', '~> 0.6.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Allow CircleCI to collect minitest test metadata
+gem 'minitest-ci', :git => 'git@github.com:circleci/minitest-ci.git'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
