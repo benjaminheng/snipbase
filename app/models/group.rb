@@ -2,6 +2,8 @@ class Group < ActiveRecord::Base
     belongs_to :owner, class_name: "User"
     has_many :group_members, dependent: :destroy
     has_many :users, through: :group_members, dependent: :destroy
+    has_many :group_snippets
+    has_many :snippets, through: :group_snippets
 
     has_many :active_users, -> { where.not group_members: { accepted: nil } },
              through: :group_members, class_name: "User", source: :user
@@ -24,5 +26,13 @@ class Group < ActiveRecord::Base
     # Called when user leaves group or is removed
     def remove_user(user)
         group_members.find_by(group: self, user: user).destroy
+    end
+
+    def add_snippet(snippet)
+        self.snippets.push(snippet)
+    end
+
+    def remove_snippet(snippet)
+        self.snippets.destroy(snippet)
     end
 end

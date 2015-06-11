@@ -3,7 +3,7 @@ require 'test_helper'
 describe User do
     before do
         @user1 = create(:user)
-        @user2 = create(:user, username: "testuser2")
+        @user2 = create(:user)
     end
 
     it "can follow and unfollow another user" do

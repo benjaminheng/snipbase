@@ -3,7 +3,7 @@ require 'test_helper'
 describe Group do
     before do
         @user1 = create(:user)
-        @user2 = create(:user, username: "testuser2")
+        @user2 = create(:user) 
         @group1 = create(:group)
     end
     it "can have users added" do
@@ -24,5 +24,16 @@ describe Group do
         @user2.accept_group_invite(@group1)
         @group1.active_users.must_include(@user2)
         @user2.active_groups.must_include(@group1)
+    end
+
+    it "can have many snippets" do
+        snippet1 = create(:snippet, user: @user1, title: "testsnippet_1")
+        snippet2 = create(:snippet, user: @user1, title: "testsnippet_2", private: true)
+        @group1.snippets.size.must_equal 0
+        @group1.add_snippet(snippet1);
+        @group1.add_snippet(snippet2);
+        @group1.snippets.size.must_equal 2
+        @group1.remove_snippet(snippet2)
+        @group1.snippets.size.must_equal 1
     end
 end

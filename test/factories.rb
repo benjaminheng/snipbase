@@ -1,6 +1,9 @@
 FactoryGirl.define do
+    sequence :username do |n|
+        "testuser#{n}"
+    end
     factory :user do
-        username    "testuser"
+        username    { generate(:username) }
         name        "Mr. Test"
         email       "testuser@example.com"
         password    "Password"
@@ -13,7 +16,7 @@ FactoryGirl.define do
     factory :snippet do
         user
         title       "testsnippet"
-        private     true
+        private     false
 
         transient do
             snippet_files_count 3
