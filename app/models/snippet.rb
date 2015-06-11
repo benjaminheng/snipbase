@@ -7,6 +7,4 @@ class Snippet < ActiveRecord::Base
     scope :filename, -> (filename) { self.snippet_files.filename(filename) }
     scope :language, -> (language) { self.snippet_files.language(language) }
     scope :priv, -> (priv) { where priv: priv}
-    # TODO: Change when group is linked
-    scope :permission, -> (current_user) { where user: current_user }
 end

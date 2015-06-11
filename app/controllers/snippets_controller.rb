@@ -5,7 +5,7 @@ class SnippetsController < ApplicationController
 
 #############WORK IN PROGRESS###############
     def search
-        @snippets = Snippet.permission(current_user)
+        @snippets = Snippet.where(nil)
         @snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
         @snippets = @snippets.filename(params[:search_filename]) if params[:search_filename].present?
         @snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
@@ -13,7 +13,6 @@ class SnippetsController < ApplicationController
         redirect_back_or_refresh_snippet
     end
 
-    private
     def redirect_back_or_refresh_snippet
         respond_to do |format|
             format.html { redirect_to :back }
