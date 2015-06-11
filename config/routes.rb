@@ -47,6 +47,9 @@ Rails.application.routes.draw do
 
     get '/snippet/:id/:file_id' => 'snippets#download_raw', as: 'raw_snippet_file'
   
+    #search
+    post '/search' => 'snippets#search'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

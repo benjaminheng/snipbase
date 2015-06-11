@@ -4,8 +4,7 @@
 <div id="user-snippets" class="row">
     <div class="extra-space container-fluid">
         <%= render 'shared/messages' %>
-        <% @snippets.each do |snippet| %>
-            <%= render 'shared/snippet', snippet: snippet, minimizable: true %>
-        <% end %>
+        <%= render 'shared/search_bar' %>
+        <%= render 'shared/snippet_list' %>
     </div>
 </div>

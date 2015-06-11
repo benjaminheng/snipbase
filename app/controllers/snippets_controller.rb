@@ -3,6 +3,25 @@ class SnippetsController < ApplicationController
     before_filter :authenticate_edit_permission, only: ["edit", "update"]
     before_filter :authenticate_delete_permission, only: ["destroy"]
 
+#############WORK IN PROGRESS###############
+    def search
+        @snippets = Snippet.where(nil)
+        @snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
+        @snippets = @snippets.filename(params[:search_filename]) if params[:search_filename].present?
+        @snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
+        @snippets = @snippets.priv(params[:search_private]) if params[:search_private].present?
+        redirect_back_or_refresh_snippet
+    end
+
+    def redirect_back_or_refresh_snippet
+        respond_to do |format|
+            format.html { redirect_to :back }
+            format.js { render 'shared/refresh_snippet' }
+        end
+    end
+#############################################
+
+
     #These 2 methods will changed after groups are implemented.
     #currently only the Owner has permission to edit/delete
     def authenticate_edit_permission
