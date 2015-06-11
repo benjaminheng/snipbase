@@ -1,0 +1,5 @@
+<div id="snippet-list">
+    <% @snippets.each do |snippet| %>
+        <%= render 'shared/snippet', snippet: snippet, minimizable: true %>
+    <% end %>
+</div>
