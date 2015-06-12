@@ -43,7 +43,7 @@ var ready = function() {
     });
 
     // toggle display of snippet files
-    $('.minimizable > .snippet-header').click(function(e) {
+    $('#snippet-list').on('click', '.minimizable > .snippet-header', function(e) {
         if (e.target.nodeName === 'A') {
             return;
         }
