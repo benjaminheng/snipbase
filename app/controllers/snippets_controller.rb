@@ -5,11 +5,41 @@ class SnippetsController < ApplicationController
 
 #############WORK IN PROGRESS###############
     def search
-        @snippets = Snippet.permission(current_user)
-        @snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
-        @snippets = @snippets.filename(params[:search_filename]) if params[:search_filename].present?
+        all_snippets = Snippet.permission(current_user)
+        @snippets = Set.new []
+
+        redirect_back_or_refresh_snippet and return if params[:search_title].blank?
+
+        all_snippets.each do |snip|
+            if snip.title.include? params[:search_title]
+                @snippets << snip
+                break
+            end
+
+            snip.snippet_files.each do |snip_file|
+                if snip_file.filename.include? params[:search_title]
+                    @snippets << snip
+                    break
+                end
+            end
+
+        end
+
+        if @snippets.empty?
+            p "duck"
+        else
+            p "cow"
+            p @snippets
+            p "cow"
+        end
+        #@snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
+        
+        #@snippets = @snippets.plants(params[:search_title])
+        #@snippets = @snippets.includes(:snippet_files).where("snippet_files.filename LIKE ?", "%#{params[:search_title]}%" ).references(:snippet_files)
         @snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
         @snippets = @snippets.priv(params[:search_private]) if params[:search_private].present?
+        #@snippets = @snippets.where_values.join(' OR ')
+
         redirect_back_or_refresh_snippet
     end
 
