@@ -105,6 +105,37 @@ var ready = function() {
         }
     });
 
+    $('#languages').selectize({
+        persist: false,
+        maxItems: null,
+        valueField: 'name',
+        labelField: 'caption',
+        searchField: ['name', 'email'],
+        options: modelist.modes,
+        render: {
+            item: function(item, escape) {
+                return '<div>' +
+                    (item.caption ? '<span class="list-caption">' + escape(item.caption) + '</span>' : '') +
+                '</div>';
+            },
+            option: function(item, escape) {
+                var caption = item.caption;
+                return '<div>' +
+                    (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                '</div>';
+            }
+        },
+        create: false
+    });
+
+
+    // Toggles dropdown params for search
+    $(".btn-search-minimize").click(function(){
+        $(this).toggleClass('glyphicon-chevron-up');
+        $(this).toggleClass('glyphicon-chevron-down');
+        $(".search-params").slideToggle();       
+    });
+
     // initializes delete buttons for snippet files at page load if applicable.
     toggleDeleteButton();
 }

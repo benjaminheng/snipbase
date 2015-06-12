@@ -8,38 +8,39 @@ class SnippetsController < ApplicationController
         all_snippets = Snippet.permission(current_user)
         @snippets = Set.new []
 
-        redirect_back_or_refresh_snippet and return if params[:search_title].blank?
+        search_input = params[:search_input].downcase
 
         all_snippets.each do |snip|
-            if snip.title.include? params[:search_title]
+            added = false
+            no_language_filter = params[:languages].empty?
+            if snip.title.include? search_input
                 @snippets << snip
-                break
+                added = true
+                next if no_language_filter
             end
 
             snip.snippet_files.each do |snip_file|
-                if snip_file.filename.include? params[:search_title]
-                    @snippets << snip
-                    break
+                if no_language_filter
+                    if snip_file.filename.downcase.include?search_input
+                        @snippets << snip
+                        break
+                    end
+                elsif params[:languages].include?snip_file.language
+                    if snip_file.filename.downcase.include?search_input
+                        @snippets << snip
+                        break
+                    end
+                elsif added
+                    @snippets.delete(snip)
                 end
             end
-
         end
 
-        if @snippets.empty?
-            p "duck"
-        else
-            p "cow"
-            p @snippets
-            p "cow"
-        end
         #@snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
-        
-        #@snippets = @snippets.plants(params[:search_title])
         #@snippets = @snippets.includes(:snippet_files).where("snippet_files.filename LIKE ?", "%#{params[:search_title]}%" ).references(:snippet_files)
-        @snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
-        @snippets = @snippets.priv(params[:search_private]) if params[:search_private].present?
-        #@snippets = @snippets.where_values.join(' OR ')
-
+        #@snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
+        #@snippets = @snippets.priv(params[:search_private]) if params[:search_private].present?
+ 
         redirect_back_or_refresh_snippet
     end
 

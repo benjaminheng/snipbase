@@ -1,7 +1,14 @@
-<div class="search-bar">
+<div class="search-bar ">
     <form id="search" class="" method="post" data-remote="true" accept-charset="UTF-8" action="/search">
-    <input id="search_text" type="text" name="search_title"></input>
-    <input class="btn" type="submit" value="Search" name="commit"></input>
+    <div class="">
+        <input id="search_text" type="text" name="search_input"></input>
+        <input class="btn" type="submit" value="Search" name="commit"></input>
+        <span class="glyphicon glyphicon-chevron-down btn-search-minimize"></span>
+    </div>
+    <div class="search-params">
+        <%= label_tag :languages, "Languages:" %>
+        <%= text_field_tag :languages  %>
+    </div>
     </form>
 </div>
 
