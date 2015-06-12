@@ -1,0 +1,31 @@
+<%= form_for snippet, url: path, remote: true, authenticity_token: true, html: {class: "edit-snippet-form col-sm-12 col-xs-12"} do |f| %>
+    <div class="snippet-metadata">
+        <%= f.label :title, "Title" %>
+        <%= f.text_field :title %>
+    </div>
+    <div class="snippet-metadata">
+        <%= f.label :group_ids, "Groups" %>
+        <%= f.select :group_ids, options_from_collection_for_select(current_user.active_groups, "id", "name", selected: snippet.groups.collect { |k| k.id }), {}, multiple: true, class: "select-groups" %>
+    </div> 
+
+    <div class="files">
+        <% if snippet.snippet_files.empty? %>
+            <%= render 'shared/snippet_file' %>
+        <% else %>
+            <% snippet.snippet_files.each do |file| %>
+                <%= render :partial => 'shared/snippet_file', :locals => {:file => file} %>
+            <% end %>
+        <% end %>
+    </div>
+    <script id="snippet_file_template" type="text/html">
+        <%= render 'shared/snippet_file' %>
+    </script>
+    <%= f.label :private, "Private"  %>
+    <%= f.check_box :private %>
+    <%= button_tag "Add file", id: "add-snippet-file-btn", type: "button", class: "btn" %>
+    <% if new %>
+        <%= f.submit "Create Snippet", class: "btn pull-right" %>
+    <% else %>
+        <%= f.submit "Save Snippet", class: "btn pull-right" %>
+    <% end %>
+<% end %>
