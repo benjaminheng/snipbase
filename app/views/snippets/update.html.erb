@@ -7,6 +7,10 @@
                 <%= f.label :title, "Title" %>
                 <%= f.text_field :title %>
             </div>
+            <div class="snippet-metadata">
+                <%= f.label :group_ids, "Groups" %>
+                <%= f.select :group_ids, options_from_collection_for_select(current_user.active_groups, "id", "name", selected: @snippet.groups.collect { |k| k.id }), {}, multiple: true, class: "select-groups" %>
+            </div> 
           
             <div class="files">
                 <% @snippet.snippet_files.each do |file| %>

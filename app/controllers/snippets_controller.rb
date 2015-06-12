@@ -231,7 +231,7 @@ class SnippetsController < ApplicationController
 
 	private
     def snippet_params
-        params.require(:snippet).permit(:title, :private)
+        params.require(:snippet).permit(:title, :private, group_ids: [])
     end
 
 	private

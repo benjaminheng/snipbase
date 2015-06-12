@@ -70,6 +70,15 @@ var ready = function() {
         initSnippetEditor(item);
     });
 
+    $('#snippet_group_ids').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: 'Share with groups (optional)',
+        valueField: 'value',
+        labelField: 'name',
+        searchField: ['name']
+    });
+
     $("#invitees").selectize({
         plugins: ['remove_button'],
         delimiter: ',',
