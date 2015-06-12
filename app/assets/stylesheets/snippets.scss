@@ -67,6 +67,7 @@
             color: $text-color-light;
             a { color: $text-color-light }
             @include transition(all .3s ease);
+
             h1 {
                 font-size: 20px;
             }
@@ -107,6 +108,24 @@
         }
     }
 
+    &.minimizable .snippet-header {
+        cursor: pointer;
+        position: relative;
+        .snippet-expand-indicator {
+            margin-right: 5px;
+            position: absolute;
+            right: 0;
+            height: 100%;
+            width: 56px;
+            fill: #BABABA;
+            transform: rotate(180deg);
+            svg {   // center svg
+                width: 26px;
+                height: 100%;
+            }
+        }
+    }
+
     &.minimized {
         @include shadow-depth(0.5);
 
@@ -114,6 +133,10 @@
             background-color: $bg-color;
             color: $text-color;
             a { color: $text-color}
+        }
+
+        .snippet-expand-indicator {
+            transform: rotate(0deg) !important;
         }
 
         .snippet-header:hover {
@@ -129,11 +152,6 @@
             display: none;
         }
     }
-
-    &.minimizable .snippet-header {
-        cursor: pointer;
-    }
-
 
     .file {
         border: 1px solid #DADADA;  

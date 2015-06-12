@@ -1,7 +1,16 @@
 <div class="view-snippet container-fluid <%= 'minimizable minimized' if defined?(minimizable) &&  minimizable == true %>">
     <div class="snippet-header row">
         <div class="snippet-title col-xs-12">
-            <h1><%= link_to snippet.title, show_snippet_path(snippet) %></h1>
+            <div class="row">
+                <div class="<%= defined?(minimizable) ? 'col-xs-11' : 'col-xs-12' %>">
+                    <h1><%= link_to snippet.title, show_snippet_path(snippet) %></h1>
+                </div>
+                <% if defined?(minimizable) %>
+                    <div class="col-xs-1 snippet-expand-indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve"><g><polygon points="16,23.9 2.3,10.2 3.7,8.8 16,21.1 28.3,8.8 29.7,10.2"/></g></svg>
+                    </div>
+                <% end %>
+            </div>
         </div>
         <div class="snippet-metadata col-xs-12">
             <span class="metadata-item">
