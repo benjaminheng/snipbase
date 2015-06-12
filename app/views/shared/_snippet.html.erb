@@ -58,7 +58,11 @@
                 </div>
 
                 <div class="snippet-content">
-                    <%= highlight(snippet_file.content, snippet_file.language) %>
+                    <% if snippet_file.language == 'markdown' %>
+                        <%= markdown(snippet_file.content) %>
+                    <% else %>
+                        <%= highlight(snippet_file.content, snippet_file.language) %>
+                    <% end %>
                 </div>
             </div>
         <% end %>
