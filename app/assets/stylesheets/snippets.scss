@@ -169,6 +169,13 @@
                 float: right;
             }
         }
+
+        .snippet-content {
+            padding: 10px;
+            .highlight > pre {
+                padding: 0px;
+            }
+        }
     }
 }
 

@@ -26,6 +26,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Pygments for syntax highlighting
 gem 'pygments.rb', '~> 0.6.3'
 
+# Markdown rendering
+gem 'redcarpet'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
