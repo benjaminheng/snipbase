@@ -60,8 +60,8 @@ var ready = function() {
         container.toggleClass('minimized');
     });
 
-    // Removes the snippet after a successful delete
-    $('.snippet-delete-link').on('ajax:success', function() {
+    // Removes the snippet client-side after a successful delete
+    $('#snippet-list .snippet-delete-link').on('ajax:success', function() {
         $(this).closest('.view-snippet').remove();
     });
 
@@ -70,6 +70,7 @@ var ready = function() {
         initSnippetEditor(item);
     });
 
+    // Group selector for snippet groups
     $('#snippet_group_ids').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
@@ -79,6 +80,7 @@ var ready = function() {
         searchField: ['name']
     });
 
+    // User selector for inviting users to groups
     $("#invitees").selectize({
         plugins: ['remove_button'],
         delimiter: ',',
