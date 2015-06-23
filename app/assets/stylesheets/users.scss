@@ -41,15 +41,15 @@ $profile-avatar-dimensions: $profile-avatar-img + $profile-avatar-padding*2;
     .profile-metadata-container {
         .profile-metadata {
             background-color: $bg-color;
-            padding-top: 15px;
-            padding-bottom: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
 
             .profile-names  {
                 font-family: $heading-font-family;
                 .username, .group-name {
                     font-size: 24px;
                     font-weight: 600;
-                    line-height: 1;
+                    line-height: 1.2;
                     @include truncate;
                 }
                 .name {

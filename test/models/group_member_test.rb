@@ -4,7 +4,7 @@ describe GroupMember do
   before do
       @user1 = create(:user)
       @group = create(:group, owner: @user1)
-      @user2 = create(:user, username: 'testuser2')
+      @user2 = create(:user)
   end
 
   it "should be destroyed when group is destroyed" do

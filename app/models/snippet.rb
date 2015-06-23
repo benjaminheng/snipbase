@@ -10,6 +10,7 @@ class Snippet < ActiveRecord::Base
 
     scope :priv, -> (priv) { where priv: priv }
     scope :permission, -> (current_user) { where user: current_user }
+    scope :order_desc, -> { order(created_at: :desc) }
 
     def groups_valid
         groups.each do |group|

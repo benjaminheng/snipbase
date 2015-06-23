@@ -36,6 +36,7 @@ class GroupsController < ApplicationController
     # show single group
     def show
         @group = Group.find(params[:id])
+        @snippets = @group.snippets
         # ensure user is authorized to view group
         redirect_to show_user_groups_path(username: current_user.username) unless current_user.active_groups.include?(@group)
     end

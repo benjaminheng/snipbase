@@ -1,32 +1,6 @@
-<%= render 'shared/messages' %>
-
-<div id="introduction" class="row hero extra-space">
-    <div class="content">
-        <h1 class="text-center">The snippet manager that works for you.</h1>
-        <h2 class="text-center">Share, collaborate, manage</h2>
-        <%= image_tag "snipbase-hero-img.png", class: "hero-img" %>
-        <div class="hero-signup">
-            <%= button_to "Sign me up!", register_path, class: "btn green high hero-signup-btn", method: :get %>
-        </div>
+<div id="index-page" class="row">
+    <div class="extra-space container-fluid">
+        <%= render 'shared/messages' %>
+        <%= render 'shared/snippet_list' %>
     </div>
 </div>
-<div id="" class="row hero-accent">
-    <div class="content">
-        <h1 class="text-center">Blah blah.</h1>
-    </div>
-</div>
-
-IN PROGRESS!
-
-<div style="display:none">
-share your snippets with friends
-    create groups, share knowledge
-robust search and filters for your snippets
-    easily find the snippet you're looking for
-github gists integration
-    import/export options
-
-snippets of anything
-    from code to cooking recipies, snipbase has got you covered
-</div>
-
