@@ -12,6 +12,19 @@ class Snippet < ActiveRecord::Base
     scope :permission, -> (current_user) { where user: current_user }
     scope :order_desc, -> { order(created_at: :desc) }
 
+    scope :search, -> (search_param) {
+        joins(:snippet_files)
+        .where("snippet_files.filename LIKE ? OR title LIKE ?", "%#{search_param}%", "%#{search_param}%")
+        .distinct
+    }
+
+    scope :lang, -> (lang) {
+        languages = lang.split(',')
+        joins(:snippet_files)
+        .where("snippet_files.language IN (?)", languages)
+        .distinct
+    }
+
     def groups_valid
         groups.each do |group|
             unless self.user.active_groups.include?(group)

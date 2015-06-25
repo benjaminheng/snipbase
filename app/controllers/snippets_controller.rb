@@ -5,43 +5,25 @@ class SnippetsController < ApplicationController
 
 #############WORK IN PROGRESS###############
     def search
-        all_snippets = Snippet.permission(current_user)
-        @snippets = Set.new []
 
-        search_input = params[:search_input].downcase
+        username = request.env['HTTP_REFERER'].split('/')[-1]
 
-        all_snippets.each do |snip|
-            added = false
-            no_language_filter = params[:languages].empty?
-            if snip.title.include? search_input
-                @snippets << snip
-                added = true
-                next if no_language_filter
-            end
+        @user = User.find_by(username: username)
+        @snippets = get_snippets_for_user(@user)
 
-            snip.snippet_files.each do |snip_file|
-                if no_language_filter
-                    if snip_file.filename.downcase.include?search_input
-                        @snippets << snip
-                        break
-                    end
-                elsif params[:languages].include?snip_file.language
-                    if snip_file.filename.downcase.include?search_input
-                        @snippets << snip
-                        break
-                    end
-                elsif added
-                    @snippets.delete(snip)
-                end
-            end
-        end
+        @snippets = @snippets.search(params[:search_input])
 
-        #@snippets = @snippets.title(params[:search_title]) if params[:search_title].present?
-        #@snippets = @snippets.includes(:snippet_files).where("snippet_files.filename LIKE ?", "%#{params[:search_title]}%" ).references(:snippet_files)
-        #@snippets = @snippets.language(params[:search_language]) if params[:search_langauge].present?
-        #@snippets = @snippets.priv(params[:search_private]) if params[:search_private].present?
- 
+        @snippets = @snippets.lang(params[:languages]) unless params[:languages].empty?
+        
         redirect_back_or_refresh_snippet
+    end
+
+    #Hold
+    def get_snippets_for_user(user)
+        if (current_user != user)  # only show public snippets
+            return user.public_snippets
+        end
+        return user.snippets
     end
 
     def redirect_back_or_refresh_snippet
