@@ -81,17 +81,29 @@ class GroupsController < ApplicationController
     end
 
     def remove_member
+        group = Group.find(params[:id])
+        user = User.find(params[:user])
+        if group.owner == current_user && user.groups.include?(group)
+            GroupMember.find_by(group_id: group.id, user_id: user.id).destroy
+            flash[:info] = "Removed user \"#{user.username}\" from \"#{group.name}\""
+        end
+        redirect_to :back
     end
 
     def leave_group
         group = Group.find(params[:id])
-        return unless current_user.active_groups.include?(group)
+        redirect_to :back unless current_user.active_groups.include?(group)
         current_user.leave_group(group)
         flash[:info] = "Left the group \"#{group.name}\""
-        respond_to do |format|
-            format.html { redirect_to show_user_groups_path(username: current_user.username) }
-            format.js { render 'shared/refresh_message' }
-        end
+        redirect_to show_user_groups_path(username: current_user.username)
+    end
+
+    def disband_group
+        group = Group.find(params[:id])
+        redirect_to :back unless group.owner == current_user
+        group.destroy
+        flash[:info] = "Disbanded the group \"#{group.name}\""
+        redirect_to show_user_groups_path(username: current_user.username)
     end
 
     # If javascript enabled, refresh messages, else redirect user to same page

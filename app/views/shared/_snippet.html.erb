@@ -33,6 +33,7 @@
             </span>
             <% end %>
 
+            <% if current_user == snippet.user %>
             <span class="pull-right metadata-controls">
                 <span class="metadata-item" data-toggle="tooltip" data-placement="bottom" title="Edit">
                     <%= link_to edit_snippet_path(snippet), class: "snippet-edit-link" do %> <span class="snippet-control glyphicon glyphicon-pencil"></span><% end %>
@@ -43,6 +44,7 @@
                     <% end %>
                 </span>
             </span>
+            <% end %>
         </div>
     </div>
     <div class="files">

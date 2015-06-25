@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     post '/group/:id/decline_invite' => 'groups#decline_invite', as: 'decline_group_invite'
     post '/group/:id/remove_member' => 'groups#remove_member', as: 'remove_group_member'
     post '/group/:id/leave' => 'groups#leave_group', as: 'leave_group'
+    post '/group/:id/disband' => 'groups#disband_group', as: 'disband_group'
 
     # snippets
     get '/add' => 'snippets#new'
