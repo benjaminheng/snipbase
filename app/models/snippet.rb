@@ -9,7 +9,19 @@ class Snippet < ActiveRecord::Base
     validates :title, length: { maximum: 1024, too_long: "cannot have more than %{count} characters"}
 
     scope :priv, -> (priv) { where priv: priv }
-    scope :permission, -> (current_user) { where user: current_user }
+    
+    scope :permission, -> (current_user) {
+        ids = current_user.groups.select("id")
+
+        if ids.empty?
+            where(:user => current_user)
+        else
+            includes(:groups)
+            .references(:groups)
+            .where("groups.id IN (?) OR user_id = ?", ids , current_user)
+        end
+    }
+    
     scope :order_desc, -> { order(created_at: :desc) }
 
     scope :search, -> (search_param) {

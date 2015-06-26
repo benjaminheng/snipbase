@@ -6,15 +6,27 @@ class SnippetsController < ApplicationController
 #############WORK IN PROGRESS###############
     def search
 
-        username = request.env['HTTP_REFERER'].split('/')[-1]
+        referrer_path = URI(request.referer).path
+        
+        if referrer_path == root_path
 
-        @user = User.find_by(username: username)
-        @snippets = get_snippets_for_user(@user)
+            groups = current_user.active_groups
+            @snippets = Snippet.permission(current_user)
+            
+        elsif referrer_path.starts_with("/user/")
 
-        @snippets = @snippets.search(params[:search_input])
+            username = referrer_path.split('/')[-1]
+            user = User.find_by(username: username)
+            @snippets = get_snippets_for_user(user)
+
+        elsif referrer_path.starts_with("/following")
+            #Issit??
+        end
+
+        @snippets = @snippets.search(params[:search_input]).order_desc
 
         @snippets = @snippets.lang(params[:languages]) unless params[:languages].empty?
-        
+
         redirect_back_or_refresh_snippet
     end
 
