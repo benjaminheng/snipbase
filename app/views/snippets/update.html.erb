@@ -1,7 +1,6 @@
 <div id="edit-snippet" class="row">
     <%= render 'shared/messages' %>
-    <h1 class="page-title">Edit Snippet</h1>
-    <div class="editable-snippet">
+    <div class="col-xs-12">
         <%= render partial: 'edit_snippet', locals: {snippet: @snippet, new: false, path: update_snippet_path(@snippet.id)} %>
     </div>
 </div>

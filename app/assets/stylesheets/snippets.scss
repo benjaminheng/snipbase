@@ -36,26 +36,29 @@
 }
 
 
-.edit-snippet-form {
-    .select-groups {
-        width: 400px;
+.editable-snippet {
+    @include shadow-depth(0.6);
+    .snippet-title {
+        width: 100%;
     }
-    .file {
-        border: 1px solid #666666;  //placeholder
-        margin: 15px 0px;
-        .file-header {
-            padding-top: 2px;
-            padding-bottom: 2px;
-            .file-name {
-                width: 100%;
-            }
 
-            .snippet-list {
-                margin-top: 3px;
-            }
-            @extend %clearfix;
+    .select-groups-container {
+        max-width: 450px;
+        .select-groups {
+            width: 85%;
+            display: inline-block;
         }
-        @extend %clearfix;
+
+        .item-tooltip > .glyphicon { // hack to vertically center
+            font-size: 22px;
+            top: -5px;
+        }
+    }
+
+    .files .file .file-metadata {
+        .file-name {
+            width: 100%;
+        }
     }
 }
 
@@ -128,6 +131,16 @@
             }
         }
     }
+    .files .file .file-metadata {
+        .file-name {
+            padding: 3px 0px;
+            margin: 0;
+            @include truncate;
+        }
+        .file-raw-link {
+            float: right;
+        }
+    }
 
     &.minimized {
         @include shadow-depth(0.5);
@@ -156,28 +169,21 @@
         }
     }
 
-    .file {
-        border: 1px solid #DADADA;  
-        margin: 15px 0px;
-        .file-metadata {
-            background-color: #F6F6F6;
-            border-bottom: 1px solid #E6E6E6;
-            padding: 4px 0px;
-            .file-name {
-                padding: 3px 0px;
-                margin: 0;
-                @include truncate;
-            }
-            .file-raw-link {
-                float: right;
-            }
-        }
+}
 
-        .snippet-content {
-            padding: 10px;
-            .highlight > pre {
-                padding: 0px;
-            }
+.files .file  {
+    border: 1px solid #DADADA;  
+    margin: 15px 0px;
+    .file-metadata {
+        background-color: #F6F6F6;
+        border-bottom: 1px solid #E6E6E6;
+        padding: 4px 0px;
+    }
+
+    .snippet-content {
+        padding: 10px;
+        .highlight > pre {
+            padding: 0px;
         }
     }
 }

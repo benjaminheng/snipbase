@@ -23,6 +23,16 @@ var ready = function() {
         }
     });
 
+    // Subtle highlight for in-focus panel (focus in)
+    $('.panel-custom').on('focus', 'input', function() {
+        $(this).closest('.panel-custom').addClass('focused');
+    });
+
+    // Subtle highlight for in-focus panel (focus out)
+    $('.panel-custom').on('focusout', 'input', function() {
+        $(this).closest('.panel-custom').removeClass('focused');
+    });
+
     // adds new snippet file
     $("#add-snippet-file-btn").click(function() {
         var files = $(".files");
@@ -36,7 +46,7 @@ var ready = function() {
     });
 
     // removes snippet files
-    $(".editable-snippet .files").on("click", ".file-header button.close", function() { 
+    $(".editable-snippet .files").on("click", ".file-metadata button.close", function() { 
         var file = $(this).closest('.file');
         file.remove();
         toggleDeleteButton();
@@ -74,7 +84,7 @@ var ready = function() {
     $('#snippet_group_ids').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
-        placeholder: 'Share with groups (optional)',
+        placeholder: 'Groups',
         valueField: 'value',
         labelField: 'name',
         searchField: ['name']
@@ -233,7 +243,7 @@ var isMobile = {
 };
 
 function toggleDeleteButton(){
-    var buttons = $(".editable-snippet .files .file-header button.close");
+    var buttons = $(".editable-snippet .files .file-metadata button.close");
     if ($(".file").length <= 1) {
         buttons.hide();
     } else {

@@ -201,17 +201,18 @@ form.form-default {
     max-width: $screen-md-min/3;
     border: 1px solid #EAEAEA;
     margin-bottom: 30px;
-    .form-element {
-        color: $text-color;
-        margin-bottom: 10px;
-        label {
-            display: block;
-            font-size: $font-size - 1px;
-        }
-        input {
-            display: block;
-            width: 100%;
-        }
+}
+
+form .form-element {
+    color: $text-color;
+    margin-bottom: 10px;
+    label {
+        display: block;
+        font-size: $font-size - 1px;
+    }
+    input {
+        display: block;
+        width: 100%;
     }
 }
 
@@ -237,6 +238,10 @@ form.form-default {
         &.warning {
             border-bottom: 2px solid $warning-color;
         }
+    }
+
+    &.focused {
+        @include shadow-depth(0.6);
     }
 }
 
