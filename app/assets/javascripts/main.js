@@ -48,8 +48,13 @@ var ready = function() {
     // removes snippet files
     $(".editable-snippet .files").on("click", ".file-metadata button.close", function() { 
         var file = $(this).closest('.file');
+        var nextFileFocus = file.next();
+        if (file.is(':last-child')) {
+            nextFileFocus = file.prev();
+        }
         file.remove();
         toggleDeleteButton();
+        nextFileFocus.find('.ace_text-input').focus();
     });
 
     // toggle display of snippet files
@@ -199,11 +204,25 @@ function initSnippetEditor(container) {
     var allCommands = aceEditor.commands.byName;
 
     aceEditor.commands.bindKey("Ctrl-Down", function(){
-        $(':focus').parent().parent().parent().next().find('.ace_text-input').focus();
+        var next = $(':focus').parent().parent().parent().next().find('.ace_text-input');
+        next.focus();
     });
 
     aceEditor.commands.bindKey("Ctrl-Up", function(){
-        $(':focus').parent().parent().parent().prev().find('.ace_text-input').focus();
+        var previous = $(':focus').parent().parent().parent().prev().find('.ace_text-input');
+        previous.focus();
+    });
+
+    aceEditor.commands.bindKey("Alt-N", function() {
+        $("#add-snippet-file-btn").click();
+        $('.ace_text-input').last().focus();
+    });
+
+    aceEditor.commands.bindKey("Alt-D", function() {
+        if ($(".file").length > 1) {
+            var file = $(':focus').parent().parent().prev().find('.close');
+            file.click();
+        }
     });
 
     if (container.data("submit") == true) {
