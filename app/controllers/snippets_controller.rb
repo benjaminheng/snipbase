@@ -11,13 +11,13 @@ class SnippetsController < ApplicationController
             groups = current_user.active_groups
             @snippets = Snippet.permission(current_user)
             
-        elsif referrer_path.starts_with("/user/")
+        elsif referrer_path.start_with?("/user/")
 
             username = referrer_path.split('/')[-1]
             user = User.find_by(username: username)
             @snippets = get_snippets_for_user(user)
 
-        elsif referrer_path.starts_with("/following")
+        elsif referrer_path.start_with?("/following")
             #Issit??
         end
 
