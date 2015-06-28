@@ -204,12 +204,12 @@ function initSnippetEditor(container) {
     var allCommands = aceEditor.commands.byName;
 
     aceEditor.commands.bindKey("Ctrl-Down", function(){
-        var next = $(':focus').parent().parent().parent().next().find('.ace_text-input');
+        var next = $(':focus').closest('.file').next().find('.ace_text-input');
         next.focus();
     });
 
     aceEditor.commands.bindKey("Ctrl-Up", function(){
-        var previous = $(':focus').parent().parent().parent().prev().find('.ace_text-input');
+        var previous = $(':focus').closest('.file').prev().find('.ace_text-input');
         previous.focus();
     });
 
@@ -218,9 +218,13 @@ function initSnippetEditor(container) {
         $('.ace_text-input').last().focus();
     });
 
+    aceEditor.commands.bindKey("Alt-F", function() {
+        $(':focus').closest('.file').find('.file-name').focus();
+    });
+
     aceEditor.commands.bindKey("Alt-D", function() {
         if ($(".file").length > 1) {
-            var file = $(':focus').parent().parent().prev().find('.close');
+            var file = $(':focus').closest('.file').find('.close');
             file.click();
         }
     });
@@ -232,7 +236,7 @@ function initSnippetEditor(container) {
     }
 
     $(".file-name").on('change', function() {
-        var currentSnippet = $(this).parent().parent();
+        var currentSnippet = $(this).closest('.file');
 
         var fileName = $(this).val();   
         var mode = modeList.getModeForPath(fileName);
@@ -245,7 +249,7 @@ function initSnippetEditor(container) {
     });
 
     $(".snippet-language-option").on('click', function() {
-        var currentSnippet = $(this).parent().parent();
+        var currentSnippet = $(this).closest('.file');
         var lang = $(this).data("value");
         var caption = $(this).children().text();
 
