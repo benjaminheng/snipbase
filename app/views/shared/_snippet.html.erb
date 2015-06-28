@@ -23,7 +23,7 @@
             </span>
             <span class="metadata-item">
                 <span class="glyphicon glyphicon-th"></span>
-                <span class="groups">0 groups</span>
+                <span class="groups"><%= snippet.groups.count %> <%= 'group'.pluralize(snippet.groups.count) %></span>
             </span>
 
             <% if current_user == snippet.user && snippet.private %>
