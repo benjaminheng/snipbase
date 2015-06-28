@@ -38,6 +38,9 @@ gem 'redcarpet'
 # Allow CircleCI to collect minitest test metadata
 gem 'minitest-ci', :git => 'https://github.com/circleci/minitest-ci.git'
 
+# MouseTrap for keyboard shortcuts
+gem 'mousetrap-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

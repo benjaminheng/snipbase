@@ -3,9 +3,7 @@ class SnippetsController < ApplicationController
     before_filter :authenticate_edit_permission, only: ["edit", "update"]
     before_filter :authenticate_delete_permission, only: ["destroy"]
 
-#############WORK IN PROGRESS###############
     def search
-
         referrer_path = URI(request.referer).path
         
         if referrer_path == root_path
@@ -29,23 +27,6 @@ class SnippetsController < ApplicationController
 
         redirect_back_or_refresh_snippet
     end
-
-    #Hold
-    def get_snippets_for_user(user)
-        if (current_user != user)  # only show public snippets
-            return user.public_snippets
-        end
-        return user.snippets
-    end
-
-    def redirect_back_or_refresh_snippet
-        respond_to do |format|
-            format.html { redirect_to :back }
-            format.js { render 'shared/refresh_snippet' }
-        end
-    end
-#############################################
-
 
     #These 2 methods will changed after groups are implemented.
     #currently only the Owner has permission to edit/delete
@@ -109,6 +90,23 @@ class SnippetsController < ApplicationController
     	snip_file = SnippetFile.find(params[:file_id])
     	send_data(snip_file.content, filename: snip_file.filename, type: "text", disposition: "inline" )
     end
+
+    private
+    def get_snippets_for_user(user)
+        if (current_user != user)  # only show public snippets
+            return user.public_snippets
+        end
+        return user.snippets
+    end
+
+    private
+    def redirect_back_or_refresh_snippet
+        respond_to do |format|
+            format.html { redirect_to :back }
+            format.js { render 'shared/refresh_snippet' }
+        end
+    end
+
 
 	private
     def respond_to_delete

@@ -157,6 +157,15 @@ var ready = function() {
         $(".search-params").slideToggle();       
     });
 
+    //Add Keyboard shortcuts here
+    Mousetrap.bind('g+n', function(e) {
+        $("#add_snippet_link")[0].click();
+    });
+
+    Mousetrap.bind('g+g', function(e) {
+        $("#groups_link")[0].click();
+    });
+
     // initializes delete buttons for snippet files at page load if applicable.
     toggleDeleteButton();
 }
@@ -254,4 +263,3 @@ function toggleDeleteButton(){
 // fix for turbo-links preventing .ready() from working correctly. replaces .ready()
 $(document).ready(ready);
 $(document).on('page:load', ready);
-

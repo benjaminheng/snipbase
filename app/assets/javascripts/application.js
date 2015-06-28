@@ -18,3 +18,4 @@
 //= require ace/ext-modelist.js 
 //= require selectize.js
 //= require main
+//= require mousetrap

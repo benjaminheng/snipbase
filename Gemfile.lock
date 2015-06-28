@@ -113,6 +113,7 @@ GEM
       minitest-capybara (~> 0.7.0)
       minitest-metadata (~> 0.5.0)
       minitest-rails (~> 2.1)
+    mousetrap-rails (1.4.6)
     multi_json (1.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -217,6 +218,7 @@ DEPENDENCIES
   jquery-rails
   minitest-ci!
   minitest-rails-capybara
+  mousetrap-rails
   pg
   poltergeist
   pygments.rb (~> 0.6.3)
@@ -229,3 +231,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.0.pre.2

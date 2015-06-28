@@ -12,12 +12,14 @@
         <div id="header-navbar" class="navbar-collapse collapse" aria-expanded="false" style="">
             <ul class="nav navbar-nav navbar-right">
                 <% if logged_in? %>
-                    <li><%= link_to "Groups", show_user_groups_path(current_user.username) %>
-                    <li><a href="/add">+Snippet</a>
+                    <li><%= link_to "Groups", show_user_groups_path(current_user.username), :id => "groups_link" %>
+                    </li>
+                    <li><%= link_to "+Snippet", add_path, :id => "add_snippet_link" %>
+                    </li>
 
                     <li class="vertical-separator hidden-xs"><span>|</span>
                     <li>
-                        <a class="user" href="/user/<%= current_user.username %>"><%= current_user.username %></a>
+                        <%= link_to current_user.username, show_user_path(current_user.username) %>
                     </li>
                     <li>
                         <a id="notifications-toggle" data-placement="bottom" title="Notifications" href="#">N</a>
