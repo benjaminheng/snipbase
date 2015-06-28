@@ -216,25 +216,30 @@ function initSnippetEditor(container) {
 
     var allCommands = aceEditor.commands.byName;
 
+    //Change focus to next Snippet File
     aceEditor.commands.bindKey("Ctrl-Down", function(){
         var next = $(':focus').closest('.file').next().find('.ace_text-input');
         next.focus();
     });
 
+    //Change focus to previous Snippet File
     aceEditor.commands.bindKey("Ctrl-Up", function(){
         var previous = $(':focus').closest('.file').prev().find('.ace_text-input');
         previous.focus();
     });
 
+    //Adds a new Snippet File
     aceEditor.commands.bindKey("Alt-N", function() {
         $("#add-snippet-file-btn").click();
         $('.ace_text-input').last().focus();
     });
 
+    //Change focus to filename of current Snippet File
     aceEditor.commands.bindKey("Alt-F", function() {
         $(':focus').closest('.file').find('.file-name').focus();
     });
 
+    //Removes current Snippet File
     aceEditor.commands.bindKey("Alt-D", function() {
         if ($(".file").length > 1) {
             var file = $(':focus').closest('.file').find('.close');
