@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
     has_secure_password
-    has_many :snippets, -> { order(created_at: :desc) }
+    has_many :snippets
 
     #groups
     has_many :group_members, dependent: :destroy
@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
     validates :password, presence: true, confirmation: true, allow_nil: true
     validates :password_confirmation, presence: true, allow_nil: true
     validate :password_complexity
+
+    scope :order_desc, -> { order(created_at: :desc) }
 
     def invite_to_group(group, invitee)
         # Only invite if user is the group owner
@@ -69,7 +71,7 @@ class User < ActiveRecord::Base
 
     def public_snippets 
         conditions = {user: self, private: false}
-        return Snippet.where(conditions).order(:created_at).reverse_order;
+        return Snippet.where(conditions).order_desc
     end
 
     private

@@ -66,7 +66,7 @@ class UsersController < ApplicationController
         if (current_user != user)  # only show public snippets
             return user.public_snippets
         end
-        return user.snippets
+        return user.snippets.order_desc
     end
 
     private

@@ -13,6 +13,8 @@ class Group < ActiveRecord::Base
                      format: {with: /\A[a-zA-Z0-9 _-]+\z/, message: "can only contain alphanumeric characters, dashes and underscores"},
                      length: { maximum: 32, too_long: "cannot have more than %{count} characters"}
 
+    scope :order_desc, -> { order(created_at: :desc) }
+
     def invite_user(user)
         group_members.create(group: self, user: user)
     end
