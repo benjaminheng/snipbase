@@ -205,7 +205,9 @@ var ready = function() {
         } else {
             list.find('.view-snippet').first().toggleClass('selected');
         }
-        if (!selected.next().find('.snippet-header').visible()) {
+
+        // if element exists and not visible, scroll viewport to it.
+        if (selected.next().length && !selected.next().find('.snippet-header').visible()) {
             scrollToElement(selected.next(), 200);
         }
     });
@@ -219,7 +221,7 @@ var ready = function() {
             selected.toggleClass('selected');
             selected.prev().toggleClass('selected');
         }
-        if (!selected.prev().find('.snippet-header').visible()) {
+        if (selected.prev().length && !selected.prev().find('.snippet-header').visible()) {
             scrollToElement(selected.prev(), 200);
         }
     });
@@ -230,6 +232,23 @@ var ready = function() {
 
         var selected = list.find(".view-snippet.minimizable.selected");
         selected.find(".snippet-header").click();
+    });
+
+    Mousetrap.bind('e', function() {
+        var list = $("#snippet-list");
+        if (list.length === 0) return;
+
+        var selected = list.find(".view-snippet.minimizable.selected");
+        // use vanilla javascript .click() method instead because jquery's .click() requires a jquery event
+        selected[0].getElementsByClassName("snippet-edit-link")[0].click();
+    });
+
+    Mousetrap.bind('d', function() {
+        var list = $("#snippet-list");
+        if (list.length === 0) return;
+
+        var selected = list.find(".view-snippet.minimizable.selected");
+        selected[0].getElementsByClassName("snippet-delete-link")[0].click();
     });
 
     // initializes delete buttons for snippet files at page load if applicable.

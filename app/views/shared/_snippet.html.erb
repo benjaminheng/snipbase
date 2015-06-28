@@ -39,7 +39,7 @@
                     <%= link_to edit_snippet_path(snippet), class: "snippet-edit-link" do %> <span class="snippet-control glyphicon glyphicon-pencil"></span><% end %>
                 </span>
                 <span class="metadata-item" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                    <%= link_to delete_snippet_path(snippet, :destroy => true), remote: true, method: :delete, class: "snippet-delete-link" do %>
+                    <%= link_to delete_snippet_path(snippet, :destroy => true), remote: true, method: :delete, class: "snippet-delete-link", data: {confirm: "Delete snippet \"#{snippet.title}\"?"} do %>
                         <span class="snippet-control glyphicon glyphicon-remove"></span>
                     <% end %>
                 </span>
