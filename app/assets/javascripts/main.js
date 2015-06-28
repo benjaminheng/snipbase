@@ -164,11 +164,24 @@ var ready = function() {
 
     //Add Keyboard shortcuts here
     Mousetrap.bind('g n', function() {
-        $("#add_snippet_link")[0].click();
+        var element = $("#add_snippet_link");
+        if (element.length) {
+            element[0].click();
+        }
     });
 
     Mousetrap.bind('g g', function() {
-        $("#groups_link")[0].click();
+        var element = $("#groups_link");
+        if (element.length) {
+            element[0].click();
+        }
+    });
+
+    Mousetrap.bind('g u', function() {
+        var element = $("#user_profile_link");
+        if (element.length) {
+            element[0].click();
+        }
     });
 
     // initializes delete buttons for snippet files at page load if applicable.

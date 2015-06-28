@@ -19,7 +19,7 @@
 
                     <li class="vertical-separator hidden-xs"><span>|</span>
                     <li>
-                        <%= link_to current_user.username, show_user_path(current_user.username) %>
+                    <%= link_to current_user.username, show_user_path(current_user.username), :id => "user_profile_link" %>
                     </li>
                     <li>
                         <a id="notifications-toggle" data-placement="bottom" title="Notifications" href="#">N</a>

@@ -28,12 +28,6 @@ $grid-list-avatar-dimensions: 75px;
     }
 }
 
-@mixin breakpoint-max($width) {
-    @media (max-width: $width) {
-        @content;
-    }
-}
-
 @mixin shadow-depth($depth) {
     @if $depth == 0 {
         box-shadow: none;
