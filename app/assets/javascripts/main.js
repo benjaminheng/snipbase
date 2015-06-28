@@ -158,16 +158,12 @@ var ready = function() {
     });
 
     //Add Keyboard shortcuts here
-    Mousetrap.bind('g n', function(e) {
-        if (!$('.files:focus').length) {
-            $("#add_snippet_link")[0].click();
-        }
+    Mousetrap.bind('g n', function() {
+        $("#add_snippet_link")[0].click();
     });
 
-    Mousetrap.bind('g g', function(e) {
-        if (!$('.files:focus').length) {
-            $("#groups_link")[0].click();
-        }
+    Mousetrap.bind('g g', function() {
+        $("#groups_link")[0].click();
     });
 
     // initializes delete buttons for snippet files at page load if applicable.
@@ -199,6 +195,16 @@ function initSnippetEditor(container) {
     aceEditor.setTheme('ace/theme/custom_github');
 
     aceEditor.getSession().setMode("ace/mode/"+mode.name);
+
+    var allCommands = aceEditor.commands.byName;
+
+    aceEditor.commands.bindKey("Ctrl-Down", function(){
+        $(':focus').parent().parent().parent().next().find('.ace_text-input').focus();
+    });
+
+    aceEditor.commands.bindKey("Ctrl-Up", function(){
+        $(':focus').parent().parent().parent().prev().find('.ace_text-input').focus();
+    });
 
     if (container.data("submit") == true) {
         textarea.closest('form').submit(function() {
@@ -232,7 +238,6 @@ function initSnippetEditor(container) {
     $('.snippet-delete-link').on('ajax:success', function() {
         $(this).closest('.view-snippet').remove();
     });
-
 }
 
 var isMobile = {
