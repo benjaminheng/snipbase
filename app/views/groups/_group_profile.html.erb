@@ -11,8 +11,8 @@
             </div>
             <div class="counters">
                 <%= link_to show_group_path(@group), class: "item" do %>
-                    <span class="count"><%= @snippets.count %></span>
-                    <span class="name"><%= 'snippet'.pluralize(@snippets.count) %></span>
+                    <span class="count"><%= @group.snippets.count %></span>
+                    <span class="name"><%= 'snippet'.pluralize(@group.snippets.count) %></span>
                 <% end %>
                 <%= link_to show_group_members_path(@group), class: "item" do %>
                     <span class="count"><%= @group.active_users.count %></span>
