@@ -38,7 +38,7 @@ var ready = function() {
         var files = $(".files");
         files.append($("#snippet_file_template").html());
         var newFile = files.find(".file").last();
-        $(document).scrollTop(newFile.offset().top - 100);
+        scrollToElement(newFile, 100);
         toggleDeleteButton();
 
         var container = newFile.find(".snippet-editor");
@@ -65,14 +65,22 @@ var ready = function() {
         if (e.target.classList.contains('snippet-control')) {
             return;
         }
+
         var container = $(this).closest('.view-snippet');
         var files = container.find('.files');
+        var selected = container.parent().find(".view-snippet.minimizable.selected");
+        // remove currently selected if exists, then select the expanded element.
+        if (selected.length) {
+            selected.removeClass('selected');
+        }
+
         if (container.hasClass('minimized')) {
             files.slideDown(300);
         } else {
             files.slideUp(300);
         }
         container.toggleClass('minimized');
+        container.addClass('selected');
     });
 
     // Removes the snippet client-side after a successful delete
@@ -164,24 +172,64 @@ var ready = function() {
 
     //Add Keyboard shortcuts here
     Mousetrap.bind('g n', function() {
-        var element = $("#add_snippet_link");
+        var element = $("#add-snippet-link");
         if (element.length) {
             element[0].click();
         }
     });
 
     Mousetrap.bind('g g', function() {
-        var element = $("#groups_link");
+        var element = $("#groups-link");
         if (element.length) {
             element[0].click();
         }
     });
 
     Mousetrap.bind('g u', function() {
-        var element = $("#user_profile_link");
+        var element = $("#user-profile-link");
         if (element.length) {
             element[0].click();
         }
+    });
+
+    Mousetrap.bind('j', function() {
+        var list = $("#snippet-list");
+        if (list.length === 0) return;
+
+        var selected = list.find(".view-snippet.minimizable.selected");
+        if (selected.length) {
+            if (selected.next().length) {
+                selected.toggleClass('selected');
+                selected.next().toggleClass('selected');
+            }
+        } else {
+            list.find('.view-snippet').first().toggleClass('selected');
+        }
+        if (!selected.next().find('.snippet-header').visible()) {
+            scrollToElement(selected.next(), 200);
+        }
+    });
+
+    Mousetrap.bind('k', function() {
+        var list = $("#snippet-list");
+        if (list.length === 0) return;
+
+        var selected = list.find(".view-snippet.minimizable.selected");
+        if (selected.length && selected.prev().length) {
+            selected.toggleClass('selected');
+            selected.prev().toggleClass('selected');
+        }
+        if (!selected.prev().find('.snippet-header').visible()) {
+            scrollToElement(selected.prev(), 200);
+        }
+    });
+
+    Mousetrap.bind('o', function() {
+        var list = $("#snippet-list");
+        if (list.length === 0) return;
+
+        var selected = list.find(".view-snippet.minimizable.selected");
+        selected.find(".snippet-header").click();
     });
 
     // initializes delete buttons for snippet files at page load if applicable.
@@ -304,6 +352,10 @@ function toggleDeleteButton(){
     } else {
         buttons.show();
     }
+}
+
+function scrollToElement(element, offset) {
+    $(document).scrollTop(element.offset().top - offset);
 }
 
 // fix for turbo-links preventing .ready() from working correctly. replaces .ready()

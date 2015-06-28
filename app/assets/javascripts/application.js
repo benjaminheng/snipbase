@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.visible.min.js
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require ace/ace.js 
 //= require ace/ext-modelist.js 
 //= require selectize.js
-//= require main
 //= require mousetrap
+//= require main

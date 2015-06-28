@@ -72,7 +72,7 @@
             background-color: $bg-color-dark;
             color: $text-color-light;
             a { color: $text-color-light }
-            @include transition(all .3s ease);
+            @include transition(all .15s ease);
 
             h1 {
                 font-size: 20px;
@@ -114,23 +114,36 @@
         }
     }
 
-    &.minimizable .snippet-header {
-        cursor: pointer;
-        position: relative;
-        .snippet-expand-indicator {
-            margin-right: 5px;
-            position: absolute;
-            right: 0;
-            height: 100%;
-            width: 56px;
-            fill: #BABABA;
-            transform: rotate(180deg);
-            svg {   // center svg
-                width: 26px;
+    &.minimizable  {
+        &.selected {
+            border-left: 3px solid #3093E5; // blue
+            .snippet-header .snippet-title {
+                background-color: $bg-color-dark;
+                color: $text-color-light;
+                a { color: $text-color-light }
+
+            }
+        }
+        .snippet-header {
+            cursor: pointer;
+            position: relative;
+
+            .snippet-expand-indicator {
+                margin-right: 5px;
+                position: absolute;
+                right: 0;
                 height: 100%;
+                width: 56px;
+                fill: #BABABA;
+                transform: rotate(180deg);
+                svg {   // center svg
+                    width: 26px;
+                    height: 100%;
+                }
             }
         }
     }
+    
     .files .file .file-metadata {
         .file-name {
             padding: 3px 0px;
@@ -158,6 +171,13 @@
         .snippet-header:hover {
             @include shadow-depth(0.6);
             @include transition(box-shadow .3s ease);
+
+            // dark bg on hover
+            .snippet-title {
+                background-color: $bg-color-dark;
+                color: $text-color-light;
+                a { color: $text-color-light }
+            }
         }
 
         &:not(:last-child) {
