@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
     get '/' => 'static_pages#index', as: 'root'
+    get '/groups' => 'static_pages#groups'
+    get '/groups/:id' => 'static_pages#group', as: 'group'
+    get '/following' => 'static_pages#following'
 
     post '/api/users/' => 'users#user_search'
 

@@ -1,7 +1,13 @@
-<div id="index-page" class="row">
-    <div class="extra-space container-fluid">
+<div id="collection-page" class="row">
+    <div id="collection" class="container-fluid">
         <%= render 'shared/messages' %>
-        <%= render 'shared/search_bar' %>
-        <%= render 'shared/snippet_list' %>
+        <%= render 'collection_nav', active: active %>
+        <% if active == 'groups' %>
+            <% if defined?(active_group) %>
+                <%= render 'groups_nav', active_group: active_group %>
+            <% else %>
+                <%= render 'groups_nav' %>
+            <% end %>
+        <% end %>
     </div>
 </div>

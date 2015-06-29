@@ -1,10 +1,27 @@
 class StaticPagesController < ApplicationController
+    before_filter :ensure_authenticated, only: ["groups", "group", "following"]
     def index
         if logged_in?
             @snippets = Snippet.permission(current_user).order_desc
-            render 'index'
+            render 'index', locals: {active: 'default'}
         else
-            render 'landing', :layout => 'fullwidth'
+            render 'landing', layout: 'fullwidth'
         end
+    end
+
+    def groups
+        render 'index', locals: {active: 'groups'}
+    end
+
+    def group 
+        group = Group.find(params[:id])
+        unless current_user.active_groups.include?(group)
+            render 'index', locals: {active: 'groups'}
+        end
+        render 'index', locals: {active: 'groups', active_group: group.id}
+    end
+
+    def following
+        render 'index', locals: {active: 'following'}
     end
 end

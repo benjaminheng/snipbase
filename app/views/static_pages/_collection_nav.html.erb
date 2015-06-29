@@ -1,0 +1,13 @@
+<div id="collection-nav">
+    <ul class='nav-list list-inline'>
+        <li class='nav-item <%= 'active' if active == 'default' %>'>
+        <%= link_to "Mine", root_path %>
+        </li>
+        <li class='nav-item <%= 'active' if active == 'groups' %>'>
+        <%= link_to "Groups", groups_path %>
+        </li>
+        <li class='nav-item <%= 'active' if active == 'following' %>'>
+        <%= link_to "Following", following_path %>
+        </li>
+    </ul>
+</div>
