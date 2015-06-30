@@ -1,0 +1,7 @@
+<div id="new-admin col-xs-12">
+    <%= form_tag(admin_path) do%>
+        <%= label_tag :admins, "Add Admins:" %>
+        <%= text_field_tag :admins %>
+        <%= submit_tag "Add" %>
+    <% end %>
+</div>
