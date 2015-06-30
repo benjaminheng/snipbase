@@ -143,7 +143,6 @@ var ready = function() {
         persist: false,
         maxItems: null,
         valueField: 'name',
-        labelField: 'caption',
         searchField: ['name', 'email'],
         options: modelist.modes,
         render: {
@@ -160,6 +159,42 @@ var ready = function() {
             }
         },
         create: false
+    });
+
+    // User selector for adding users to admin
+    $("#admins").selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: 'Add admins',
+        maxOptions: 50,
+        valueField: 'username',
+        labelField: 'username',
+        searchField: ['username', 'name'],
+        render: {
+            option: function(item, escape) {
+                return "<div><span class='username'>" + escape(item.username) +
+                       "</span><span class='name'> (" + escape(item.name) + 
+                       ")</span></div>";
+            }
+        },
+        load: function(query, callback) {
+            if (!query.length) return callback(); 
+            $.ajax({
+                url: '/api/non_admins',
+                type: 'POST',
+                data: {'query': query},
+                beforeSend: function() {
+                    $('.selectize-control').addClass("loading");
+                },
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    $('.selectize-control').removeClass("loading");
+                    callback(res);
+                }
+            });
+        }
     });
 
 

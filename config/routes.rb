@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/following' => 'static_pages#following'
 
     post '/api/users/' => 'users#user_search'
+    post '/api/non_admins/' => 'admins#admin_search'
 
     # sessions
     get '/login' => 'sessions#new'
@@ -24,6 +25,11 @@ Rails.application.routes.draw do
     get '/user/:username/following' => 'users#show_following', as: 'show_user_following'
     post '/user/:username/toggle_follow' => 'users#toggle_follow', as: 'toggle_follow_user'
 
+    #admin
+    get '/admin' => 'admins#show'
+    post '/admin' => 'admins#add_admin'
+    post '/admin/:id' => 'admins#delete_admin', as: 'delete_admin'
+    
     # groups
     get '/user/:username/groups' => 'groups#show_all', as: 'show_user_groups'
     post '/user/:username/groups' => 'groups#create'
