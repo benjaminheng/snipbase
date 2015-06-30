@@ -10,14 +10,16 @@ class StaticPagesController < ApplicationController
     end
 
     def groups
+        @snippets = current_user.active_groups.first.snippets.order_desc
         render 'index', locals: {active: 'groups'}
     end
 
     def group 
         group = Group.find(params[:id])
         unless current_user.active_groups.include?(group)
-            render 'index', locals: {active: 'groups'}
+            redirect_to groups_path
         end
+        @snippets = group.snippets.order_desc
         render 'index', locals: {active: 'groups', active_group: group.id}
     end
 
