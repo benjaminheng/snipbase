@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
         return Snippet.where(conditions).order_desc
     end
 
+    def following_snippets
+        return Snippet.where('user_id IN (?)', self.following.select('id'))
+    end
+
     private
     def password_complexity
         return unless errors[:password].blank? && errors[:password_confirmation].blank?

@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
     before_filter :ensure_authenticated, only: ["groups", "group", "following"]
     def index
         if logged_in?
-            @snippets = Snippet.permission(current_user).order_desc
+            @snippets = current_user.snippets.order_desc
             render 'index', locals: {active: 'default'}
         else
             render 'landing', layout: 'fullwidth'
@@ -24,6 +24,7 @@ class StaticPagesController < ApplicationController
     end
 
     def following
+        @snippets = current_user.following_snippets.order_desc
         render 'index', locals: {active: 'following'}
     end
 end

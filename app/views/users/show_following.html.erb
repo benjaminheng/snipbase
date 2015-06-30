@@ -19,9 +19,9 @@
                     <div class="item-metadata">
                         <span class="item-name"><%= link_to follower.username, show_user_path(username: follower.username), title: follower.username %></span>
                         <div>
-                    <% if current_user != follower && !current_user.following?(follower) %>
+                    <% if current_user && current_user != follower && !current_user.following?(follower) %>
                         <%= link_to "Follow", toggle_follow_user_path(username: follower.username), class: "btn btn-small", method: :post %>
-                    <% elsif current_user != follower && current_user.following?(follower) %>
+                    <% elsif current_user && current_user != follower && current_user.following?(follower) %>
                         <%= link_to "Unfollow", toggle_follow_user_path(username: follower.username), class: "btn btn-small", method: :post %>
                     <% end %>
                         </div>
