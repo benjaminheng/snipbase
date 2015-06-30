@@ -19,6 +19,8 @@ class SnippetsController < ApplicationController
 
         elsif referrer_path.start_with?("/following")
             #Issit??
+        elsif referrer_path.start_with?("/groups")
+            #!?
         end
 
         @snippets = @snippets.search(params[:search_input]).order_desc
@@ -34,14 +36,15 @@ class SnippetsController < ApplicationController
 		@snippet = Snippet.find(params[:id])
 
     	#Redirecting to root_path?? Or raise 404??
-    	render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
+    	redirect_to root_path unless (current_user == @snippet.user || current_user.is_admin)
+        #render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
     end
 
     def authenticate_delete_permission
     	@snippet = Snippet.find(params[:id])
 
 		#Redirecting to root_path?? Or raise 404??
-    	render :js => "window.location = '#{root_path}'" unless current_user == @snippet.user
+    	redirect_to root_path unless (current_user == @snippet.user || current_user.is_admin)
     end
 
 	def new
@@ -72,12 +75,13 @@ class SnippetsController < ApplicationController
 	end
 
 	def destroy
+        snippet_owner = @snippet.user
 		if @snippet.destroy
 			type = :success
 			msg = "Deleted snippet."
             if request.env['HTTP_REFERER'].end_with?(show_snippet_path)
             	flash[:success] = msg
-                return respond_to_delete
+                return respond_to_delete(snippet_owner)
             end
 		else
 			type = danger
@@ -109,10 +113,10 @@ class SnippetsController < ApplicationController
 
 
 	private
-    def respond_to_delete
+    def respond_to_delete(snippet_owner)
         respond_to do |format|
             format.html { redirect_to show_user_path(current_user.username) }
-            format.js { render :js => "window.location = '#{show_user_path(current_user.username)}'" }
+            format.js { render :js => "window.location = '#{show_user_path(snippet_owner.username)}'" }
         end
     end
 
