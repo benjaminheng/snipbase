@@ -4,6 +4,6 @@
             <%= render 'shared/snippet', snippet: snippet, minimizable: true %>
         <% end %>
     <% elsif !defined?(@snippets) || (defined?(@snippets) && @snippets.empty?) %>
-        <h4 class="section-muted-text">Oops, none of the people you follow have any snippets yet!</h4>
+        <h4 class="section-muted-text">Oops, no snippets here!</h4>
     <% end %>
 </div>
