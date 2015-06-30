@@ -1,9 +1,11 @@
-<div id="groups-nav">
-    <ul class='nav-list list-inline'>
-        <% current_user.active_groups.each_with_index do |group, index| %>
-            <li class='nav-item <%= 'active' if (!defined?(active_group) && index == 0) || (defined?(active_group) && group.id == active_group) %>'>
-                <%= link_to group.name, group_path(group.id) %>
-            </li>
-        <% end %>
-    </ul>
-</div>
+<% unless current_user.active_groups.empty? %>
+    <div id="groups-nav">
+        <ul class='nav-list list-inline'>
+            <% current_user.active_groups.each_with_index do |group, index| %>
+                <li class='nav-item <%= 'active' if (!defined?(active_group) && index == 0) || (defined?(active_group) && group.id == active_group) %>'>
+                    <%= link_to group.name, group_path(group.id) %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

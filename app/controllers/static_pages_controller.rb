@@ -10,7 +10,9 @@ class StaticPagesController < ApplicationController
     end
 
     def groups
-        @snippets = current_user.active_groups.first.snippets.order_desc
+        unless current_user.active_groups.empty?
+            @snippets = current_user.active_groups.first.snippets.order_desc
+        end
         render 'index', locals: {active: 'groups'}
     end
 
