@@ -76,14 +76,14 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
         }
     }
 
-    &.green {
-        background-color: #3bb878;
-        border-color: lighten(#3bb878, 5%);
-        border-bottom-color: darken(#3bb878, 6%);
+    &.blue {
+        background-color: $brand-color;
+        border-color: lighten($brand-color, 5%);
+        border-bottom-color: darken($brand-color, 6%);
         color: $text-color-light;
         outline: 0 none;
 
-        &:hover, &:focus { background-color: lighten(#3bb878, 2%); }
+        &:hover, &:focus { background-color: lighten($brand-color, 2%); }
     }
 
     &.warning {
