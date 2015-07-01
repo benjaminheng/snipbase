@@ -142,23 +142,43 @@
 }
 
 #full-width {
-    .hero {
-        background-color: $brand-color;
+    #introduction {
+        background-color: $bg-color-dark;
         color: $text-color-light;
         text-align: center;
+        border-bottom: 5px solid $brand-color;
 
-        .hero-signup {
-            max-width: 400px;
-            margin: auto;
-            input.hero-signup-btn {
-                font-size: 20px;
-                padding-top: 9px;
-                padding-bottom: 9px;
-                width: 100%;
-                line-height: 20px;
-                min-height: 42px;
-                font-weight: 600;
+        .intro-items {
+            margin-top: 30px;
+            .intro-item {
+                margin-bottom: 30px;
+                .intro-item-img {
+                    margin: auto;
+                    border: 1px solid #505050;
+                    height: 100px;
+                    width: 100px;
+                }
+
+                .intro-item-title {
+                    font-size: 22px;
+                    font-weight: 600;
+                    margin-top: 10px;
+                    margin-bottom: 8px;
+                }
+
+                .intro-item-caption {
+                    color: darken($text-color-light, 40%);
+                    font-size: 16px;
+                }
             }
+        }
+
+        input.hero-signup-btn {
+            font-size: 16px;
+            line-height: 16px;
+            padding: 9px 20px;
+            min-height: 38px;
+            font-weight: 600;
         }
 
         img.hero-img {
@@ -172,18 +192,19 @@
             }
         }
 
-        h1 {
-            font-size: 38px;
+        .intro-heading {
+            font-size: 32px;
+            margin-top: 0px;
         }
-        h2 {
-            font-size: 23px;
-            font-weight: 300;
-        }
-    }
 
-    .hero-accent {
-        background-color: darken($brand-color, 7%);
-        color: $text-color-light;
+        .separator {
+            /*background-color: #404040;*/
+            background-color: #202020;
+            border-bottom: 1px solid lighten($bg-color-dark, 10%);
+            margin: 0px 30px;
+            margin-bottom: 30px;
+            height: 2px;
+        }
     }
 }
 
