@@ -22,6 +22,18 @@ module TagsHelper
         Pygments.highlight(code, lexer: get_lexer(language), options: options).html_safe
     end
 
+    def svg(filename, options = {})
+        assets = Rails.application.assets
+        file = assets.find_asset(filename)
+        return "" if file.nil?
+        doc = Nokogiri::HTML::DocumentFragment.parse file.source.force_encoding("UTF-8")
+        svg = doc.at_css "svg"
+        if options[:class].present?
+            svg["class"] = options[:class]
+        end
+        raw doc
+    end
+
     private
     def get_lexer(language)
         file = File.join(Rails.root, 'lib', 'ace_to_pygments_map.yml')
