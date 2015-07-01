@@ -2,25 +2,43 @@ class SnippetsController < ApplicationController
     before_filter :ensure_authenticated, only: ["new", "create", "edit"]
     before_filter :authenticate_edit_permission, only: ["edit", "update"]
     before_filter :authenticate_delete_permission, only: ["destroy"]
+    before_filter :authenticate_view_permission, only: ["show"]
 
     def search
         referrer_path = URI(request.referer).path
         
+        #Root search
         if referrer_path == root_path
 
-            groups = current_user.active_groups
-            @snippets = Snippet.permission(current_user)
-            
+            @snippets = current_user.snippets.order_desc
+        
+        #Profile Search
         elsif referrer_path.start_with?("/user/")
 
             username = referrer_path.split('/')[-1]
             user = User.find_by(username: username)
             @snippets = get_snippets_for_user(user)
 
+        #Following Search
         elsif referrer_path.start_with?("/following")
-            #Issit??
+
+            @snippets = current_user.following_snippets
+
+        #Groups search
         elsif referrer_path.start_with?("/groups")
-            #!?
+
+            redirect_back_or_refresh_snippet if current_user.active_groups.empty?
+            group_id = referrer_path.split('/')[-1]
+            if group_id == "groups"
+                @snippets = current_user.active_groups.first.snippets
+            else
+                group = Group.find(group_id)
+                unless current_user.active_groups.include?(group)
+                    redirect_to groups_path
+                end
+                @snippets = group.snippets.order_desc
+
+            end
         end
 
         @snippets = @snippets.search(params[:search_input]).order_desc
@@ -47,13 +65,27 @@ class SnippetsController < ApplicationController
     	redirect_to root_path unless (current_user == @snippet.user || current_user.is_admin)
     end
 
+    def authenticate_view_permission
+        @snippet = Snippet.find(params[:id])
+        
+        return unless @snippet.private
+
+        if @snippet.user == current_user
+            return
+        elsif !(@snippet.groups & current_user.groups).empty?
+            return
+        end
+
+        redirect_to root_path
+
+    end
+
 	def new
         @snippet = Snippet.new
         render 'create'
 	end
 	
 	def show
-		@snippet = Snippet.find(params[:id])
 		if params[:destroy]
     		destroy and return
   		end

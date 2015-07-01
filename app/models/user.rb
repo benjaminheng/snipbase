@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
     end
 
     def following_snippets
-        return Snippet.where('user_id IN (?)', self.following.select('id'))
+        return Snippet.where('user_id IN (?)', self.following.select('id')).has_view_permission(self)
     end
 
     private

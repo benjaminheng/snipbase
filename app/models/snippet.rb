@@ -22,6 +22,18 @@ class Snippet < ActiveRecord::Base
         end
     }
     
+    scope :has_view_permission, -> (current_user) {
+        ids = current_user.groups.select("id")
+        if ids.empty?
+            where("private = false OR user_id = ?")
+        else
+            includes(:groups)
+            .references(:groups)
+            .where("groups.id IN (?) OR private = false OR user_id = ?", ids , current_user)
+        end
+
+    }
+
     scope :order_desc, -> { order(created_at: :desc) }
 
     scope :search, -> (search_param) {

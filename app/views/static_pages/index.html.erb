@@ -9,7 +9,9 @@
                 <%= render 'groups_nav' %>
             <% end %>
         <% end %>
+
         <div class="extra-space">
+            <%= render 'shared/search_bar' unless current_user.active_groups.empty? %>
             <%= render 'shared/snippet_list' %>
         </div>
     </div>
