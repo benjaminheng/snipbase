@@ -10,18 +10,6 @@ class Snippet < ActiveRecord::Base
 
     scope :priv, -> (priv) { where priv: priv }
     
-    scope :permission, -> (current_user) {
-        ids = current_user.groups.select("id")
-
-        if ids.empty?
-            where(:user => current_user)
-        else
-            includes(:groups)
-            .references(:groups)
-            .where("groups.id IN (?) OR user_id = ?", ids , current_user)
-        end
-    }
-    
     scope :has_view_permission, -> (current_user) {
         ids = current_user.groups.select("id")
         if ids.empty?
