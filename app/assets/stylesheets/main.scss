@@ -148,29 +148,26 @@
         text-align: center;
         border-bottom: 5px solid $brand-color;
 
-        .intro-items {
-            margin-top: 30px;
-            .intro-item {
-                margin-bottom: 30px;
-                .intro-item-img {
-                    margin: auto;
-                    height: 100px;
-                    width: 100px;
-                    fill: #fff;
+        .intro-item {
+            margin-bottom: 30px;
+            .intro-item-img {
+                margin: auto;
+                height: 100px;
+                width: 100px;
+                fill: #fff;
 
-                }
+            }
 
-                .intro-item-title {
-                    font-size: 22px;
-                    font-weight: 600;
-                    margin-top: 10px;
-                    margin-bottom: 8px;
-                }
+            .intro-item-title {
+                font-size: 22px;
+                font-weight: 600;
+                margin-top: 10px;
+                margin-bottom: 8px;
+            }
 
-                .intro-item-caption {
-                    color: darken($text-color-light, 40%);
-                    font-size: 16px;
-                }
+            .intro-item-caption {
+                color: darken($text-color-light, 40%);
+                font-size: 16px;
             }
         }
 
@@ -196,15 +193,89 @@
         .intro-heading {
             font-size: 32px;
             margin-top: 0px;
+            margin-bottom: 30px;
         }
 
         .separator {
             /*background-color: #404040;*/
             background-color: #202020;
             border-bottom: 1px solid lighten($bg-color-dark, 10%);
-            margin: 0px 30px;
             margin-bottom: 30px;
             height: 2px;
+        }
+    }
+
+    #overview {
+        margin-top: 30px;
+
+        .overview-items {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .overview-item {
+            margin: auto;
+            margin-bottom: 30px;
+            .overview-item-img {
+                text-align: center;
+                svg {
+                    width: 170px;
+                    height: 170px;
+                }
+
+                .overview-devices {
+                    position: relative;
+                    margin: auto;
+                    width: 170px;
+                }
+
+                .overview-devices-mobile {
+                    position: absolute;
+                    bottom: 20px;
+                    right: -26px;
+                    width: 100px;
+                    height: 100px;
+                    animation: mobile-in 1s ease-in-out;
+                }
+
+                @keyframes mobile-in {
+                    0% { 
+                        right: 100px; 
+                        opacity: 0;
+                    }
+                    100% { 
+                        right: -26px;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .overview-item-text {
+                text-align: center;
+            }
+
+            .overview-item-title {
+                font-weight: 600;
+            }
+
+            .overview-item-description {
+                font-size: 16px;
+                color: lighten($text-color, 15%);
+            }
+
+        }
+        @include breakpoint-small {
+            .overview-item {
+                margin-bottom: 10px;
+            }
+
+            .overview-item .overview-item-text {
+                text-align: left;
+            }
+
+            .overview-item.img-right .overview-item-text {
+                text-align: right;
+            }
         }
     }
 }

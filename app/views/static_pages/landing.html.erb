@@ -1,37 +1,64 @@
 <%= render 'shared/messages' %>
 
 <div id="introduction" class="row hero extra-space">
-    <div class="content">
-        <h1 class="intro-heading text-center">The snippet manager that just works</h1>
-        <div class="intro-items container-fluid">
-            <div class="intro-item col-xs-12 col-sm-4">
-                <%= svg "intro-heart", class: "intro-item-img" %>
-                <h2 class="intro-item-title">Powerful</h2>
-                <div class="intro-item-caption">
-                    Managing your snippets has never been this easy! A robust and feature-rich system makes Snipbase a joy to use.
-                </div>
-            </div>
-            <div class="intro-item col-xs-12 col-sm-4">
-                <%= svg "intro-social", class: "intro-item-img" %>
-                <h2 class="intro-item-title">Social</h2>
-                <div class="intro-item-caption">
-                    Share your snippets and collaborate with others.
-                </div>
-            </div>
-            <div class="intro-item col-xs-12 col-sm-4">
-                <%= svg "intro-pc", class: "intro-item-img" %>
-                <h2 class="intro-item-title">Device-friendly</h2>
-                <div class="intro-item-caption">
-                    View your snippets anywhere, anytime. Snipbase works on everything from desktop to mobile.
-                </div>
+    <div class="content container-fluid">
+        <h1 class="intro-heading col-xs-12 text-center">The snippet manager that just works</h1>
+        <div class="intro-item col-xs-12 col-sm-4">
+            <%= svg "intro-heart", class: "intro-item-img" %>
+            <h2 class="intro-item-title">Powerful</h2>
+            <div class="intro-item-caption">
+                Managing your snippets has never been this easy! A robust and feature-rich system makes Snipbase a joy to use.
             </div>
         </div>
-        <div class="separator"></div>
+        <div class="intro-item col-xs-12 col-sm-4">
+            <%= svg "intro-social", class: "intro-item-img" %>
+            <h2 class="intro-item-title">Social</h2>
+            <div class="intro-item-caption">
+                Share your snippets and collaborate with others.
+            </div>
+        </div>
+        <div class="intro-item col-xs-12 col-sm-4">
+            <%= svg "intro-pc", class: "intro-item-img" %>
+            <h2 class="intro-item-title">Device-friendly</h2>
+            <div class="intro-item-caption">
+                View your snippets anywhere, anytime. Snipbase works on everything from desktop to mobile.
+            </div>
+        </div>
+        <div class="separator col-xs-12"></div>
         <%= button_to "Sign up for free", register_path, class: "btn blue high hero-signup-btn", method: :get %>
     </div>
 </div>
 <div id="overview" class="row">
-    <div class="content">
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="overview-items">
+                <div class="overview-item img-left container-fluid">
+                    <div class="overview-item-img col-sm-3">
+                        <div class="overview-devices">
+                            <%= svg "overview-pc", class: "overview-devices-pc" %>
+                            <%= svg "overview-mobile", class: "overview-devices-mobile" %>
+                        </div>
+                    </div>
+                    <div class="overview-item-text col-sm-9">
+                        <h2 class="overview-item-title">Responsive Design</h2>
+                        <div class="overview-item-description">
+                            Access your snippets no matter where you are, as Snipbase's interface scales seamlessly according to your device.
+                        </div>
+                    </div>
+                </div>
+                <div class="overview-item img-right container-fluid">
+                    <div class="overview-item-img col-sm-3 col-sm-push-9">
+                        <%= svg "intro-pc", class: "overview-devices-img" %>
+                    </div>
+                    <div class="overview-item-text col-sm-9 col-sm-pull-3">
+                        <h2 class="overview-item-title">title</h2>
+                        <div class="overview-item-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
