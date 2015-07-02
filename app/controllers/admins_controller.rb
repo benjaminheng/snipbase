@@ -20,6 +20,7 @@ class AdminsController < ApplicationController
     def add_admin
         @admins = User.where(:is_admin => true)
         admins_to_process = params[:admins].split(",")
+        respond_to_request and return if admins_to_process.empty?
         success = true
 
         admins_to_process.each do |a|
