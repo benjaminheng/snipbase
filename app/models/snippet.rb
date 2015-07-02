@@ -13,7 +13,7 @@ class Snippet < ActiveRecord::Base
     scope :has_view_permission, -> (current_user) {
         ids = current_user.groups.select("id")
         if ids.empty?
-            where("private = false OR user_id = ?")
+            where("private = false OR user_id = ?", current_user)
         else
             includes(:groups)
             .references(:groups)
