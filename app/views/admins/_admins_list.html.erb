@@ -1,23 +1,22 @@
-<div id="admin-list" class="row col-xs-12">
+<div id="admin-list" class="grid-list col-xs-12">
     <% @admins.each do |admin| %>
-        <div class="user container-fluid col-xs-6 col-md-2">
-            <div class="profile-avatar">
+        <div class="list-item col-xs-12 col-sm-6 col-md-4">
+            <div class="item-avatar">
                 <%= link_to show_user_path(admin.username) do %>
-                    <%= image_tag "profile-default-avatar.png", height: 128 %>
+                    <%= image_tag "profile-default-avatar.png", height: 128%>
                 <% end %>
             </div>
-            <div class="col-xs-12 center-block">
-                <span class="metadata-item">
+            <div class="item-metadata">
+                <span class="item-name">
                     <%= admin.username %>
                 </span>
                 <% if admin.username != 'admin' %>
                     <span class="metadata-item" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                        <%= link_to delete_admin_path(admin), remote: true, class: "admin-delete-link", method: :post, data: {confirm: "Remove administrator privilege from \"#{admin.username}\"?"} do %>
-                            <span class="admin-control glyphicon glyphicon-remove"></span>
-                        <% end %>
+                        <%= link_to "Remove", delete_admin_path(admin), remote: true, class: "admin-delete-link", method: :post, data: {confirm: "Remove administrator privilege from \"#{admin.username}\"?"} %>
                     </span>
                 <% end %>
             </div>
         </div>
     <% end %>
 </div>
+
