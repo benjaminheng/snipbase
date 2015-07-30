@@ -4,11 +4,28 @@ feature "EditSnippet" do
     before do
         @snippet = create(:snippet)
         @user = @snippet.user
+        @admin = create(:user)
+        @admin.is_admin = true
+        @admin.save
     end
 
     scenario "Not logged in" do
         visit edit_snippet_path(@snippet)
         current_path.must_equal login_path, "User not redirected to login page."
+    end
+
+    #Currently admin can edit, change test according to code
+    scenario "admin successful edit", js: true do
+        log_in_as @admin
+        visit edit_snippet_path(@snippet)
+        fill_in "Title", with: "Edited Title"
+        click_button "Save Snippet"
+
+        # Force capybara to wait for javascript redirect to finish
+        page.has_text?("Title can't be blank")
+        current_path.must_equal show_snippet_path(@snippet), "User not redirected to show snippet page"
+
+        page.has_text?("Edited Title").must_equal true
     end
 
     scenario "successful edit title of snippet file", js: true do
