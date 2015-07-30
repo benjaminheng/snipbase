@@ -22,7 +22,7 @@
                     <%= link_to current_user.username, show_user_path(current_user.username), :id => "user-profile-link" %>
                     </li>
                     <li>
-                        <a id="notifications-toggle" data-placement="bottom" title="Notifications" href="#">N</a>
+                    <a id="notifications-toggle" data-placement="bottom" title="Notifications" href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a>
                     </li>
                     <li class="dropdown hidden-xs">
                         <a class="settings" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-cog"></i><span class="caret"></span></a>
@@ -47,9 +47,6 @@
                         <%= link_to "Log out", logout_path, method: :post, class: "logout" %>
                     </li>
                 <% else %>
-                    <li><a href="/public">Public Snippets</a>
-                    <li><a href="/tour">Tour</a>
-                    <li class="vertical-separator hidden-xs"><span>|</span>
                     <li class="no-block">
                         <%= link_to "Log in", login_path, class: "login" %>
                         <span class="faded">or</span>

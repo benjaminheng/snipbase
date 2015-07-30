@@ -1,7 +1,7 @@
 <div id="register" class="row">
     <h1 class="page-title">Create your Snipbase Account</h1>
 
-    <div class="col-sm-5 col-md-4">
+    <div class="col-xs-12">
         <%= form_for(@user, url: register_path, html: {class: "register-form form-default"})  do |f| %>
             <div class="form-element"> 
                 <%= f.label :username %>
@@ -39,9 +39,5 @@
 
             <%= f.submit "Sign up", class: "btn" %>
         <% end %>
-    </div>
-
-    <div class="register-help col-sm-7 col-md-8">
-        hello this is why you should sign up for an account.
     </div>
 </div>

@@ -32,17 +32,6 @@
             <% elsif current_user && current_user != @user && current_user.following?(@user) %>
                     <%= link_to "Unfollow", toggle_follow_user_path(username: @user.username), class: "btn", method: :post, remote: true %>
             <% end %>
-            <div class="btn-group">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Invite <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Amazing Group</a></li>
-                    <li><a href="#">Group of cats</a></li>
-                    <li><a href="#">pigspigspigs</a></li>
-                    <li><a href="#">Free Snippets</a></li>
-                </ul>
-            </div>
         </div>
         <% end %>
     </div>
