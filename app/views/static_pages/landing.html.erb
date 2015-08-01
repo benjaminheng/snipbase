@@ -48,12 +48,34 @@
                 </div>
                 <div class="overview-item img-right container-fluid">
                     <div class="overview-item-img col-sm-3 col-sm-push-9">
-                        <%= svg "intro-pc", class: "overview-devices-img" %>
+                        <%= svg "overview-social" %>
                     </div>
                     <div class="overview-item-text col-sm-9 col-sm-pull-3">
-                        <h2 class="overview-item-title">title</h2>
+                        <h2 class="overview-item-title">Share Snippets</h2>
                         <div class="overview-item-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            Sharing is a great way to learn. That's why Snipbase makes sharing your snippets a breeze! Simply create a group, invite your friends, and you're good to go!
+                        </div>
+                    </div>
+                </div>
+                <div class="overview-item img-left container-fluid">
+                    <div class="overview-item-img col-sm-3">
+                        <%= svg "overview-code" %>
+                    </div>
+                    <div class="overview-item-text col-sm-9">
+                        <h2 class="overview-item-title">Code Support</h2>
+                        <div class="overview-item-description">
+                            Enjoy syntax highlighting while creating and viewing your snippets. Snipbase also renders your Markdown snippets, allowing you to share more than just code!
+                        </div>
+                    </div>
+                </div>
+                <div class="overview-item img-right container-fluid">
+                    <div class="overview-item-img col-sm-3 col-sm-push-9">
+                        <%= svg "overview-security" %>
+                    </div>
+                    <div class="overview-item-text col-sm-9 col-sm-pull-3">
+                        <h2 class="overview-item-title">Security</h2>
+                        <div class="overview-item-description">
+                            We take your data seriously. With SSL encryption and robust access control, you can rest easy knowing your data is safe!
                         </div>
                     </div>
                 </div>
@@ -61,16 +83,10 @@
         </div>
     </div>
 </div>
-
-<div style="display:none">
-share your snippets with friends
-    create groups, share knowledge
-robust search and filters for your snippets
-    easily find the snippet you're looking for
-github gists integration
-    import/export options
-
-snippets of anything
-    from code to cooking recipies, snipbase has got you covered
+<div id="outro" class="row hero extra-space">
+    <div class="content container-fluid">
+        <h1 class="outro-heading">Interested?</h1>
+        <%= button_to "Sign up for free", register_path, class: "btn blue high hero-signup-btn", method: :get %>
+        <%= svg "outro-icon", class: "outro-icon" %>
+    </div>
 </div>
-

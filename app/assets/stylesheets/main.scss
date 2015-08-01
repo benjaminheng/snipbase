@@ -142,6 +142,15 @@
 }
 
 #full-width {
+
+    input.hero-signup-btn {
+        font-size: 16px;
+        line-height: 16px;
+        padding: 9px 20px;
+        min-height: 38px;
+        font-weight: 600;
+    }
+
     #introduction {
         background-color: $bg-color-dark;
         color: $text-color-light;
@@ -169,14 +178,6 @@
                 color: darken($text-color-light, 40%);
                 font-size: 16px;
             }
-        }
-
-        input.hero-signup-btn {
-            font-size: 16px;
-            line-height: 16px;
-            padding: 9px 20px;
-            min-height: 38px;
-            font-weight: 600;
         }
 
         img.hero-img {
@@ -216,6 +217,7 @@
         .overview-item {
             margin: auto;
             margin-bottom: 30px;
+            /*border-bottom: 1px solid #E6E6E6;*/
             .overview-item-img {
                 text-align: center;
                 svg {
@@ -252,6 +254,7 @@
 
             .overview-item-text {
                 text-align: center;
+                margin-top: 0;
             }
 
             .overview-item-title {
@@ -259,7 +262,8 @@
             }
 
             .overview-item-description {
-                font-size: 16px;
+                font-size: 17px;
+                line-height: 1.3;
                 color: lighten($text-color, 15%);
             }
 
@@ -271,10 +275,39 @@
 
             .overview-item .overview-item-text {
                 text-align: left;
+                margin-top: 20px;
             }
 
             .overview-item.img-right .overview-item-text {
                 text-align: right;
+            }
+        }
+    }
+
+    #outro {
+        background-color: $bg-color-dark;
+        color: $text-color-light;
+        text-align: center;
+        border-top: 5px solid $brand-color;
+        padding-bottom: 60px;
+        position: relative;
+
+        .outro-heading {
+            font-size: 32px;
+            margin-top: 0px;
+            margin-bottom: 15px;
+        }
+
+        .outro-icon {
+            display: none;
+        }
+
+        @include breakpoint-small {
+            .outro-icon {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 0;
             }
         }
     }
