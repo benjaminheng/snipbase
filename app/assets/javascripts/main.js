@@ -227,6 +227,13 @@ var ready = function() {
         }
     });
 
+    Mousetrap.bind('g h', function() {
+        var element = $("#home-link");
+        if (element.length) {
+            element[0].click();
+        }
+    });
+
     Mousetrap.bind('j', function() {
         var list = $("#snippet-list");
         if (list.length === 0) return;
