@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
 
     def user_search
-        users = User.select("username, name").where("username LIKE ?", "%#{params[:query]}%")
+        users = User.select("username, name").where("lower(username) LIKE ?", "%#{params[:query].downcase}%")
         render json: users.to_json
     end
 

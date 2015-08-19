@@ -26,7 +26,7 @@ class Snippet < ActiveRecord::Base
 
     scope :search, -> (search_param) {
         joins(:snippet_files)
-        .where("snippet_files.filename LIKE ? OR title LIKE ?", "%#{search_param}%", "%#{search_param}%")
+        .where("lower(snippet_files.filename) LIKE ? OR lower(title) LIKE ?", "%#{search_param.downcase}%", "%#{search_param.downcase}%")
         .distinct
     }
 

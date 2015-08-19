@@ -6,7 +6,7 @@ class AdminsController < ApplicationController
     end
 
     def admin_search
-        users = User.select("username, name").where("username LIKE ?", "%#{params[:query]}%").where(:is_admin => false)
+        users = User.select("username, name").where("lower(username) LIKE ?", "%#{params[:query].downcase}%").where(:is_admin => false)
         render json: users.to_json
     end
 
