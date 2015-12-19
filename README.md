@@ -2,7 +2,7 @@
 
 A social and collaborative code snippet manager with GitHub Gists integration.
 
-Snipbase is a collaborative project between Timothy Tam ([GitHub](https://github.com/TimothyTam)) and [Benjamin Heng](https://github.com/benjaminheng). This project was developed as part of the [NUS Orbital programme](http://orbital.comp.nus.edu.sg/).
+Snipbase is a collaborative project between [Timothy Tam](https://github.com/TimothyTam) and [Benjamin Heng](https://github.com/benjaminheng). This project was developed as part of the [NUS Orbital programme](http://orbital.comp.nus.edu.sg/).
 
 > Orbital is the School of Computing’s self-driven programming summer experience.  It is  designed to give first-year students the opportunity to 1) self-learn and 2) build something useful.  It is designed as a 4 modular credit (MC) module that is taken pass/fail (CS/CU) over the summer.
 
