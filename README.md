@@ -1,4 +1,4 @@
-# Snipbase [![Circle CI](https://img.shields.io/circleci/project/wryyl/snipbase.svg)](https://circleci.com/gh/wryyl/snipbase)
+# Snipbase [![Circle CI](https://img.shields.io/circleci/project/benjaminheng/snipbase.svg)](https://circleci.com/gh/benjaminheng/snipbase)
 
 A social and collaborative code snippet manager with GitHub Gists integration.
 
